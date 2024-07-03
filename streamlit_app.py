@@ -65,7 +65,7 @@ promt = """
         Second, you have to make a table that separate each part of the code and explain it side-by-side so manager could follow. 
         The table should have at least the copy of the code that explained and explaination.
 
-        You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time. Do not report by a file.
+        You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time.
         """
 # Create thread
 my_thread = client.beta.threads.create()
@@ -82,7 +82,7 @@ my_thread_message = client.beta.threads.messages.create(
 my_run = client.beta.threads.runs.create(
     thread_id = my_thread.id,
     assistant_id = Coder,
-    instructions="Please only return the final report."
+    instructions="Please only return the final report and do not report as a file."
 )
 
 while my_run.status in ["queued", "in_progress"]:
@@ -102,7 +102,8 @@ while my_run.status in ["queued", "in_progress"]:
         st.text("------------------------------------------------------------ \n")
 
         #print(f"User: {my_thread_message.content[0].text.value}")
-        st.text(body=all_messages.data[0].content[0].text.value)
+        for txt in all_messages.data:
+            st.text(body=txt.content[0].text.value)
         st.text("------------------------------------------------------------ \n")
         break
     elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
@@ -113,3 +114,4 @@ while my_run.status in ["queued", "in_progress"]:
 # Delete file and agent
 client.files.delete(gpt_file)
 client.beta.assistants.delete(Coder)
+client.beta.threads.delete(my_thread.id)
