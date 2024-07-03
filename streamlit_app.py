@@ -15,7 +15,9 @@ uploaded_file = st.file_uploader("Upload code", type=None,
                  key=None, help=None, 
                  on_change=None, args=None, kwargs=None, *, 
                  disabled=False, label_visibility="visible")
+
 API_KEY = st.text("OPENAI API KEY", *, help=None)
+
 # Connect to Openai API
 client = OpenAI(api_key=API_KEY)
 
@@ -67,13 +69,13 @@ my_thread_message = client.beta.threads.messages.create(
   thread_id=my_thread.id,
   role = "user",
   content = promt,
-  attachments = [{ "file_id": python_code.id, "tools": [{"type": "code_interpreter"}]}]
+  attachments = [{ "file_id": gpt_file, "tools": [{"type": "code_interpreter"}]}]
 )
 
 # Run
 my_run = client.beta.threads.runs.create(
     thread_id = my_thread.id,
-    assistant_id = asst.id,
+    assistant_id = Coder,
     instructions="Please only return the final report."
 )
 
