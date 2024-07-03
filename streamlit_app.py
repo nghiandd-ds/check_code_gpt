@@ -31,7 +31,7 @@ client = OpenAI(api_key=openai_api_key)
 
 # Upload file to OpenAI and take ID
 gpt_file = client.files.create(
-    file=open(Path(uploaded_file), 'r'),
+    file=uploaded_file,
     purpose='assistants').id
 
 # Create agent if not exist
