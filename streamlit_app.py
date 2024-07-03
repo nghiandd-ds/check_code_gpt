@@ -33,15 +33,13 @@ gpt_file = client.files.create(
     file=uploaded_file,
     purpose='assistants').id
 
-# Create agent if not exist
-if "Check code Assistant" in ([i.name for i in client.beta.assistants.list().data]) == True:
-    Coder = "asst_HqchrsdI82apAEzoXU2KGygS"
+# Create agent
 Coder = client.beta.assistants.create(
   name="Check code Assistant",
   instructions="You are an expert in coding and specialize in python and relevent packages. \
                 Your job is to read and understand codes of junior-level employees and then, explain it briefly and correctly to \
                 manager who is trained as a data scientist but not specialized in coding",
-  model="gpt-3.5-turbo-0125").id
+  model="gpt-3.5-turbo-0125", attachments = [{ "file_id": gpt_file, "tools": [{"type": "code_interpreter"}]}]).id
 
 # ChatGPT promt
 promt = """
@@ -76,7 +74,7 @@ my_thread_message = client.beta.threads.messages.create(
   thread_id=my_thread.id,
   role = "user",
   content = promt,
-  attachments = [{ "file_id": gpt_file, "tools": [{"type": "code_interpreter"}]}]
+  #attachments = [{ "file_id": gpt_file, "tools": [{"type": "code_interpreter"}]}]
 )
 
 # Run
@@ -96,7 +94,6 @@ while my_run.status in ["queued", "in_progress"]:
     if keep_retrieving_run.status == "completed":
         print("\n")
 
-        # Step 7: Retrieve the Messages added by the Assistant to the Thread
         all_messages = client.beta.threads.messages.list(
             thread_id=my_thread.id
         )
@@ -112,3 +109,6 @@ while my_run.status in ["queued", "in_progress"]:
     else:
         print(f"Run status: {keep_retrieving_run.status}")
         break
+# Delete file and agent
+client.files.delete(gpt_file)
+client.beta.assistants.delete(Coder)
