@@ -21,7 +21,8 @@ if not openai_api_key:
 # upload file by streamlit
 uploaded_file = st.file_uploader("Upload code")
 
-print(Path(uploaded_file))
+print(uploaded_file)
+
 if not uploaded_file:
     st.stop()    
     
