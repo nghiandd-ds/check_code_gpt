@@ -104,7 +104,7 @@ while my_run.status in ["queued", "in_progress"]:
         st.text("------------------------------------------------------------ \n")
 
         #print(f"User: {my_thread_message.content[0].text.value}")
-        st.text(body="{all_messages.data[0].content[0].text.value}")
+        st.text(body=all_messages.data[0].content[0].text.value)
         st.text("------------------------------------------------------------ \n")
         break
     elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
