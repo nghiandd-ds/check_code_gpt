@@ -62,7 +62,7 @@ promt = """
           13. Code checker:
           14. Notes:
           
-        Second, you have to make a table that separate each part of the code and explain it side-by-side so manager could follow. 
+        Second, you have to make a table that explain all of the code and explain it side-by-side so manager could follow. 
         The table should have at least the copy of the code that explained and explaination.
 
         You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time.
@@ -103,7 +103,8 @@ while my_run.status in ["queued", "in_progress"]:
 
         #print(f"User: {my_thread_message.content[0].text.value}")
         for txt in all_messages.data:
-            st.text(body=txt.content[0].text.value)
+            if txt.role == 'assistant':
+                st.text(body=txt.content[0].text.value)
         st.text("------------------------------------------------------------ \n")
         break
     elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
