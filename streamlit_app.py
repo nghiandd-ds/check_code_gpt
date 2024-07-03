@@ -12,7 +12,7 @@ st.write("""
 # upload file by streamlit
 uploaded_file = st.file_uploader("Upload code"))
 
-API_KEY = st.text("OPENAI API KEY", *, help=None)
+API_KEY = st.text_input("OPENAI API KEY")
 
 # Connect to Openai API
 client = OpenAI(api_key=API_KEY)
