@@ -65,6 +65,7 @@ promt = """
         The table should have at least the copy of the code that explained and explaination.
 
         You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time.
+        Just show the report and don't make files.
         """
 # Create thread
 my_thread = client.beta.threads.create()
