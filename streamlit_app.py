@@ -64,8 +64,7 @@ promt = """
         Second, you have to make a table that separate the main code and explain it side-by-side so manager could follow. 
         The table should have at least the copy of the code that explained and explaination.
 
-        You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time.
-        Just show the report and don't make files.
+        You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time. Do not report by a file.
         """
 # Create thread
 my_thread = client.beta.threads.create()
