@@ -63,8 +63,8 @@ promt = """
           12. References:
           13. Code checker:
           14. Notes:
-        Second, you have to make a table that separate each part of the main code and explain it side-by-side so manager could follow. 
-        The table should have at least code part, the copy of the code part and explaination.
+        Second, you have to make a table that separate the main code and explain it side-by-side so manager could follow. 
+        The table should have at least the copy of the code that explained and explaination.
 
         You must write a report that contain answers for all of manager's questions.
         """
