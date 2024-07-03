@@ -10,7 +10,7 @@ st.write("""
 """)
 
 # upload file by streamlit
-uploaded_file = st.file_uploader("Upload code"))
+uploaded_file = st.file_uploader("Upload code")
 
 API_KEY = st.text_input("OPENAI API KEY")
 
