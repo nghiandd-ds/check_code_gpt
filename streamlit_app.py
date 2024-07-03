@@ -67,9 +67,7 @@ promt = """
         You must write a report that contain answers for all of manager's questions.
         """
 # Create thread
-my_thread = client.beta.threads.create(
-    tool_resources = ''
-)
+my_thread = client.beta.threads.create()
 
 # add message
 my_thread_message = client.beta.threads.messages.create(
