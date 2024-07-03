@@ -3,7 +3,7 @@ from openai import OpenAI
 import numpy as np
 import pandas as pd
 import os
-from pathlib import Path
+#from pathlib import Path
 
 st.write("""
 # Check code
@@ -21,7 +21,6 @@ if not openai_api_key:
 # upload file by streamlit
 uploaded_file = st.file_uploader("Upload code")
 
-print(uploaded_file)
 
 if not uploaded_file:
     st.stop()    
