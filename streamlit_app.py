@@ -21,6 +21,7 @@ if not openai_api_key:
 # upload file by streamlit
 uploaded_file = st.file_uploader("Upload code")
 
+print(Path(uploaded_file))
 if not uploaded_file:
     st.stop()    
     
@@ -29,7 +30,7 @@ client = OpenAI(api_key=openai_api_key)
 
 # Upload file to OpenAI and take ID
 gpt_file = client.files.create(
-    file=open(uploaded_file, 'r'),
+    file=open(Path(uploaded_file), 'r'),
     purpose='assistants').id
 
 # Create agent if not exist
