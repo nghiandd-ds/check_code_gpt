@@ -63,8 +63,7 @@ promt = """
           14. Notes:
           
         Second, you have to make a table that explain all of the code and explain it side-by-side so manager could follow. 
-        The table should have at least information of code content and explaination.
-        Make sure that you have to cover all of the code, not a part of it.
+        The table should have at least information of code content and explaination and it must cover all of the code.
 
         You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time.
         """
