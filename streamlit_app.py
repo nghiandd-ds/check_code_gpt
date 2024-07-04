@@ -62,8 +62,8 @@ promt = """
           13. Code checker:
           14. Notes:
           
-        Second, you have to make a table that explain all of the code and explain it side-by-side so manager could follow. 
-        The table should have at least information of code content and explaination and it must cover all of the code.
+        Second, you have add to the report explaination all of the code so manager could follow. 
+        Your explaination at least information of code content and explaination and it must cover all of the code.
 
         You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time.
         """
