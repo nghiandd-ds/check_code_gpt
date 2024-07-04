@@ -63,7 +63,8 @@ promt = """
           14. Notes:
           
         Second, you have add to the report explaination all of the code so manager could follow. 
-        Your explaination at least information of code content and explaination and it must cover all of the code.
+        Your explaination must cover all of the code and explainations should be added side-by-side to the code so manager could understand.
+        Any explaination must start with key word "Explain: ".
 
         You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time.
         """
