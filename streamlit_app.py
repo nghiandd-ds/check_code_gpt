@@ -62,10 +62,15 @@ promt = """
           13. Code checker:
           14. Notes:
           
-        Second, you have add to the report explaination all of the code so manager could follow. 
+        Second, you have add to the report explaination all of the code so manager could follow as a table. The format of the table are given:
+            1. Each row of the table are each part of the code
+            2. There are 3 columns in the table as follow:
+                    - First column: code's part
+                    - Second column: The code content in the part
+                    - Third column: Explaination of the code in second columns
+            
         Your explaination must cover all of the code and explainations should be added side-by-side to the code so manager could understand.
-        Any explaination must start with key word "Explain: ".
-
+        
         You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time.
         """
 # Create thread
