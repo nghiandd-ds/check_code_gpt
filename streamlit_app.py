@@ -65,9 +65,9 @@ promt = """
         Second, you have add to the report explaination all of the code so manager could follow as a table. The format of the table are given:
             1. Each row of the table are each part of the code. Rows must cover all of the code, from the first line to the last line.
             2. There are 3 columns in the table as follow:
-                    - First column: code's part
-                    - Second column: The code content in the part
-                    - Third column: Explaination of the code in second columns
+                    - First column: code's part.
+                    - Second column: The code content in the part in first column. This columns must be exact copy code from attached file.
+                    - Third column: Explaination of the code in second column.
             
         Your explaination must cover all of the code and explainations should be added side-by-side to the code so manager could understand.
         
