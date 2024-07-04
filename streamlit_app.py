@@ -63,7 +63,7 @@ promt = """
           14. Notes:
           
         Second, you have to make a table that explain all of the code and explain it side-by-side so manager could follow. 
-        The table should have at least the copy of the code that explained and explaination.
+        The table should have at least information of lines of code, code content and explaination.
 
         You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time.
         """
@@ -82,7 +82,7 @@ my_thread_message = client.beta.threads.messages.create(
 my_run = client.beta.threads.runs.create(
     thread_id = my_thread.id,
     assistant_id = Coder,
-    instructions="Please only return the final report and do not report as a file. Don't give update about the process. Only return the results."
+    instructions="Please only return the final report and do not report as a file. Don't give update about the process. Only return the final results."
 )
 
 while my_run.status in ["queued", "in_progress"]:
