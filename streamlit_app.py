@@ -102,7 +102,8 @@ while my_run.status in ["queued", "in_progress"]:
         st.text("------------------------------------------------------------ \n")
 
         #print(f"User: {my_thread_message.content[0].text.value}")
-        for txt in all_messages.data:
+        # print in reverse order => first answer go first
+        for txt in all_messages.data[::-1]:
             if txt.role == 'assistant':
                 st.text(body=txt.content[0].text.value)
         st.text("------------------------------------------------------------ \n")
