@@ -88,7 +88,7 @@ my_thread_message = client.beta.threads.messages.create(
 my_run = client.beta.threads.runs.create(
     thread_id = my_thread.id,
     assistant_id = Coder,
-    instructions="Don't give any update about the process. Only submit to the manager final report."
+    instructions="Don't give any update about the process. Only submit to the manager final report as a downloadable PDF file."
 )
 
 while my_run.status in ["queued", "in_progress"]:
