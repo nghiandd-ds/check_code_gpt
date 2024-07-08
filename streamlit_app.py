@@ -72,10 +72,7 @@ promt = """
         Your explaination must cover all of the code and explainations should be added side-by-side to the code so manager could understand.
         
         You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time. 
-        The final report is a pdf file that contain 2 tasks that at least meet the following requirements:
-            1. All of content in the report must be formated for pdf file.
-            2. Task 2 have to be present a table in the pdf file.
-            3. Make an hyperlink so manager can download the report.
+
         """
 # Create thread
 my_thread = client.beta.threads.create()
@@ -92,7 +89,10 @@ my_thread_message = client.beta.threads.messages.create(
 my_run = client.beta.threads.runs.create(
     thread_id = my_thread.id,
     assistant_id = Coder,
-    #instructions="You must make a link to download the final pdf report."
+    #instructions="""The final report is a pdf file that contain 2 tasks that at least meet the following requirements:
+    #        1. All of content in the report must be formated for pdf file.
+    #        2. Task 2 have to be present a table in the pdf file.
+    #        3. Make an hyperlink so manager can download the report."""
 )
 
 while my_run.status in ["queued", "in_progress"]:
