@@ -92,7 +92,7 @@ my_thread_message = client.beta.threads.messages.create(
 my_run = client.beta.threads.runs.create(
     thread_id = my_thread.id,
     assistant_id = Coder,
-    instructions="You must make a hyperlink to download the pdf report."
+    instructions="You must make a link to download the final pdf report."
 )
 
 while my_run.status in ["queued", "in_progress"]:
