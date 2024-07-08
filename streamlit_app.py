@@ -44,8 +44,8 @@ Coder = client.beta.assistants.create(
 # ChatGPT promt
 promt = """
       Using the attached file, your manager have given you two jobs. 
-      First, answer in a form she have given to you information about the code. In case code have no information about that you are asked, 
-      please answer that 'not given' or 'no information'.
+      First is task 1, you have to answer in a form she have given to you information about the code. In case code have no information about that you are asked, 
+      please let the answer as blank.
       The form as follow. You must keep the format of this form:
           01. Code's name:
           02. Code maker:
@@ -62,7 +62,7 @@ promt = """
           13. Code checker:
           14. Notes:
           
-        Second, you have add to the report explaination all of the code so manager could follow as a table. The format of the table are given:
+        Second is task 2, you have add to the report explaination all of the code so manager could follow as a formated table for pdf file. The format of the table are given:
             1. Each row of the table are each part of the code. Rows must cover all of the code, from the first line to the last line.
             2. There are 3 columns in the table as follow:
                     - First column: code's part.
@@ -71,8 +71,11 @@ promt = """
             
         Your explaination must cover all of the code and explainations should be added side-by-side to the code so manager could understand.
         
-        You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time. The delivery is a downloadable PDF
-        file that have all table formated.
+        You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time. 
+        The final deliverable is a report that contain 2 task that at least meet the following requirements:
+            1. The final report have to be in .pdf file
+            2. Task 2 have to be a table in the pdf file
+            3. Make an hyperlink so manager can download the report
         """
 # Create thread
 my_thread = client.beta.threads.create()
@@ -89,7 +92,8 @@ my_thread_message = client.beta.threads.messages.create(
 my_run = client.beta.threads.runs.create(
     thread_id = my_thread.id,
     assistant_id = Coder,
-    instructions="Don't give any update about the process. Only submit to the manager final report as a downloadable PDF file. You only need to give a link to the report"
+    instructions="Don't give any update about the process. 
+    Make a hyperlink to download the pdf report."
 )
 
 while my_run.status in ["queued", "in_progress"]:
