@@ -115,7 +115,8 @@ while my_run.status in ["queued", "in_progress"]:
         # print in reverse order => first answer go first
         for txt in all_messages.data[::-1]:
             if txt.role == 'assistant':
-                st.text(body=txt)
+                st.text(body=txt.content[0].text.value)
+                st.text(body=txt.attachments[0])
         st.text("------------------------------------------------------------ \n")
         break
     elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
