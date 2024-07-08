@@ -89,7 +89,7 @@ my_thread_message = client.beta.threads.messages.create(
 my_run = client.beta.threads.runs.create(
     thread_id = my_thread.id,
     assistant_id = Coder,
-    instructions="Don't give any update about the process. Only submit to the manager final report as a downloadable PDF file."
+    instructions="Don't give any update about the process. Only submit to the manager final report as a downloadable PDF file. You only need to give a link to the report"
 )
 
 while my_run.status in ["queued", "in_progress"]:
@@ -121,8 +121,8 @@ while my_run.status in ["queued", "in_progress"]:
         print(f"Run status: {keep_retrieving_run.status}")
         break
 # Delete file and agent
-client.files.delete(gpt_file)
-client.beta.assistants.delete(Coder)
-client.beta.threads.delete(my_thread.id)
-del openai_api_key
+#client.files.delete(gpt_file)
+#client.beta.assistants.delete(Coder)
+#client.beta.threads.delete(my_thread.id)
+#del openai_api_key
 
