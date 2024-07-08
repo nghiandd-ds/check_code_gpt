@@ -116,7 +116,10 @@ while my_run.status in ["queued", "in_progress"]:
         for txt in all_messages.data[::-1]:
             if txt.role == 'assistant':
                 st.text(body=txt.content[0].text.value)
-                st.text(body=txt.attachments[0])
+                try:
+                    st.text(body=txt.attachments[0])
+                except:
+                    next
         st.text("------------------------------------------------------------ \n")
         break
     elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
