@@ -73,9 +73,9 @@ promt = """
         
         You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time. 
         The final deliverable is a report that contain 2 task that at least meet the following requirements:
-            1. The final report have to be in .pdf file
-            2. Task 2 have to be a table in the pdf file
-            3. Make an hyperlink so manager can download the report
+            1. The final report have to be in .pdf file.
+            2. Task 2 have to be a table in the pdf file.
+            3. Make an hyperlink so manager can download the report.
         """
 # Create thread
 my_thread = client.beta.threads.create()
