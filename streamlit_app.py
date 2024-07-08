@@ -71,7 +71,8 @@ promt = """
             
         Your explaination must cover all of the code and explainations should be added side-by-side to the code so manager could understand.
         
-        You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time.
+        You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time. The delivery is a downloadable PDF
+        file that have all table formated.
         """
 # Create thread
 my_thread = client.beta.threads.create()
