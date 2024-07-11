@@ -81,7 +81,7 @@ promt = """
             
         Your explaination must cover all of the code and explainations should be added side-by-side to the code so manager could understand.
         
-        You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time in a PDF file. 
+        You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time. 
 
         """
 # Create thread
@@ -147,5 +147,5 @@ while my_run.status in ["queued", "in_progress"]:
 #client.files.delete(gpt_file)
 #client.beta.assistants.delete(Coder)
 #client.beta.threads.delete(my_thread.id)
-del openai_api_key
+#del openai_api_key
 
