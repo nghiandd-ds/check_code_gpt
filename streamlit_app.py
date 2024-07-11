@@ -22,12 +22,15 @@ def decoding(encryted_key, password):
 #    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
 
 openai_api_key = decoding('FSeeODhu-tBjpc9j-cM0iJtRRo3rkona7nXEHKk9sWk3bCPI63TrnTlB', '35-21-17-37-41-42-56-47-8-54-16-7-4-10-50-18-3-38-28-55-11-36-45-13-9-19-44-25-39-6-53-43-27-12-40-20-24-14-34-15-1-26-2-30-33-49-46-22-51-23-29-5-48-52-32-31')
-url = st.text_input("Folder save files")
-if not url:
-    url = "C:\\Users\\admin\\Downloads"
-    st.info("Please add your OpenAI API key to continue.")
-    st.stop()
-    
+#url = st.text_input("Folder save files")
+#if not url:
+#    url = "C:\\Users\\admin\\Downloads"
+#    st.info("Please add your OpenAI API key to continue.")
+#    st.stop()
+
+st.download_button(label="Download report",
+data=client.files.content('file-FMMb13SWnuXlrkvArMCunXkz'))
+
 # upload file by streamlit
 uploaded_file = st.file_uploader("Upload code")
 
@@ -42,6 +45,8 @@ client = OpenAI(api_key=openai_api_key)
 gpt_file = client.files.create(
     file=uploaded_file,
     purpose='assistants').id
+
+
 
 # Create agent
 Coder = client.beta.assistants.create(
@@ -100,7 +105,7 @@ my_run = client.beta.threads.runs.create(
     assistant_id = Coder,
     max_prompt_tokens = 10000,
     max_completion_tokens = 16000,
-    instructions="""The final report must meet the following requirements:
+    instructions="""You must make a PDF file as the final report and must meet the following requirements:
             1. All tasks are reported in PDF file.
             2. Task 2 have to be present a table in the pdf file.
             3. PDF file have to be formated so it can be printed immediately.
@@ -136,6 +141,7 @@ while my_run.status in ["queued", "in_progress"]:
             st.download_button(
                     label="Download report",
                     data=file_data_bytes)
+            
             
         st.text("------------------------------------------------------------ \n")
         break
