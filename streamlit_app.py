@@ -121,8 +121,6 @@ while my_run.status in ["queued", "in_progress"]:
         )
 
         st.text("------------------------------------------------------------ \n")
-
-        #print(f"User: {my_thread_message.content[0].text.value}")
         # print in reverse order => first answer go first
         for txt in all_messages.data[::-1]:
             if txt.role == 'assistant':
@@ -133,8 +131,7 @@ while my_run.status in ["queued", "in_progress"]:
                     file_data = client.files.content(download_id)
                     st.download_button(
                         label="Download data as CSV",
-                        data=file_data
-                    )
+                        data=file_data)
                 except:
                     next
         st.text("------------------------------------------------------------ \n")
