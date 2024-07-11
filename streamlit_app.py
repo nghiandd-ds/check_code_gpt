@@ -99,10 +99,11 @@ my_thread_message = client.beta.threads.messages.create(
 my_run = client.beta.threads.runs.create(
     thread_id = my_thread.id,
     assistant_id = Coder,
-    #instructions="""The final report must meet the following requirements:
-    #        1. All tasks are reported in PDF file.
-    #        2. Task 2 have to be present a table in the pdf file.
-    #        """
+    instructions="""The final report must meet the following requirements:
+            1. All tasks are reported in PDF file.
+            2. Task 2 have to be present a table in the pdf file.
+            3. PDF file have to be formated so it can be printed immediately.
+            """
 )
 
 while my_run.status in ["queued", "in_progress"]:
