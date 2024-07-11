@@ -133,8 +133,6 @@ while my_run.status in ["queued", "in_progress"]:
                     st.download_button(label="Download report", data=file_.read(), file_name="report.pdf")
                 except:
                     st.text('Error: No report file extracted')
-
-
                 st.text(body=txt.content[0].text.value)
                        
         st.text("------------------------------------------------------------ \n")
@@ -144,13 +142,13 @@ while my_run.status in ["queued", "in_progress"]:
     else:
         print(f"Run status: {keep_retrieving_run.status}")
         break
-try:
-    if download_id == None:
-        st.text("Error: No report file")
-    else:
-        st.text("Your report is ready")
-except:
-    st.text("Error")
+#try:
+#    if download_id == None:
+#        st.text("Error: No report file")
+#    else:
+#        st.text("Your report is ready")
+#except:
+#    st.text("Error")
 # Delete file and agent
 client.files.delete(gpt_file)
 client.beta.assistants.delete(Coder)
