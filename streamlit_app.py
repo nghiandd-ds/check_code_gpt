@@ -69,7 +69,7 @@ promt = """
           13. Code checker:
           14. Notes:
           
-        Second is task 2, you have add to the report explaination all of the code so manager could follow as a formated table for pdf file. 
+        Second is task 2, you have add to the report explaination all of the code so manager could follow as a formated table for txt file. 
         The format of the table are given:
             1. Each row of the table are each part of the code. Rows must cover all of the code, from the first line to the last line.
             2. There are 3 columns in the table as follow:
@@ -99,10 +99,10 @@ my_run = client.beta.threads.runs.create(
     assistant_id = Coder,
     max_prompt_tokens = 10000,
     max_completion_tokens = 16000,
-    instructions="""Make a downloadble PDF file meet the following requirements:
-            1. All of the tasks are reported in one PDF file only.
-            2. Task 2 have to be present as a table in the pdf file.
-            3. PDF file have to be formated so it can be printed immediately without any loss information.
+    instructions="""Make a downloadble txt file meet the following requirements:
+            1. All of the tasks are reported in one txt file only.
+            2. Task 2 have to be present as a table in the txt file.
+            3. txt file have to be formated so it can be printed immediately without any loss information.
             4. Only make 1 file contain 2 tasks result. Do not make 2 separate files.
             """
 )
@@ -130,7 +130,7 @@ while my_run.status in ["queued", "in_progress", "incomplete"]:
                     download_id = txt.attachments[0].file_id
                     st.text(download_id)
                     file_data = client.files.content(download_id)
-                    st.download_button(label="Download report", data=file_data.read(), file_name="report.pdf")
+                    st.download_button(label="Download report", data=file_data.read(), file_name="report.txt")
                 except:
                     st.text('Note: No report file extracted')
                 
