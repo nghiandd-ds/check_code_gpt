@@ -98,10 +98,10 @@ my_thread_message = client.beta.threads.messages.create(
 my_run = client.beta.threads.runs.create(
     thread_id = my_thread.id,
     assistant_id = Coder,
-    #instructions="""The final report is a pdf file that contain 2 tasks that at least meet the following requirements:
-    #        1. All of content in the report must be formated for pdf file.
-    #        2. Task 2 have to be present a table in the pdf file.
-    #        3. Make an hyperlink so manager can download the report."""
+    instructions="""The final report must meet the following requirements:
+            1. All tasks are reported in PDF file.
+            2. Task 2 have to be present a table in the pdf file.
+            3. Only return the final report."""
 )
 
 while my_run.status in ["queued", "in_progress"]:
@@ -126,7 +126,12 @@ while my_run.status in ["queued", "in_progress"]:
             if txt.role == 'assistant':
                 st.text(body=txt.content[0].text.value)
                 try:
-                    st.text(body=txt.attachments[0])
+                    download_id=txt.attachments[0].file_id)
+                    file_data = client.files.content(download_id)
+                    st.download_button(
+                        label="Download data as CSV",
+                        data=file_data
+                    )
                 except:
                     next
         st.text("------------------------------------------------------------ \n")
