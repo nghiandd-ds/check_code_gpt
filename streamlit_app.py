@@ -38,8 +38,8 @@ if not uploaded_file:
 # Connect to Openai API
 client = OpenAI(api_key=openai_api_key)
 
-#st.download_button(label="Download report",
-#data=client.files.content('file-FMMb13SWnuXlrkvArMCunXkz'))
+st.download_button(label="Download report",
+data=client.files.content('file-FMMb13SWnuXlrkvArMCunXkz').stream_to_file('test.pdf'))
 st.text('https://api.openai.com/v1/files/file-FMMb13SWnuXlrkvArMCunXkz/content')
 # Upload file to OpenAI and take ID
 gpt_file = client.files.create(
@@ -135,12 +135,12 @@ while my_run.status in ["queued", "in_progress"]:
                     download_id=txt.attachments[0].file_id
                     st.text(download_id)
                     file_data = client.files.content(download_id)
-                    file_data_bytes = file_data.read()
+                    file_ = file_data.stream_to_file('report.pdf')
                 except:
                     next
             st.download_button(
                     label="Download report",
-                    data=file_data_bytes)
+                    data=file_)
             
             
         st.text("------------------------------------------------------------ \n")
