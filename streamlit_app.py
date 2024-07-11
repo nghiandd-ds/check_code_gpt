@@ -71,7 +71,8 @@ promt = """
           13. Code checker:
           14. Notes:
           
-        Second is task 2, you have add to the report explaination all of the code so manager could follow as a formated table for pdf file. The format of the table are given:
+        Second is task 2, you have add to the report explaination all of the code so manager could follow as a formated table for pdf file. 
+        The format of the table are given:
             1. Each row of the table are each part of the code. Rows must cover all of the code, from the first line to the last line.
             2. There are 3 columns in the table as follow:
                     - First column: code's part.
@@ -80,7 +81,7 @@ promt = """
             
         Your explaination must cover all of the code and explainations should be added side-by-side to the code so manager could understand.
         
-        You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time. 
+        You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time in a PDF file. 
 
         """
 # Create thread
@@ -127,6 +128,7 @@ while my_run.status in ["queued", "in_progress"]:
                 st.text(body=txt.content[0].text.value)
                 try:
                     download_id=txt.attachments[0].file_id
+                    st.text(download_id)
                     file_data = client.files.content(download_id)
                     st.download_button(
                         label="Download data as CSV",
