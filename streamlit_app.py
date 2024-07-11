@@ -9,14 +9,23 @@ st.write("""
 # Check code
 """)
 
-with st.sidebar:
-    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
+def decoding(encryted_key, password):
+    password = [eval(i) for i in password.split('-')]
+    key = [i for i in encryted_key]
+    combine_key = pd.DataFrame({
+        'index' : password,
+        'encryted_key': key
+    }).sort_values('index')
+    return ''.join(combine_key['encryted_key'])
 
+#with st.sidebar:
+#    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
 
+openai_api_key = decoding('FSeeODhu-tBjpc9j-cM0iJtRRo3rkona7nXEHKk9sWk3bCPI63TrnTlB', '35-21-17-37-41-42-56-47-8-54-16-7-4-10-50-18-3-38-28-55-11-36-45-13-9-19-44-25-39-6-53-43-27-12-40-20-24-14-34-15-1-26-2-30-33-49-46-22-51-23-29-5-48-52-32-31')
 
-if not openai_api_key:
-    st.info("Please add your OpenAI API key to continue.")
-    st.stop()
+#if not openai_api_key:
+#    st.info("Please add your OpenAI API key to continue.")
+#    st.stop()
     
 # upload file by streamlit
 uploaded_file = st.file_uploader("Upload code")
@@ -131,5 +140,5 @@ while my_run.status in ["queued", "in_progress"]:
 #client.files.delete(gpt_file)
 #client.beta.assistants.delete(Coder)
 #client.beta.threads.delete(my_thread.id)
-#del openai_api_key
+del openai_api_key
 
