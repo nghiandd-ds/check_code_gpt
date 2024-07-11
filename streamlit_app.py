@@ -76,7 +76,7 @@ promt = """
                     - First column: code's part.
                     - Second column: The code content in the part in first column. This columns must be exact copy code from attached file.
                     - Third column: Explaination of the code in second column.
-            3. All text in the table must be within its cell
+            3. All text in the table must be within table cell
         Your explaination must cover all of the code and explainations should be added side-by-side to the code so manager could understand.
         
         You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time. 
