@@ -102,7 +102,7 @@ my_run = client.beta.threads.runs.create(
     instructions="""The final report must meet the following requirements:
             1. All tasks are reported in PDF file.
             2. Task 2 have to be present a table in the pdf file.
-            3. Only return the final report."""
+            """
 )
 
 while my_run.status in ["queued", "in_progress"]:
