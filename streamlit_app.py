@@ -22,10 +22,11 @@ def decoding(encryted_key, password):
 #    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
 
 openai_api_key = decoding('FSeeODhu-tBjpc9j-cM0iJtRRo3rkona7nXEHKk9sWk3bCPI63TrnTlB', '35-21-17-37-41-42-56-47-8-54-16-7-4-10-50-18-3-38-28-55-11-36-45-13-9-19-44-25-39-6-53-43-27-12-40-20-24-14-34-15-1-26-2-30-33-49-46-22-51-23-29-5-48-52-32-31')
-
-#if not openai_api_key:
-#    st.info("Please add your OpenAI API key to continue.")
-#    st.stop()
+url = st.text_input("Folder save files")
+if not url:
+    url = "C:\\Users\\admin\\Downloads"
+    st.info("Please add your OpenAI API key to continue.")
+    st.stop()
     
 # upload file by streamlit
 uploaded_file = st.file_uploader("Upload code")
@@ -45,9 +46,7 @@ gpt_file = client.files.create(
 # Create agent
 Coder = client.beta.assistants.create(
   name="Check code Assistant",
-  instructions="You are an expert in coding and specialize in python and relevent packages. \
-                Your job is to read and understand codes of junior-level employees and then, explain it briefly and correctly to \
-                manager who is trained as a data scientist but not specialized in coding",
+  instructions="You are an expert in coding and specialize in python and relevent packages. Your job is to read and understand codes of junior-level employees and then, explain it briefly and correctly to manager who is trained as a data scientist but not specialized in coding",
   model="gpt-3.5-turbo-0125", tools=[{"type": "code_interpreter"}]).id
 
 # ChatGPT promt
@@ -135,7 +134,7 @@ while my_run.status in ["queued", "in_progress"]:
                 except:
                     next
             st.download_button(
-                    label="Download data as CSV",
+                    label="Download report",
                     data=file_data_bytes)
             
         st.text("------------------------------------------------------------ \n")
