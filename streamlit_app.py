@@ -102,7 +102,7 @@ my_run = client.beta.threads.runs.create(
             1. All tasks are reported in one PDF file only.
             2. Task 2 have to be present as a table in the pdf file.
             3. PDF file have to be formated so it can be printed immediately without any loss information.
-            4. Alaways make PDF file without asking any questions.
+            4. You have to use maked PDF report to answer.
             """
 )
 
@@ -111,7 +111,7 @@ while my_run.status in ["queued", "in_progress", "incomplete"]:
         thread_id=my_thread.id,
         run_id=my_run.id
     )
-    st.text(f"Run status: {keep_retrieving_run.status}")
+    #st.text(f"Run status: {keep_retrieving_run.status}")
 
     if keep_retrieving_run.status == "completed":
         print("\n")
@@ -131,7 +131,7 @@ while my_run.status in ["queued", "in_progress", "incomplete"]:
                     file_data = client.files.content(download_id)
                     st.download_button(label="Download report", data=file_data.read(), file_name="report.pdf")
                 except:
-                    st.text('Error: No report file extracted')
+                    st.text('Note: No report file extracted')
                 
                        
         st.text("------------------------------------------------------------ \n")
