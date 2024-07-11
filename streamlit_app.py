@@ -41,8 +41,8 @@ client = OpenAI(api_key=openai_api_key)
 test_file = client.files.content('file-FMMb13SWnuXlrkvArMCunXkz')
 test_file.stream_to_file('test.pdf')
 st.download_button(label="Download report",
-data='test.pdf')
-#st.text('https://api.openai.com/v1/files/file-FMMb13SWnuXlrkvArMCunXkz/content')
+data='test.pdf'.read())
+
 # Upload file to OpenAI and take ID
 gpt_file = client.files.create(
     file=uploaded_file,
