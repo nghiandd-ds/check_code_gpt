@@ -106,7 +106,7 @@ my_run = client.beta.threads.runs.create(
             """
 )
 
-while my_run.status in ["queued", "in_progress"]:
+while my_run.status in ["queued", "in_progress", "incomplete"]:
     keep_retrieving_run = client.beta.threads.runs.retrieve(
         thread_id=my_thread.id,
         run_id=my_run.id
@@ -129,8 +129,7 @@ while my_run.status in ["queued", "in_progress"]:
                     download_id = txt.attachments[0].file_id
                     st.text(download_id)
                     file_data = client.files.content(download_id)
-                    file_ = file_data.stream_to_file('report.pdf')
-                    st.download_button(label="Download report", data=file_.read(), file_name="report.pdf")
+                    st.download_button(label="Download report", data=file_data.read(), file_name="report.pdf")
                 except:
                     st.text('Error: No report file extracted')
                 
