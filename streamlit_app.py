@@ -22,11 +22,6 @@ def decoding(encryted_key, password):
 #    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
 
 openai_api_key = decoding('FSeeODhu-tBjpc9j-cM0iJtRRo3rkona7nXEHKk9sWk3bCPI63TrnTlB', '35-21-17-37-41-42-56-47-8-54-16-7-4-10-50-18-3-38-28-55-11-36-45-13-9-19-44-25-39-6-53-43-27-12-40-20-24-14-34-15-1-26-2-30-33-49-46-22-51-23-29-5-48-52-32-31')
-#url = st.text_input("Folder save files")
-#if not url:
-#    url = "C:\\Users\\admin\\Downloads"
-#    st.info("Please add your OpenAI API key to continue.")
-#    st.stop()
 
 # upload file by streamlit
 uploaded_file = st.file_uploader("Upload code")
@@ -39,9 +34,9 @@ if not uploaded_file:
 client = OpenAI(api_key=openai_api_key)
 
 test_file = client.files.content('file-FMMb13SWnuXlrkvArMCunXkz')
-test_file.stream_to_file('test.pdf')
+
 st.download_button(label="Download report",
-data=test_file.read())
+data=test_file.read(), file_name="report.pdf")
 
 # Upload file to OpenAI and take ID
 gpt_file = client.files.create(
