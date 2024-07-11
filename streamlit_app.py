@@ -143,7 +143,7 @@ while my_run.status in ["queued", "in_progress"]:
     else:
         print(f"Run status: {keep_retrieving_run.status}")
         break
-if download_id = None:
+if download_id == None:
     st.text("Error: No report file extracted")
 else:
     st.text("Your report is ready")
