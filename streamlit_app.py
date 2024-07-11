@@ -145,6 +145,6 @@ while my_run.status in ["queued", "in_progress"]:
 # Delete file and agent
 client.files.delete(gpt_file)
 client.beta.assistants.delete(Coder)
-client.beta.threads.delete(my_thread.id)
+#client.beta.threads.delete(my_thread.id)
 #del openai_api_key
 
