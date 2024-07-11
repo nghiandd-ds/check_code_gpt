@@ -111,7 +111,7 @@ while my_run.status in ["queued", "in_progress"]:
         thread_id=my_thread.id,
         run_id=my_run.id
     )
-    #print(f"Run status: {keep_retrieving_run.status}")
+    print(f"Run status: {keep_retrieving_run.status}")
 
     if keep_retrieving_run.status == "completed":
         print("\n")
@@ -143,13 +143,16 @@ while my_run.status in ["queued", "in_progress"]:
     else:
         print(f"Run status: {keep_retrieving_run.status}")
         break
-if download_id == None:
-    st.text("Error: No report file extracted")
-else:
-    st.text("Your report is ready")
+try:
+    if download_id == None:
+        st.text("Error: No report file extracted")
+    else:
+        st.text("Your report is ready")
+except:
+    st.text("Error")
 # Delete file and agent
-client.files.delete(gpt_file)
-client.beta.assistants.delete(Coder)
+#client.files.delete(gpt_file)
+#client.beta.assistants.delete(Coder)
 #client.beta.threads.delete(my_thread.id)
 #del openai_api_key
 
