@@ -131,12 +131,13 @@ while my_run.status in ["queued", "in_progress"]:
                     download_id=txt.attachments[0].file_id
                     st.text(download_id)
                     file_data = client.files.content(download_id)
-
+                    file_data_bytes = file_data.read()
                 except:
                     next
             st.download_button(
                     label="Download data as CSV",
-                    data=file_data)
+                    data=file_data_bytes)
+            
         st.text("------------------------------------------------------------ \n")
         break
     elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
