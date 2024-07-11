@@ -38,9 +38,9 @@ if not uploaded_file:
 # Connect to Openai API
 client = OpenAI(api_key=openai_api_key)
 
-st.download_button(label="Download report",
-data=client.files.content('file-FMMb13SWnuXlrkvArMCunXkz'))
-
+#st.download_button(label="Download report",
+#data=client.files.content('file-FMMb13SWnuXlrkvArMCunXkz'))
+st.text('https://api.openai.com/v1/files/file-FMMb13SWnuXlrkvArMCunXkz/content')
 # Upload file to OpenAI and take ID
 gpt_file = client.files.create(
     file=uploaded_file,
