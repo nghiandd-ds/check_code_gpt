@@ -30,6 +30,7 @@ uploaded_file = st.file_uploader("Upload code")
 if not uploaded_file:
     st.stop()    
     
+st.text("Processing")    
 # Connect to Openai API
 client = OpenAI(api_key=openai_api_key)
 
@@ -142,6 +143,10 @@ while my_run.status in ["queued", "in_progress"]:
     else:
         print(f"Run status: {keep_retrieving_run.status}")
         break
+if download_id = None:
+    st.text("Error: No report file extracted")
+else:
+    st.text("Your report is ready")
 # Delete file and agent
 client.files.delete(gpt_file)
 client.beta.assistants.delete(Coder)
