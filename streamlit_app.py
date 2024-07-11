@@ -76,7 +76,6 @@ promt = """
                     - First column: code's part.
                     - Second column: The code content in the part in first column. This columns must be exact copy code from attached file.
                     - Third column: Explaination of the code in second column.
-            3. All text in the table must be within table cell
         Your explaination must cover all of the code and explainations should be added side-by-side to the code so manager could understand.
         
         You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time. 
@@ -100,9 +99,9 @@ my_run = client.beta.threads.runs.create(
     max_prompt_tokens = 10000,
     max_completion_tokens = 16000,
     instructions="""You must make a PDF file as the final report and must meet the following requirements:
-            1. All tasks are reported in PDF file.
-            2. Task 2 have to be present a table in the pdf file.
-            3. PDF file have to be formated so it can be printed immediately.
+            1. All tasks are reported in one PDF file only.
+            2. Task 2 have to be present as a table in the pdf file.
+            3. PDF file have to be formated so it can be printed immediately without any loss information.
             4. Alaways make PDF file without asking any questions.
             """
 )
@@ -141,7 +140,7 @@ while my_run.status in ["queued", "in_progress"]:
     elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
         pass
     else:
-        print(f"Run status: {keep_retrieving_run.status}")
+        st.text(f"Run status: {keep_retrieving_run.status}")
         break
 #try:
 #    if download_id == None:
