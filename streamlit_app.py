@@ -112,7 +112,7 @@ while my_run.status in ["queued", "in_progress"]:
         thread_id=my_thread.id,
         run_id=my_run.id
     )
-    print(f"Run status: {keep_retrieving_run.status}")
+    st.text(f"Run status: {keep_retrieving_run.status}")
 
     if keep_retrieving_run.status == "completed":
         print("\n")
@@ -126,6 +126,7 @@ while my_run.status in ["queued", "in_progress"]:
         for txt in all_messages.data[::-1]:
             if txt.role == 'assistant':
                 try:
+                    st.text(body=txt.content[0].text.value)
                     download_id = txt.attachments[0].file_id
                     st.text(download_id)
                     file_data = client.files.content(download_id)
@@ -133,7 +134,7 @@ while my_run.status in ["queued", "in_progress"]:
                     st.download_button(label="Download report", data=file_.read(), file_name="report.pdf")
                 except:
                     st.text('Error: No report file extracted')
-                st.text(body=txt.content[0].text.value)
+                
                        
         st.text("------------------------------------------------------------ \n")
         break
