@@ -28,9 +28,6 @@ openai_api_key = decoding('FSeeODhu-tBjpc9j-cM0iJtRRo3rkona7nXEHKk9sWk3bCPI63Trn
 #    st.info("Please add your OpenAI API key to continue.")
 #    st.stop()
 
-st.download_button(label="Download report",
-data=client.files.content('file-FMMb13SWnuXlrkvArMCunXkz'))
-
 # upload file by streamlit
 uploaded_file = st.file_uploader("Upload code")
 
@@ -40,6 +37,9 @@ if not uploaded_file:
     
 # Connect to Openai API
 client = OpenAI(api_key=openai_api_key)
+
+st.download_button(label="Download report",
+data=client.files.content('file-FMMb13SWnuXlrkvArMCunXkz'))
 
 # Upload file to OpenAI and take ID
 gpt_file = client.files.create(
