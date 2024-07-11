@@ -99,6 +99,8 @@ my_thread_message = client.beta.threads.messages.create(
 my_run = client.beta.threads.runs.create(
     thread_id = my_thread.id,
     assistant_id = Coder,
+    max_prompt_tokens = 10000,
+    max_completion_tokens = 16000,
     instructions="""The final report must meet the following requirements:
             1. All tasks are reported in PDF file.
             2. Task 2 have to be present a table in the pdf file.
