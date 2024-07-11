@@ -78,7 +78,7 @@ promt = """
                     - First column: code's part.
                     - Second column: The code content in the part in first column. This columns must be exact copy code from attached file.
                     - Third column: Explaination of the code in second column.
-            
+            3. All text in the table must be within its cell
         Your explaination must cover all of the code and explainations should be added side-by-side to the code so manager could understand.
         
         You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time. 
@@ -131,11 +131,12 @@ while my_run.status in ["queued", "in_progress"]:
                     download_id=txt.attachments[0].file_id
                     st.text(download_id)
                     file_data = client.files.content(download_id)
-                    st.download_button(
-                        label="Download data as CSV",
-                        data=file_data)
+
                 except:
                     next
+            st.download_button(
+                    label="Download data as CSV",
+                    data=file_data)
         st.text("------------------------------------------------------------ \n")
         break
     elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
