@@ -126,7 +126,7 @@ while my_run.status in ["queued", "in_progress"]:
             if txt.role == 'assistant':
                 st.text(body=txt.content[0].text.value)
                 try:
-                    download_id=txt.attachments[0].file_id)
+                    download_id=txt.attachments[0].file_id
                     file_data = client.files.content(download_id)
                     st.download_button(
                         label="Download data as CSV",
