@@ -103,6 +103,7 @@ my_run = client.beta.threads.runs.create(
             1. All tasks are reported in PDF file.
             2. Task 2 have to be present a table in the pdf file.
             3. PDF file have to be formated so it can be printed immediately.
+            4. Alaways make PDF file without asking any questions.
             """
 )
 
@@ -145,7 +146,7 @@ while my_run.status in ["queued", "in_progress"]:
         break
 try:
     if download_id == None:
-        st.text("Error: No report file extracted")
+        st.text("Error: No report file")
     else:
         st.text("Your report is ready")
 except:
