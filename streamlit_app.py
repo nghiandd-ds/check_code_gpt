@@ -76,6 +76,7 @@ promt = """
                     - First column: code's part.
                     - Second column: The code content in the part in first column. This columns must be exact copy code from attached file.
                     - Third column: Explaination of the code in second column.
+            
         Your explaination must cover all of the code and explainations should be added side-by-side to the code so manager could understand.
         
         You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time. 
@@ -98,11 +99,11 @@ my_run = client.beta.threads.runs.create(
     assistant_id = Coder,
     max_prompt_tokens = 10000,
     max_completion_tokens = 16000,
-    instructions="""You must make a PDF file as the final report and must meet the following requirements:
-            1. All tasks are reported in one PDF file only.
+    instructions="""Make a downloadble PDF file meet the following requirements:
+            1. All of the tasks are reported in one PDF file only.
             2. Task 2 have to be present as a table in the pdf file.
             3. PDF file have to be formated so it can be printed immediately without any loss information.
-            4. You have to use maked PDF report to answer.
+            4. Only make 1 file contain 2 tasks result. Do not make 2 separate files.
             """
 )
 
@@ -126,7 +127,6 @@ while my_run.status in ["queued", "in_progress", "incomplete"]:
             if txt.role == 'assistant':
                 st.text(body=txt.content[0].text.value)
                 try:
-                    
                     download_id = txt.attachments[0].file_id
                     st.text(download_id)
                     file_data = client.files.content(download_id)
