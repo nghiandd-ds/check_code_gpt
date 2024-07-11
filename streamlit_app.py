@@ -3,7 +3,7 @@ from openai import OpenAI
 import numpy as np
 import pandas as pd
 import os
-#from pathlib import Path
+from pathlib import Path
 
 st.write("""
 # Check code
@@ -41,7 +41,7 @@ client = OpenAI(api_key=openai_api_key)
 test_file = client.files.content('file-FMMb13SWnuXlrkvArMCunXkz')
 test_file.stream_to_file('test.pdf')
 st.download_button(label="Download report",
-data='test.pdf'.read())
+data=test_file.read())
 
 # Upload file to OpenAI and take ID
 gpt_file = client.files.create(
