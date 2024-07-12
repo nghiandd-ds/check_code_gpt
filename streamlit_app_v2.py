@@ -106,7 +106,7 @@ while my_run.status in ["queued", "in_progress"]:
         thread_id=my_thread.id,
         run_id=my_run.id
     )
-    #print(f"Run status: {keep_retrieving_run.status}")
+    print(f"Run status: {keep_retrieving_run.status}")
 
     if keep_retrieving_run.status == "completed":
         print("\n")
@@ -133,7 +133,7 @@ while my_run.status in ["queued", "in_progress"]:
 def create_pdf(text):
     buffer = BytesIO()
     c = canvas.Canvas(buffer, pagesize=A4)
-    c.setFont("Arial", 10)
+    c.setFont("Times-Roman", 10)
     c.drawString(100, 750, text)
     c.save()
     buffer.seek(0)
