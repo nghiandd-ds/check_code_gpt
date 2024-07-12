@@ -27,8 +27,7 @@ openai_api_key = decoding('FSeeODhu-tBjpc9j-cM0iJtRRo3rkona7nXEHKk9sWk3bCPI63Trn
 uploaded_file = st.file_uploader("Upload code")
 if not uploaded_file:
     st.stop()  
-
-st.text("Processing")    
+  
 # Connect to Openai API
 client = OpenAI(api_key=openai_api_key)
 
@@ -130,10 +129,10 @@ while my_run.status in ["queued", "in_progress"]:
         print(f"Run status: {keep_retrieving_run.status}")
         break
 
-def create_pdf():
-    buffer = BytesIO(text)
+def create_pdf(text):
+    buffer = BytesIO()
     c = canvas.Canvas(buffer, pagesize=A4)
-    c.setFont("Helvetica", 12)
+    c.setFont("Arial", 10)
     c.drawString(100, 750, text)
     c.save()
     buffer.seek(0)
@@ -148,7 +147,9 @@ if st.button("Generate PDF"):
         mime="application/pdf"
     )
 
-
+client.files.delete(gpt_file)
+client.beta.assistants.delete(Coder)
+client.beta.threads.delete(my_thread.id)
 
 
 
