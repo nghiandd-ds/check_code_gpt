@@ -119,7 +119,6 @@ while my_run.status in ["queued", "in_progress"]:
         # print in reverse order => first answer go first
         for txt in all_messages.data[::-1]:
             if txt.role == 'assistant':
-                
                 text = text + str(txt.content[0].text.value) + "\n"
         print("------------------------------------------------------------ \n")
         break
@@ -129,7 +128,7 @@ while my_run.status in ["queued", "in_progress"]:
         print(f"Run status: {keep_retrieving_run.status}")
         break
         
-st.text(text)
+
 
 def create_pdf(text):
     buffer = BytesIO()
@@ -148,10 +147,13 @@ if st.button("Generate PDF"):
         file_name="example.pdf",
         mime="application/pdf"
     )
+    
+st.text(text)
+
 
 client.files.delete(gpt_file)
 client.beta.assistants.delete(Coder)
 client.beta.threads.delete(my_thread.id)
-
-
+del openai_api_key
+st.stop()  
 
