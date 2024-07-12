@@ -119,8 +119,8 @@ while my_run.status in ["queued", "in_progress"]:
         # print in reverse order => first answer go first
         for txt in all_messages.data[::-1]:
             if txt.role == 'assistant':
-                st.text(txt.content[0].text.value)
-                text = text + (txt.content[0].text.value) + "\n"
+                
+                text = text + str(txt.content[0].text.value) + "\n"
         print("------------------------------------------------------------ \n")
         break
     elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
@@ -128,6 +128,8 @@ while my_run.status in ["queued", "in_progress"]:
     else:
         print(f"Run status: {keep_retrieving_run.status}")
         break
+        
+st.text(text)
 
 def create_pdf(text):
     buffer = BytesIO()
