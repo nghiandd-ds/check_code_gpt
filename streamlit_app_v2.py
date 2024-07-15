@@ -204,6 +204,7 @@ def process_table(text, doc, sep='|'):
     return table
 
 buffer = BytesIO()
+styles = getSampleStyleSheet()
 doc = SimpleDocTemplate(buffer, pagesize=A4,
                             rightMargin=72, leftMargin=72,
                             topMargin=72, bottomMargin=18)
