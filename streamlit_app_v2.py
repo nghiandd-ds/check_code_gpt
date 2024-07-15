@@ -174,8 +174,8 @@ def process_table(text, doc, sep='|'):
     
     # Create data for table
     formatted_data = [
-            [Paragraph(cell, styles['Normal']) for cell in np.array([code_part, code, exp]).T.tolist()[0]]] + [
-            [Paragraph(cell, styles['Normal']) for cell in row] for row in np.array([code_part, code, exp]).T.tolist()[1:]]
+            [Paragraph(cell) for cell in np.array([code_part, code, exp]).T.tolist()[0]]] + [
+            [Paragraph(cell) for cell in row] for row in np.array([code_part, code, exp]).T.tolist()[1:]]
     
     # Create the table
     available_width = A4[0] - doc.leftMargin - doc.rightMargin    
@@ -212,9 +212,9 @@ format_text = []
 align_text = seprate_table(text_, sep='|')
 if len(align_text) == 3:
     align_text =[
-                Paragraph(align_text[0], styles['Normal']),
+                Paragraph(align_text[0]),
                 process_table(align_text[1], doc, sep='|'),
-                Paragraph(align_text[2], styles['Normal']),
+                Paragraph(align_text[2]),
             ]
 else:
     align_text = [Paragraph(align_text[0], styles['Normal'])]
@@ -222,17 +222,19 @@ else:
 doc.build(align_text)
 buffer.seek(0)
 
+for t in text:
+    st.markdown(text)
+    
 if st.button("Generate PDF"):
     pdf = create_pdf(text)
     st.download_button(
         label="Download PDF",
         data=buffer,
-        file_name="example.pdf",
+        file_name="report.pdf",
         mime="application/pdf"
     )
 
-for t in text:
-    st.markdown(text)
+
 
 
 client.files.delete(gpt_file)
