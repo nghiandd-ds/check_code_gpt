@@ -1,4 +1,5 @@
 import streamlit as st
+import openai
 from openai import OpenAI
 import numpy as np
 import pandas as pd
@@ -6,6 +7,9 @@ import os
 from io import BytesIO
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+from reportlab.lib import colors
 
 st.write("""
 # Check code
@@ -45,11 +49,10 @@ Coder = client.beta.assistants.create(
   model="gpt-3.5-turbo-0125", tools=[{"type": "code_interpreter"}]).id
 
 # ChatGPT promt
-promt = """
-      Using the attached file, your manager have given you two jobs. 
-      First is task 1, you have to answer in a form she have given to you information about the attached code. 
-      In case code have no information about that you are asked, please let the answer as ''.
-      The form as follow. You must keep the format of this form:
+promt_1 = """
+        Task 1, Using attached file to answer in a form she have given to you information about the attached code. 
+        In case code have no information about that you are asked, please let the answer as ''.
+        The form as follow. You must keep the format of this form:
           01. Code's name:
           02. Code maker:
           03. Created date:
@@ -64,29 +67,36 @@ promt = """
           12. References:
           13. Code checker:
           14. Notes:
-          
-        Second is task 2, you have to explain all of the code so manager could follow as a formated table. 
+"""
+
+promt_2 = """
+    Task 2, you have to explain all of the code so manager could follow as a formated table. 
         The format of the table are given:
-            1. Each row of the table are each part of the code. Rows must cover all of the code, from the first line to the last line.
+            1. Each row of the table are each parts/functions of the code. Rows must cover all of the code to the last line.
             2. There are 3 columns in the table as follow:
                     - First column: code's part.
                     - Second column: The code content in the part in first column. This columns must be exact copy code from attached file.
                     - Third column: Explaination of the code in second column.
         Your explaination must cover all of the code and explainations should be added side-by-side to the code so manager could understand.
-        
-        You must write a report that contain answers for all of manager's questions. Both jobs have to be delivered at the same time. 
-
-        """
+"""
 
 # Create thread
-my_thread = client.beta.threads.create()
-
-# add message
-my_thread_message = client.beta.threads.messages.create(
-  thread_id=my_thread.id,
-  role = "user",
-  content = promt,
-  attachments = [{ "file_id": gpt_file, "tools": [{"type": "code_interpreter"}]}]
+my_thread = client.beta.threads.create(
+  messages=[
+    {
+        "role": "user",
+        "content": [
+                        {"type": "text", "text": promt_1}, 
+                        {"type": "text", "text": promt_2}, 
+        ],
+        "attachments": [
+                {
+                  "file_id": gpt_file,
+                  "tools": [{"type": "code_interpreter"}]
+                }
+        ]
+    }
+  ]
 )
 
 # Run
@@ -96,11 +106,11 @@ my_run = client.beta.threads.runs.create(
     max_prompt_tokens = 10000,
     max_completion_tokens = 16000,
     instructions="""
-    Only return the final report to the manager. Especially do not give her un-finsihed product.
+            Only return the final report to the manager. Especially do not give her un-finsihed product. Use '|' notation to separate columns in table.
             """
 )
 
-text = ''
+text = []
 while my_run.status in ["queued", "in_progress"]:
     keep_retrieving_run = client.beta.threads.runs.retrieve(
         thread_id=my_thread.id,
@@ -119,7 +129,7 @@ while my_run.status in ["queued", "in_progress"]:
         # print in reverse order => first answer go first
         for txt in all_messages.data[::-1]:
             if txt.role == 'assistant':
-                text = text + str(txt.content[0].text.value) + "\n"
+                text.append(txt.content[0].text.value)
         print("------------------------------------------------------------ \n")
         break
     elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
@@ -128,27 +138,101 @@ while my_run.status in ["queued", "in_progress"]:
         print(f"Run status: {keep_retrieving_run.status}")
         break
         
+def seprate_table(text, sep='|'):
+    first_v = text.find(sep)
+    last_v = text.rfind(sep)+1
+    if first_v != -1 and last_v != 0:
+        return [text[:first_v], text[first_v:last_v], text[last_v:]]
+    else:
+        return [text]
 
+def split_code(code, sep = '|'):
+    case_1 = f"){sep}("
+    case_2 = f") {sep} ("
+    code = code.replace(case_1, '_TOKEN_PLACE_HOLDER_1_')
+    code = code.replace(case_2, '_TOKEN_PLACE_HOLDER_2_')
+    a = code.split(sep)
+    return [org.replace('_TOKEN_PLACE_HOLDER_1_', case_1).replace('_TOKEN_PLACE_HOLDER_2_', case_2) for org in a]
 
-def create_pdf(text):
-    buffer = BytesIO()
-    c = canvas.Canvas(buffer, pagesize=A4)
-    c.setFont("Times-Roman", 10)
-    c.drawString(100, 750, text)
-    c.save()
-    buffer.seek(0)
-    return buffer
+def process_table(text, doc, sep='|'):
+    '''
+    Code to make table form text with a type of separation between columns.
+    Input: 
+        - text: content to make table
+        - sep: how to separate text for table columns
+        - doc: the ouput document that table go to
+    '''
+    list_of_token = [t for t in split_code(text) if (t != '<br/>') and (t != '') and (t != '/n')]
+    
+    code_part = []
+    code = []
+    exp = []
+    for i in range(0, len(list_of_token)//3):
+        code_part.append(list_of_token[3*i])
+        code.append(list_of_token[1 + 3*i])
+        exp.append(list_of_token[2 + 3*i])
+    
+    # Create data for table
+    formatted_data = [
+            [Paragraph(cell, styles['Normal']) for cell in np.array([code_part, code, exp]).T.tolist()[0]]] + [
+            [Paragraph(cell, styles['Normal']) for cell in row] for row in np.array([code_part, code, exp]).T.tolist()[1:]]
+    
+    # Create the table
+    available_width = A4[0] - doc.leftMargin - doc.rightMargin    
+    # Create the table with adjusted column widths
+    col_widths = [available_width * 0.2, available_width * 0.3, available_width * 0.5]
+    table = Table(formatted_data, colWidths=col_widths)
+        
+    # Add style to the table
+    style = TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('FONTSIZE', (0, 0), (-1, 0), 10),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+            ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+            ('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
+            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+            ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+            ('FONTSIZE', (0, 1), (-1, -1), 8),
+            ('TOPPADDING', (0, 1), (-1, -1), 6),
+            ('BOTTOMPADDING', (0, 1), (-1, -1), 6),
+            ('GRID', (0, 0), (-1, -1), 1, colors.black)
+        ])
+    table.setStyle(style)
+    return table
+
+buffer = BytesIO()
+doc = SimpleDocTemplate(buffer, pagesize=A4,
+                            rightMargin=72, leftMargin=72,
+                            topMargin=72, bottomMargin=18)
+text_ = '<br/><br/>'.join([i.replace('\n', '<br/>').replace('<br>', '<br/>') for i in text])
+format_text = []
+align_text = seprate_table(text_, sep='|')
+if len(align_text) == 3:
+    align_text =[
+                Paragraph(align_text[0], styles['Normal']),
+                process_table(align_text[1], doc, sep='|'),
+                Paragraph(align_text[2], styles['Normal']),
+            ]
+else:
+    align_text = [Paragraph(align_text[0], styles['Normal'])]
+
+doc.build(align_text)
+buffer.seek(0)
 
 if st.button("Generate PDF"):
     pdf = create_pdf(text)
     st.download_button(
         label="Download PDF",
-        data=pdf,
+        data=buffer,
         file_name="example.pdf",
         mime="application/pdf"
     )
-    
-st.text(text)
+
+for t in text:
+    st.markdown(text)
 
 
 client.files.delete(gpt_file)
