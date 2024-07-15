@@ -174,8 +174,8 @@ def process_table(text, doc, sep='|'):
     
     # Create data for table
     formatted_data = [
-            [Paragraph(cell) for cell in np.array([code_part, code, exp]).T.tolist()[0]]] + [
-            [Paragraph(cell) for cell in row] for row in np.array([code_part, code, exp]).T.tolist()[1:]]
+            [Paragraph(cell, styles['Normal']) for cell in np.array([code_part, code, exp]).T.tolist()[0]]] + [
+            [Paragraph(cell, styles['Normal']) for cell in row] for row in np.array([code_part, code, exp]).T.tolist()[1:]]
     
     # Create the table
     available_width = A4[0] - doc.leftMargin - doc.rightMargin    
@@ -211,11 +211,9 @@ text_ = '<br/><br/>'.join([i.replace('\n', '<br/>').replace('<br>', '<br/>') for
 format_text = []
 align_text = seprate_table(text_, sep='|')
 if len(align_text) == 3:
-    align_text =[
-                Paragraph(align_text[0]),
+    align_text =[Paragraph(align_text[0], styles['Normal']),
                 process_table(align_text[1], doc, sep='|'),
-                Paragraph(align_text[2]),
-            ]
+                Paragraph(align_text[2], styles['Normal'])]
 else:
     align_text = [Paragraph(align_text[0], styles['Normal'])]
 
