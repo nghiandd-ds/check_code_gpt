@@ -138,6 +138,12 @@ while my_run.status in ["queued", "in_progress"]:
         print(f"Run status: {keep_retrieving_run.status}")
         break
         
+client.files.delete(gpt_file)
+client.beta.assistants.delete(Coder)
+client.beta.threads.delete(my_thread.id)
+del openai_api_key      
+
+
 def seprate_table(text, sep='|'):
     first_v = text.find(sep)
     last_v = text.rfind(sep)+1
@@ -224,20 +230,11 @@ buffer.seek(0)
 for t in text:
     st.markdown(t)
     
-if st.button("Generate PDF"):
-    st.download_button(
+st.download_button(
         label="Download PDF",
         data=buffer,
         file_name="report.pdf",
         mime="application/pdf"
     )
-
-
-
-
-client.files.delete(gpt_file)
-client.beta.assistants.delete(Coder)
-client.beta.threads.delete(my_thread.id)
-del openai_api_key
 st.stop()  
 
