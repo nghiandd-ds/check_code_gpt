@@ -222,10 +222,9 @@ doc.build(align_text)
 buffer.seek(0)
 
 for t in text:
-    st.markdown(text)
+    st.markdown(t)
     
 if st.button("Generate PDF"):
-    pdf = create_pdf(text)
     st.download_button(
         label="Download PDF",
         data=buffer,
