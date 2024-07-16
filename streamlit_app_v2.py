@@ -34,7 +34,7 @@ openai_api_key = decoding('FSeeODhu-tBjpc9j-cM0iJtRRo3rkona7nXEHKk9sWk3bCPI63Trn
 def upload_file_st():
     uploaded_file = st.file_uploader("Upload code")
     if not uploaded_file:
-    st.stop()  
+        st.stop()  
 upload_file_st()
     
 
