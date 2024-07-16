@@ -14,6 +14,8 @@ from reportlab.lib import colors
 st.write("""
 # Check code
 """)
+st.markdown("LLM can make mistakes. Check important info.")
+
 # Call out OPENAI
 def decoding(encryted_key, password):
     password = [eval(i) for i in password.split('-')]
@@ -106,7 +108,7 @@ my_run = client.beta.threads.runs.create(
     max_prompt_tokens = 10000,
     max_completion_tokens = 16000,
     instructions="""
-            Only return the final report to the manager. Especially do not give her un-finsihed product. Use '|' notation to separate columns in table.
+            Only return the final report to the manager. Especially do not give her un-finsihed product. Use '|' notation to separate columns in table. And do not 
             """
 )
 
@@ -137,7 +139,7 @@ while my_run.status in ["queued", "in_progress"]:
     else:
         print(f"Run status: {keep_retrieving_run.status}")
         break
-        
+st.stop()          
 client.files.delete(gpt_file)
 client.beta.assistants.delete(Coder)
 client.beta.threads.delete(my_thread.id)
@@ -226,15 +228,15 @@ else:
 
 doc.build(align_text)
 buffer.seek(0)
-
-for t in text:
-    st.markdown(t)
-    
 st.download_button(
         label="Download PDF",
         data=buffer,
         file_name="report.pdf",
         mime="application/pdf"
     )
-st.stop()  
+for t in text:
+    st.markdown(t)
+    
+
+
 
