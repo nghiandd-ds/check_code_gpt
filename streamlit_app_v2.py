@@ -242,7 +242,7 @@ def download_file():
         )
 download_file()
 for t in text:
-    st.markdown(t)
+    st.markdown(t.replace('<br>', '\n'))
 st.stop()     
 
 
