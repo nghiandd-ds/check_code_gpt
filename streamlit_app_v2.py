@@ -33,10 +33,11 @@ openai_api_key = decoding('FSeeODhu-tBjpc9j-cM0iJtRRo3rkona7nXEHKk9sWk3bCPI63Trn
 @st.experimental_fragment
 def upload_file_st():
     uploaded_file = st.file_uploader("Upload code")
+    if not uploaded_file:
+    st.stop()  
 upload_file_st()
     
-if not uploaded_file:
-    st.stop()  
+
   
 # Connect to Openai API
 client = OpenAI(api_key=openai_api_key)
