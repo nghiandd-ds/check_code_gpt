@@ -30,6 +30,7 @@ openai_api_key = decoding('FSeeODhu-tBjpc9j-cM0iJtRRo3rkona7nXEHKk9sWk3bCPI63Trn
 
 
 # upload file by streamlit
+@st.experimental_fragment
 uploaded_file = st.file_uploader("Upload code")
 if not uploaded_file:
     st.stop()  
@@ -139,7 +140,7 @@ while my_run.status in ["queued", "in_progress"]:
     else:
         print(f"Run status: {keep_retrieving_run.status}")
         break
-st.stop()          
+         
 client.files.delete(gpt_file)
 client.beta.assistants.delete(Coder)
 client.beta.threads.delete(my_thread.id)
@@ -228,6 +229,8 @@ else:
 
 doc.build(align_text)
 buffer.seek(0)
+
+@st.experimental_fragment
 st.download_button(
         label="Download PDF",
         data=buffer,
@@ -236,7 +239,7 @@ st.download_button(
     )
 for t in text:
     st.markdown(t)
-    
+st.stop()     
 
 
 
