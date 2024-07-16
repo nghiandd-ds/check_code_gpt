@@ -31,7 +31,10 @@ openai_api_key = decoding('FSeeODhu-tBjpc9j-cM0iJtRRo3rkona7nXEHKk9sWk3bCPI63Trn
 
 # upload file by streamlit
 @st.experimental_fragment
-uploaded_file = st.file_uploader("Upload code")
+def upload_file_st():
+    uploaded_file = st.file_uploader("Upload code")
+upload_file_st()
+    
 if not uploaded_file:
     st.stop()  
   
@@ -231,12 +234,14 @@ doc.build(align_text)
 buffer.seek(0)
 
 @st.experimental_fragment
-st.download_button(
-        label="Download PDF",
-        data=buffer,
-        file_name="report.pdf",
-        mime="application/pdf"
-    )
+def download_file():
+    st.download_button(
+            label="Download PDF",
+            data=buffer,
+            file_name="report.pdf",
+            mime="application/pdf"
+        )
+download_file()
 for t in text:
     st.markdown(t)
 st.stop()     
