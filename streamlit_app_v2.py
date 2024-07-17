@@ -58,7 +58,7 @@ Coder = client.beta.assistants.create(
 
 # ChatGPT promt
 promt_1 = """
-        "Task 1: Code Information". Using attached file to answer in a form she have given to you information about the attached code. 
+        "Task Code Information". Using attached file to answer in a form she have given to you information about the attached code. 
         In case code have no information about that you are asked, please let the answer as ''. 
         The form as follow. You must keep the format of this form:
           01. Code's name:
@@ -79,7 +79,7 @@ promt_1 = """
 """
 
 promt_2 = """
-    "Task 2: Code explaination". You have to explain all of the code so manager could follow as a formated table. 
+    "Task Code explaination". You have to explain all of the code so manager could follow as a formated table. 
         The format of the table are given:
             1. Each row of the table are each parts/functions of the code. Rows must cover all of the code to the last line.
             2. There are 3 columns in the table as follow:
