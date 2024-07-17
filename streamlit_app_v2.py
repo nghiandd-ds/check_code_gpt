@@ -59,7 +59,7 @@ Coder = client.beta.assistants.create(
 # ChatGPT promt
 promt_1 = """
         "Task 1: Code Information". Using attached file to answer in a form she have given to you information about the attached code. 
-        In case code have no information about that you are asked, please let the answer as ''.
+        In case code have no information about that you are asked, please let the answer as ''. 
         The form as follow. You must keep the format of this form:
           01. Code's name:
           02. Code maker:
@@ -75,6 +75,7 @@ promt_1 = """
           12. References:
           13. Code checker:
           14. Notes:
+        Never return a table for this task.
 """
 
 promt_2 = """
@@ -151,7 +152,7 @@ client.beta.assistants.delete(Coder)
 client.beta.threads.delete(my_thread.id)
 del openai_api_key      
 
-pdfmetrics.registerFont(TTFont('Arial', "arial.ttf"))
+pdfmetrics.registerFont(TTFont('Arial', "https://github.com/nghiandd-ds/check_code_gpt/blob/da0e388c9fbedbc11036bee2b4ef0ea59c224bf0/arial.ttf"))
 
 def seprate_table(text, sep='|'):
     first_v = text.find(sep)
