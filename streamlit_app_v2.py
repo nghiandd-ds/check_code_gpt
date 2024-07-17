@@ -7,9 +7,12 @@ import os
 from io import BytesIO
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
 from reportlab.lib import colors
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.lib.enums import TA_LEFT, TA_CENTER
 
 st.write("""
 # Check code
@@ -148,6 +151,7 @@ client.beta.assistants.delete(Coder)
 client.beta.threads.delete(my_thread.id)
 del openai_api_key      
 
+pdfmetrics.registerFont(TTFont('Arial', "arial.ttf"))
 
 def seprate_table(text, sep='|'):
     first_v = text.find(sep)
@@ -173,7 +177,7 @@ def process_table(text, doc, sep='|'):
         - sep: how to separate text for table columns
         - doc: the ouput document that table go to
     '''
-    list_of_token = [t for t in split_code(text) if (t != '<br/>') and (t != '') and (t != '/n')]
+    list_of_token = [t for t in split_code(text) if (t != '<br/>') and (t.strip() != '') and (t != '/n')]
     
     code_part = []
     code = []
@@ -182,52 +186,79 @@ def process_table(text, doc, sep='|'):
         code_part.append(list_of_token[3*i])
         code.append(list_of_token[1 + 3*i])
         exp.append(list_of_token[2 + 3*i])
+
+    # Font style
+    header_style = ParagraphStyle(
+            'HeaderStyle',
+            fontName='Arial',
+            fontSize=12,
+            textColor=colors.whitesmoke,
+            alignment=TA_CENTER,
+            spaceAfter=6
+        )
+        
+    body_style = ParagraphStyle(
+            'BodyStyle',
+            fontName='Arial',
+            fontSize=10,
+            leading=10,
+            alignment=TA_LEFT
+        )
     
     # Create data for table
     formatted_data = [
-            [Paragraph(cell, styles['Normal']) for cell in np.array([code_part, code, exp]).T.tolist()[0]]] + [
-            [Paragraph(cell, styles['Normal']) for cell in row] for row in np.array([code_part, code, exp]).T.tolist()[1:]]
+            [Paragraph(cell, header_style) for cell in np.array([code_part, code, exp]).T.tolist()[0]]] + [
+            [Paragraph(cell, body_style) for cell in row] for row in np.array([code_part, code, exp]).T.tolist()[1:]]
     
     # Create the table
     available_width = A4[0] - doc.leftMargin - doc.rightMargin    
     # Create the table with adjusted column widths
     col_widths = [available_width * 0.2, available_width * 0.3, available_width * 0.5]
     table = Table(formatted_data, colWidths=col_widths)
-        
     # Add style to the table
     style = TableStyle([
-            ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
-            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
-            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
-            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-            ('FONTSIZE', (0, 0), (-1, 0), 10),
-            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-            ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
-            ('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
-            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
-            ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
-            ('FONTSIZE', (0, 1), (-1, -1), 8),
-            ('TOPPADDING', (0, 1), (-1, -1), 6),
-            ('BOTTOMPADDING', (0, 1), (-1, -1), 6),
-            ('GRID', (0, 0), (-1, -1), 1, colors.black)
-        ])
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+        ('LEFTPADDING', (0, 0), (-1, -1), 3),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 3),
+        ('TOPPADDING', (0, 0), (-1, -1), 3),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+    ])    
+
+
     table.setStyle(style)
     return table
-
+    
 buffer = BytesIO()
 styles = getSampleStyleSheet()
 doc = SimpleDocTemplate(buffer, pagesize=A4,
                             rightMargin=72, leftMargin=72,
                             topMargin=72, bottomMargin=18)
 text_ = '<br/><br/>'.join([i.replace('\n', '<br/>').replace('<br>', '<br/>') for i in text])
+normal_style = ParagraphStyle(
+        'NormalStyle',
+        fontName='Arial',
+        fontSize=10,
+        leading=12
+    )
+header_style = ParagraphStyle(
+            'HeaderStyle',
+            fontName='Arial',
+            fontSize=20,
+            alignment=TA_CENTER,
+            spaceAfter=36)
+doc.title = "Code Quality Report"
 format_text = []
 align_text = seprate_table(text_, sep='|')
 if len(align_text) == 3:
-    align_text =[Paragraph(align_text[0], styles['Normal']),
+    align_text =[Paragraph('Code Quality Report',  header_style),
+                Paragraph(align_text[0], styles['Normal']),
                 process_table(align_text[1], doc, sep='|'),
                 Paragraph(align_text[2], styles['Normal'])]
 else:
-    align_text = [Paragraph(align_text[0], styles['Normal'])]
+    align_text = [Paragraph('Code Quality Report',  header_style), Paragraph(align_text[0], styles['Normal'])]
 
 doc.build(align_text)
 buffer.seek(0)
