@@ -152,7 +152,7 @@ client.beta.assistants.delete(Coder)
 client.beta.threads.delete(my_thread.id)
 del openai_api_key      
 
-pdfmetrics.registerFont(TTFont('Arial', "https://github.com/nghiandd-ds/check_code_gpt/blob/da0e388c9fbedbc11036bee2b4ef0ea59c224bf0/arial.ttf"))
+pdfmetrics.registerFont(TTFont('Arial', "arial.ttf"))
 
 def seprate_table(text, sep='|'):
     first_v = text.find(sep)
@@ -255,11 +255,11 @@ format_text = []
 align_text = seprate_table(text_, sep='|')
 if len(align_text) == 3:
     align_text =[Paragraph('Code Quality Report',  header_style),
-                Paragraph(align_text[0], styles['Normal']),
+                Paragraph(align_text[0], normal_style),
                 process_table(align_text[1], doc, sep='|'),
-                Paragraph(align_text[2], styles['Normal'])]
+                Paragraph(align_text[2], normal_style)]
 else:
-    align_text = [Paragraph('Code Quality Report',  header_style), Paragraph(align_text[0], styles['Normal'])]
+    align_text = [Paragraph('Code Quality Report',  header_style), Paragraph(align_text[0], normal_style)]
 
 doc.build(align_text)
 buffer.seek(0)
