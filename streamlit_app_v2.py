@@ -54,7 +54,7 @@ gpt_file = client.files.create(
 Coder = client.beta.assistants.create(
   name="Check code Assistant",
   instructions="You are an expert in coding and specialize in python and relevent packages. Your job is to read and understand codes of junior-level employees and then, explain it briefly and correctly to manager who is trained as a data scientist but not specialized in coding",
-  model="gpt-3.5-turbo-0125", tools=[{"type": "code_interpreter"}]).id
+  model="gpt-4o-mini-2024-07-18", tools=[{"type": "code_interpreter"}]).id
 
 # ChatGPT promt
 promt_1 = """
