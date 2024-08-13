@@ -57,36 +57,13 @@ Coder = client.beta.assistants.create(
   model="gpt-3.5-turbo-0125", tools=[{"type": "code_interpreter"}]).id
 
 # ChatGPT promt
-promt_1 = """
-        "Task Code Information". Using attached file to answer in a form she have given to you information about the attached code. 
-        In case code have no information about that you are asked, please let the answer as ''. 
-        The form as follow. You must keep the format of this form:
-          01. Code's name:
-          02. Code maker:
-          03. Created date:
-          04. Code's version:
-          05. Log changes:
-          06. Active status:
-          07. System requirements:
-          08. Code's objectives:
-          09. Code's application:
-          10. Code's input:
-          11. Code's output:
-          12. References:
-          13. Code checker:
-          14. Notes:
-        Never return a table for this task.
-"""
 
-promt_2 = """
-    "Task Code explaination". You have to explain all of the code so manager could follow as a formated table. 
-        The format of the table are given:
-            1. Each row of the table are each parts/functions of the code. Rows must cover all of the code to the last line.
-            2. There are 3 columns in the table as follow:
-                    - First column: code's part.
-                    - Second column: The code content in the part in first column. This columns must be exact copy code from attached file.
-                    - Third column: Explaination of the code in second column.
-        Your explaination must cover all of the code and explainations should be added side-by-side to the code so manager could understand.
+promt_code_explaination = """
+    "Given the code file, and I want to generate a fine-tuned code explanation table. The table should contain two columns: "Code Block" and "Explanation." The table should be formatted according to the type of code in the file:
+1. **For SAS code (.sas):** Each block of code should be identified based on complete procedures such as `%macro` definitions, `data` steps, and entire `PROC SQL` blocks. The explanation should describe the purpose or function of each block in a concise and clear manner.
+2. **For Python scripts (.py):** Each block of code should be identified based on function definitions, class definitions, imports, and any significant procedural code outside of functions/classes. The explanation should highlight the role of each block.
+3. **For Jupyter Notebooks (.ipynb):** Each cell in the notebook is considered a block of code. The explanation should describe what each cell is doing, including any data processing, visualization, or modeling tasks.
+Please process the file according to these guidelines and generate the table as specified.
 """
 
 # Create thread
@@ -115,7 +92,7 @@ my_run = client.beta.threads.runs.create(
     max_prompt_tokens = 10000,
     max_completion_tokens = 16000,
     instructions="""
-            Only return the final report to the manager. Especially do not give her un-finsihed product. Use '|' notation to separate columns in table. And do not 
+            Only return the final report to the manager. 
             """
 )
 
