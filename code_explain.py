@@ -74,12 +74,6 @@ with col2:
                 "content": [
                                 {"type": "text", "text": mess}
                 ],
-                "attachments": [
-                        {
-                          "file_id": gpt_file,
-                          "tools": [{"type": "code_interpreter"}]
-                        }
-                ]
             }
           ]
         )
