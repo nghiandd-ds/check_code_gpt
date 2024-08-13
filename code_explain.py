@@ -115,7 +115,8 @@ if st.button('Explain code'):
             print(f"Run status: {keep_retrieving_run.status}")
             break
         for t in text:
-            st.markdown(text)
+            print(t)
+            st.markdown(t)
         st.stop()
         client.beta.threads.delete(my_thread.id)
         client.beta.assistants.delete(Coder)
