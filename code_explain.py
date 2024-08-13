@@ -114,6 +114,8 @@ def explain_code():
                 print(f"Run status: {keep_retrieving_run.status}")
                 break
             client.beta.threads.delete(my_thread.id)
+            client.beta.assistants.delete(Coder)
+            del openai_api_key   
             return text
 explain_code()
 #        for t in text:
@@ -125,8 +127,7 @@ explain_code()
 
 
 
-client.beta.assistants.delete(Coder)
-del openai_api_key   
+
 
 
 
