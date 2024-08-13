@@ -18,6 +18,15 @@ st.write("""
 # Check code
 """)
 st.markdown("LLM can make mistakes. Check important info.")
+st.markdown("""
+    <style>
+    .main {
+        max-width: 90%;
+        width: 90%;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 
 # Call out OPENAI
 def decoding(encryted_key, password):
