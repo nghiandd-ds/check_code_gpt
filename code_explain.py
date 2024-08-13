@@ -18,15 +18,6 @@ st.write("""
 # Check code
 """)
 st.markdown("LLM can make mistakes. Check important info.")
-st.markdown("""
-    <style>
-    .main {
-        max-width: 90%;
-        width: 90%;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
 
 # Call out OPENAI
 def decoding(encryted_key, password):
@@ -64,7 +55,7 @@ Coder = client.beta.assistants.create(
 
 # Add the input text to the left column (col1)
 #with col1:
-user_input = st.text_area("Enter your text here:", height=280)
+user_input = st.text_area("Enter your code here:", height=200)
 
 # You can use col2 for any other content you'd like to place on the right side
 #with col2:
