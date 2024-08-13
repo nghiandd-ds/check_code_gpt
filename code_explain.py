@@ -51,7 +51,15 @@ with col1:
 
 # You can use col2 for any other content you'd like to place on the right side
 with col2:
-    st.write("This is where you can display other content or results.")
+    st.write("")
+    # Define the button and check if it has been clicked
+    if st.button('Click Me'):
+        # Task to perform when the button is clicked
+        st.write('Button clicked! Performing the task...')
+        # Example task: displaying the current time
+
+        mess = Message + "/n/n" + user_input  + "/n/n" + Question
+        st.write(mess)
 
 
 
