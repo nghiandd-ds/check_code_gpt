@@ -61,9 +61,10 @@ with col1:
 with col2:
     st.write("")
     # Define the button and check if it has been clicked
+    placeholder = st.empty()
     if st.button('Explain code'):
         mess = Message + "/n/n" + user_input  + "/n/n" + Question
-        st.write(mess)
+        
         #### QUERY CHATGPT ####
         # Create thread
         my_thread = client.beta.threads.create(
@@ -116,8 +117,8 @@ with col2:
             else:
                 print(f"Run status: {keep_retrieving_run.status}")
                 break
-                 
-
+        for i in text:         
+            placeholder.markdown(i)
         client.beta.threads.delete(my_thread.id)
 
 
@@ -131,9 +132,9 @@ with col2:
 #            mime="application/pdf"
 #        )
 #download_file()
-for t in text:
-    st.markdown(t)
-st.stop()
+#for t in text:
+st.markdown(placeholder)
+#st.stop()
 
 
 
