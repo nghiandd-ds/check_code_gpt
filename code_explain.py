@@ -40,7 +40,7 @@ Question: Explain the code by the format:
 2. Code breakdown:
 - Input
 - Output
-- Explain by table |code | explaination
+- Explain the code by table |code | explaination
 '''
 
 
