@@ -72,8 +72,7 @@ my_thread = client.beta.threads.create(
     {
         "role": "user",
         "content": [
-                        {"type": "text", "text": promt_1}, 
-                        {"type": "text", "text": promt_2}, 
+                        {"type": "text", "text": promt_code_explaination}
         ],
         "attachments": [
                 {
