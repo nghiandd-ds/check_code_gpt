@@ -115,7 +115,7 @@ def explain_code():
                 break
             client.beta.threads.delete(my_thread.id)
             client.beta.assistants.delete(Coder)
-            del openai_api_key   
+             
             return text
 explain_code()
 #        for t in text:
