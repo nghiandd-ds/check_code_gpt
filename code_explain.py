@@ -43,7 +43,7 @@ Question: Explain the code by the format:
 - Explain by table |code | explaination
 '''
 
-# Create OpenAI agent
+
 
 
 # Create two columns, the first one will be used for the input text
@@ -62,14 +62,16 @@ st.write("")
 #def explain_code():
 if st.button('Explain code'):
     mess = Message + "/n/n" + user_input  + "/n/n" + Question
-    
+    print(mess)
     #### QUERY CHATGPT ####
-    # Create thread
+    
+    # Create OpenAI agent
     Coder = client.beta.assistants.create(
               name="Check code Assistant",
               instructions="You are an expert in coding and specialize in python and relevent packages. Your job is to read and understand codes of junior-level employees and then, explain it briefly and correctly to manager who is trained as a data scientist but not specialized in coding",
               model="gpt-4o-mini-2024-07-18", tools=[{"type": "code_interpreter"}]).id
-
+    
+    # Create thread
     my_thread = client.beta.threads.create(
       messages=[
         {
@@ -114,12 +116,12 @@ if st.button('Explain code'):
         else:
             print(f"Run status: {keep_retrieving_run.status}")
             break
-        for t in text:
-            print(t)
-            st.markdown(t)
-        st.stop()
-        client.beta.threads.delete(my_thread.id)
-        client.beta.assistants.delete(Coder)
+    for t in text:
+        print(t)
+        st.markdown(t)
+    st.stop()
+    client.beta.threads.delete(my_thread.id)
+    client.beta.assistants.delete(Coder)
          
 #        return text
 
