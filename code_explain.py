@@ -124,9 +124,9 @@ with col2:
                 client.beta.threads.delete(my_thread.id)
                 return text
         explain_code()
-        for t in text:
-            st.markdown(text)
-        st.stop()
+#        for t in text:
+#            st.markdown(text)
+#        st.stop()
         
 
 
