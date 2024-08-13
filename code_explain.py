@@ -15,7 +15,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.enums import TA_LEFT, TA_CENTER
 
 st.write("""
-# Check code
+# Code explainer
 """)
 st.markdown("LLM can make mistakes. Check important info.")
 
