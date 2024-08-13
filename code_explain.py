@@ -120,7 +120,7 @@ if st.button('Explain code'):
         client.beta.threads.delete(my_thread.id)
         client.beta.assistants.delete(Coder)
          
-        return text
+#        return text
 
     
 
