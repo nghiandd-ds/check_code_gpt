@@ -60,70 +60,70 @@ Coder = client.beta.assistants.create(
 
 
 # Create two columns, the first one will be used for the input text
-col1, col2 = st.columns([5, 1])
+#col1, col2 = st.columns([5, 1])
 
 # Add the input text to the left column (col1)
-with col1:
-    user_input = st.text_area("Enter your text here:", height=280)
+#with col1:
+user_input = st.text_area("Enter your text here:", height=280)
 
 # You can use col2 for any other content you'd like to place on the right side
-with col2:
-    st.write("")
-    # Define the button and check if it has been clicked
-    @st.experimental_fragment
-    def explain_code():
-        if st.button('Explain code'):
-            mess = Message + "/n/n" + user_input  + "/n/n" + Question
-            
-            #### QUERY CHATGPT ####
-            # Create thread
-            my_thread = client.beta.threads.create(
-              messages=[
-                {
-                    "role": "user",
-                    "content": [
-                                    {"type": "text", "text": mess}
-                    ],
-                }
-              ]
+#with col2:
+st.write("")
+# Define the button and check if it has been clicked
+@st.experimental_fragment
+def explain_code():
+if st.button('Explain code'):
+    mess = Message + "/n/n" + user_input  + "/n/n" + Question
+    
+    #### QUERY CHATGPT ####
+    # Create thread
+    my_thread = client.beta.threads.create(
+      messages=[
+        {
+            "role": "user",
+            "content": [
+                            {"type": "text", "text": mess}
+            ],
+        }
+      ]
+    )
+    
+    # Run
+    my_run = client.beta.threads.runs.create(
+        thread_id = my_thread.id,
+        assistant_id = Coder,
+    )
+    
+    text = []
+    while my_run.status in ["queued", "in_progress"]:
+        keep_retrieving_run = client.beta.threads.runs.retrieve(
+            thread_id=my_thread.id,
+            run_id=my_run.id
+        )
+        print(f"Run status: {keep_retrieving_run.status}")
+    
+        if keep_retrieving_run.status == "completed":
+            print("\n")
+    
+            all_messages = client.beta.threads.messages.list(
+                thread_id=my_thread.id
             )
-            
-            # Run
-            my_run = client.beta.threads.runs.create(
-                thread_id = my_thread.id,
-                assistant_id = Coder,
-            )
-            
-            text = []
-            while my_run.status in ["queued", "in_progress"]:
-                keep_retrieving_run = client.beta.threads.runs.retrieve(
-                    thread_id=my_thread.id,
-                    run_id=my_run.id
-                )
-                print(f"Run status: {keep_retrieving_run.status}")
-            
-                if keep_retrieving_run.status == "completed":
-                    print("\n")
-            
-                    all_messages = client.beta.threads.messages.list(
-                        thread_id=my_thread.id
-                    )
-            
-                    print("------------------------------------------------------------ \n")
-                    # print in reverse order => first answer go first
-                    for txt in all_messages.data[::-1]:
-                        if txt.role == 'assistant':
-                            text.append(txt.content[0].text.value)
-                    print("------------------------------------------------------------ \n")
-                    break
-                elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
-                    pass
-                else:
-                    print(f"Run status: {keep_retrieving_run.status}")
-                    break
-                client.beta.threads.delete(my_thread.id)
-                return text
-        explain_code()
+    
+            print("------------------------------------------------------------ \n")
+            # print in reverse order => first answer go first
+            for txt in all_messages.data[::-1]:
+                if txt.role == 'assistant':
+                    text.append(txt.content[0].text.value)
+            print("------------------------------------------------------------ \n")
+            break
+        elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
+            pass
+        else:
+            print(f"Run status: {keep_retrieving_run.status}")
+            break
+        client.beta.threads.delete(my_thread.id)
+        return text
+explain_code()
 #        for t in text:
 #            st.markdown(text)
 #        st.stop()
