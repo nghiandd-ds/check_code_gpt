@@ -47,7 +47,7 @@ col1, col2 = st.columns([5, 1])
 
 # Add the input text to the left column (col1)
 with col1:
-    user_input = st.text_area("Enter your text here:")
+    user_input = st.text_area("Enter your text here:", height=500)
 
 # You can use col2 for any other content you'd like to place on the right side
 with col2:
