@@ -31,9 +31,6 @@ def decoding(encryted_key, password):
 
 openai_api_key = decoding('FSeeODhu-tBjpc9j-cM0iJtRRo3rkona7nXEHKk9sWk3bCPI63TrnTlB', '35-21-17-37-41-42-56-47-8-54-16-7-4-10-50-18-3-38-28-55-11-36-45-13-9-19-44-25-39-6-53-43-27-12-40-20-24-14-34-15-1-26-2-30-33-49-46-22-51-23-29-5-48-52-32-31')
 
-# Create two columns, the first one will be used for the input text
-col1, col2 = st.columns([1, 2])
-
 Message = "Given the following code:"
 
 Question = '''
@@ -44,6 +41,9 @@ Question: Explain the code by the format:
 - Output
 - Explain by table |code | explaination
 '''
+
+# Create two columns, the first one will be used for the input text
+col1, col2 = st.columns([5, 1])
 
 # Add the input text to the left column (col1)
 with col1:
