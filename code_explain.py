@@ -28,6 +28,9 @@ st.markdown(
     };
     [data-testid="stSidebarHeader"] {
         width: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
     }
     </style>
     """,
@@ -71,7 +74,7 @@ Question: Explain the code by the format:
 #col1, col2 = st.columns([1, 2])
 
 st.sidebar.header("Code explainer")
-user_input = st.sidebar.text_area("Enter your code here:", height=300)
+user_input = st.sidebar.text_area("Enter your code here:", height=280)
 submit_button = st.sidebar.button('Explain code')
 
 # You can use col2 for any other content you'd like to place on the right side
