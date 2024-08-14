@@ -66,7 +66,7 @@ Question: Explain the code by the format:
 # Create two columns, the first one will be used for the input text
 #col1, col2 = st.columns([1, 2])
 
-st.sidebar.write("""
+st.sidebar.header("""
 # Code explainer
 """)
 user_input = st.sidebar.text_area("Enter your code here:", height=350)
