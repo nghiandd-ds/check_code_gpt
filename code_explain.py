@@ -21,7 +21,10 @@ st.markdown(
     /* Set sidebar width to 1/3 of the screen width */
     .css-1d391kg { 
         width: 33% !important;
-    }
+    };
+    /* Hide the sidebar toggle button */
+    .css-1v3fvcr { /* Adjust the class name as necessary */
+        display: none;
     </style>
     """,
     unsafe_allow_html=True
@@ -66,7 +69,7 @@ Question: Explain the code by the format:
 st.sidebar.write("""
 # Code explainer
 """)
-user_input = st.sidebar.text_area("Enter your code here:", height=500)
+user_input = st.sidebar.text_area("Enter your code here:", height=400)
 submit_button = st.sidebar.button('Explain code')
 
 # You can use col2 for any other content you'd like to place on the right side
