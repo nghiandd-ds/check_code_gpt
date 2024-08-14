@@ -49,75 +49,74 @@ Question: Explain the code by the format:
 
 
 # Create two columns, the first one will be used for the input text
-col1, col2 = st.columns([1, 2])
+#col1, col2 = st.columns([1, 2])
 
-# Add the input text to the left column (col1)
-with col1:
-    user_input = st.text_area("Enter your code here:", height=200)
-    submit_button = st.button('Explain code')
+st.sidebar.header("Input Section")
+user_input = st.text_area("Enter your code here:", height=200)
+submit_button = st.button('Explain code')
+
 # You can use col2 for any other content you'd like to place on the right side
-with col2:
-    st.write("")
-    # Define the button and check if it has been clicked
-    if submit_button and user_input:
-        mess = Message + "/n/n" + user_input  + "/n/n" + Question
-        print(mess)
-        #### QUERY CHATGPT ####
-        
-        # Create OpenAI agent
-        Coder = client.beta.assistants.create(
-                  name="Check code Assistant",
-                  instructions="You are an expert in coding and specialize in python and relevent packages. Your job is to read and understand codes of junior-level employees and then, explain it briefly and correctly to manager who is trained as a data scientist but not specialized in coding",
-                  model="gpt-4o-mini-2024-07-18", tools=[{"type": "code_interpreter"}]).id
-        
-        # Create thread
-        my_thread = client.beta.threads.create(
-          messages=[
-            {
-                "role": "user",
-                "content": [
-                                {"type": "text", "text": mess}
-                ],
-            }
-          ]
+st.write("")
+# Define the button and check if it has been clicked
+if submit_button and user_input:
+    mess = Message + "/n/n" + user_input  + "/n/n" + Question
+    print(mess)
+    #### QUERY CHATGPT ####
+    
+    # Create OpenAI agent
+    Coder = client.beta.assistants.create(
+              name="Check code Assistant",
+              instructions="You are an expert in coding and specialize in python and relevent packages. Your job is to read and understand codes of junior-level employees and then, explain it briefly and correctly to manager who is trained as a data scientist but not specialized in coding",
+              model="gpt-4o-mini-2024-07-18", tools=[{"type": "code_interpreter"}]).id
+    
+    # Create thread
+    my_thread = client.beta.threads.create(
+      messages=[
+        {
+            "role": "user",
+            "content": [
+                            {"type": "text", "text": mess}
+            ],
+        }
+      ]
+    )
+    
+    # Run
+    my_run = client.beta.threads.runs.create(
+        thread_id = my_thread.id,
+        assistant_id = Coder,
+    )
+    
+    text = []
+    while my_run.status in ["queued", "in_progress"]:
+        keep_retrieving_run = client.beta.threads.runs.retrieve(
+            thread_id=my_thread.id,
+            run_id=my_run.id
         )
-        
-        # Run
-        my_run = client.beta.threads.runs.create(
-            thread_id = my_thread.id,
-            assistant_id = Coder,
-        )
-        
-        text = []
-        while my_run.status in ["queued", "in_progress"]:
-            keep_retrieving_run = client.beta.threads.runs.retrieve(
-                thread_id=my_thread.id,
-                run_id=my_run.id
+        print(f"Run status: {keep_retrieving_run.status}")
+    
+        if keep_retrieving_run.status == "completed":
+            print("\n")
+    
+            all_messages = client.beta.threads.messages.list(
+                thread_id=my_thread.id
             )
+    
+            print("------------------------------------------------------------ \n")
+            # print in reverse order => first answer go first
+            for txt in all_messages.data[::-1]:
+                if txt.role == 'assistant':
+                    text.append(txt.content[0].text.value)
+            print("------------------------------------------------------------ \n")
+            break
+        elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
+            pass
+        else:
             print(f"Run status: {keep_retrieving_run.status}")
-        
-            if keep_retrieving_run.status == "completed":
-                print("\n")
-        
-                all_messages = client.beta.threads.messages.list(
-                    thread_id=my_thread.id
-                )
-        
-                print("------------------------------------------------------------ \n")
-                # print in reverse order => first answer go first
-                for txt in all_messages.data[::-1]:
-                    if txt.role == 'assistant':
-                        text.append(txt.content[0].text.value)
-                print("------------------------------------------------------------ \n")
-                break
-            elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
-                pass
-            else:
-                print(f"Run status: {keep_retrieving_run.status}")
-                break
-        for t in text:
-            print(t)
-            st.markdown(t)
+            break
+    for t in text:
+        print(t)
+        st.markdown(t)
 st.stop()
 client.beta.threads.delete(my_thread.id)
 client.beta.assistants.delete(Coder)
