@@ -59,7 +59,7 @@ with col1:
 with col2:
     st.write("")
     # Define the button and check if it has been clicked
-    if submit_button and user_input::
+    if submit_button and user_input:
         mess = Message + "/n/n" + user_input  + "/n/n" + Question
         print(mess)
         #### QUERY CHATGPT ####
