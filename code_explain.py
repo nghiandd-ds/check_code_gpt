@@ -25,6 +25,10 @@ st.markdown(
     /* Hide the sidebar toggle button */
     [data-testid="stSidebarCollapseButton"] { /* Adjust the class name as necessary */
         display: none;
+    };
+    [data-testid="stSidebarHeader"] {
+        width: 0;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -66,9 +70,7 @@ Question: Explain the code by the format:
 # Create two columns, the first one will be used for the input text
 #col1, col2 = st.columns([1, 2])
 
-st.sidebar.header("""
-# Code explainer
-""")
+st.sidebar.header("Code explainer")
 user_input = st.sidebar.text_area("Enter your code here:", height=300)
 submit_button = st.sidebar.button('Explain code')
 
