@@ -16,9 +16,9 @@ from reportlab.lib.enums import TA_LEFT, TA_CENTER
 
 st.set_page_config(layout="wide")
 
-st.write("""
-# Code explainer
-""")
+#st.write("""
+## Code explainer
+#""")
 st.markdown("LLM can make mistakes. Check important info.")
 
 # Call out OPENAI
@@ -51,9 +51,11 @@ Question: Explain the code by the format:
 # Create two columns, the first one will be used for the input text
 #col1, col2 = st.columns([1, 2])
 
-st.sidebar.header("Input Section")
-user_input = st.text_area("Enter your code here:", height=200)
-submit_button = st.button('Explain code')
+st.sidebar.write("""
+# Code explainer
+""")
+user_input = st.sidebar.text_area("Enter your code here:", height=200)
+submit_button = st.sidebar.button('Explain code')
 
 # You can use col2 for any other content you'd like to place on the right side
 st.write("")
