@@ -44,43 +44,6 @@ st.markdown("""
     unsafe_allow_html=True
 )
 
-a="""
-st.markdown(
-    """
-    <style>
-    [data-testid="column"] {
-        width: calc(25% - 1rem) !important;
-        flex: 1 1 calc(25% - 1rem) !important;
-        min-width: calc(25% - 1rem) !important;
-    }
-    
-    [data-testid="column"]:nth-of-type(1) {
-        position: sticky;
-        top: 0px;
-        height: 100vh;
-        overflow-y: auto;
-    }
-
-    .main {
-        padding-top: 0px;
-        margin-top: 0px;
-        border-top: 0px;
-    }
-    header {
-        display: none;
-        padding-bottom: 0px;
-        margin-bottom: 0px;
-        border-bottom: 0px;    
-        bottom: 0px;
-    }
-    footer {
-        display: none;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-"""
 
 
 # Call out OPENAI
