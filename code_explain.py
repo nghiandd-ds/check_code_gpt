@@ -22,8 +22,6 @@ st.markdown("""
         position: -webkit-sticky;
         position: sticky;
         top: 0;
-        height: 100vh;
-        background-color: #f4f4f4;
         padding: 10px;
         margin-right: 10px;
         overflow-y: auto;
@@ -32,10 +30,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 
-st.write("""
-# Code explainer
-""")
-st.markdown("LLM can make mistakes. Check important info.")
+
 
 # Call out OPENAI
 def decoding(encryted_key, password):
@@ -67,6 +62,8 @@ col1, col2 = st.columns([1, 2])
 
 with col1:
     st.markdown('<div class="fixed-side">', unsafe_allow_html=True)
+    st.write("Code explainer")
+    st.markdown("LLM can make mistakes. Check important info.")
     user_input = st.text_area("Enter your code here:", height=270)
     submit_button = st.button('Explain code')
     
