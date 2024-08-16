@@ -104,6 +104,14 @@ Question: Explain the code by the format:
 
 
 col_1, col_2 = st.columns([1, 2])
+st.markdown("""
+<style>
+    [data-testid="column"]:nth-of-type(1) {
+        position: sticky;
+        top: 0px;
+    }
+</style>
+""", unsafe_allow_html=True)
 
 with col_1:
     # Add Streamlit components to the fixed column
