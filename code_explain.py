@@ -122,6 +122,20 @@ st.markdown("""
         padding: 10px;
         width: calc(100% - 33%);
     }
+
+    /* Style for the specific button */
+    .stButton > button[kind="secondary"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .stButton > button[kind="secondary"]:hover {
+        background-color: #45a049;
+    }
     </style>
     <div class="container">
         <div class="fixed-column">
@@ -129,7 +143,7 @@ st.markdown("""
 
 # Add Streamlit components to the fixed column
 st.text_area("Fixed Text Area", "This text area is in the fixed column.")
-if st.button("Fixed Button"):
+if st.button("Custom Button", key="custom_button", type="secondary"):
     st.write("Button in the fixed column was clicked!")
 
 # Continue the HTML structure for the scrollable column
