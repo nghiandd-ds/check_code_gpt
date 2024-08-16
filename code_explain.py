@@ -41,7 +41,7 @@ st.markdown(
         padding-bottom: 0rem;
         padding-left: 5rem;
         padding-right: 5rem;
-        margin-top: 100rem;
+        margin-top: 5rem;
     }
 
     header {
