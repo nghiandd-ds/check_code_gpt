@@ -108,21 +108,25 @@ st.markdown("""
 <style>
     [data-testid="column"]:nth-of-type(1) {
         position: fixed;
-        top: 100px;
+        top: 80px;
     }
     
     [data-testid="column"]:nth-of-type(2) {
         position: static;
-        padding-left: 1000px;
-        top: 0px;
+        padding-left: 33%;
+        top: 80px;
     }
 </style>
 """, unsafe_allow_html=True)
 
 with col_1:
     # Add Streamlit components to the fixed column
-    text = st.text_area("Your text area")
-    explain_button =  st.button("Custom Button")
+    st.markdown("""
+    <h1>Code explainer</h1>
+        <p><i>LLM can make mistakes. Check important info.</i></p>
+    """)
+    text = st.text_area("Enter your code here")
+    explain_button =  st.button("Explain code")
     
 with col_2:
     # Continue the HTML structure for the scrollable column
