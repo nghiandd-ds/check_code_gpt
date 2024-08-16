@@ -19,11 +19,10 @@ st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 st.markdown("""
     <style>
     .fixed-side {
-        position: -webkit-sticky;
         position: sticky;
         top: 0;
-        padding: 10px;
-        margin-right: 10px;
+        padding: 0px;
+        margin-right: 0px;
         overflow-y: auto;
     }
     </style>
