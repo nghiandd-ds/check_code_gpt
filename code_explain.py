@@ -46,15 +46,8 @@ st.markdown(
 
     header {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 80px;
     }
-    /* Adjust content margin to prevent overlap */
-    .stApp {
-        top: 80px; /* Adjust this value to match the height of the header */
-    }
+
     
     /* Reduce the height of the footer */
     footer {
