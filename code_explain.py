@@ -108,7 +108,7 @@ st.markdown("""
 <style>
     [data-testid="column"]:nth-of-type(1) {
         position: fixed;
-        top: 2.5%;
+        top: 70rx;
     }
     
     [data-testid="column"]:nth-of-type(2) {
