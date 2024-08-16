@@ -103,13 +103,6 @@ Question: Explain the code by the format:
 '''
 
 st.markdown("""
-    <style>
-    [data-testid="column"] {
-        width: calc(25% - 1rem);
-        flex: 1 1 calc(25% - 1rem);
-        min-width: calc(25% - 1rem);
-    }
-
     [data-testid="column"]:nth-of-type(1) {
         position: fixed;
         top: 0px;
@@ -143,7 +136,6 @@ with col_1:
 with col_2:
     # Continue the HTML structure for the scrollable column
     st.markdown("Scrollable Column")
-    
     # Add content to the scrollable column using st.markdown
     if text and explain_button:
         for i in range(1, 101):
