@@ -49,7 +49,7 @@ st.markdown(
         top: 0;
         left: 0;
         right: 0;
-        height: 80px;
+        bottom: 80px;
     }
     /* Adjust content margin to prevent overlap */
     .stApp {
