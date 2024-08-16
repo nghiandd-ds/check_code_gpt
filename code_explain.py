@@ -134,7 +134,7 @@ with col_1:
         <p><i>LLM can make mistakes. Check important info.</i></p>
     """, unsafe_allow_html=True)
     user_input = st.text_area("Enter your code here", height=200)
-    sub_col_1, sub_col_2, sub_col_3 = st.columns([1, 2.5, 1])
+    sub_col_1, sub_col_2, sub_col_3 = st.columns([1, 3, 1])
     with sub_col_1:
         explain_button =  st.button("Explain code")
     with sub_col_2:
