@@ -139,7 +139,7 @@ st.markdown("""
     }
 
     /* Style for the specific text area */
-    .fixed_text_area {
+    .custom-text-area textarea {
         position: fixed;
         width: 33%;
     }
@@ -149,16 +149,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Add Streamlit components to the fixed column
-st.text_area("Fixed Text Area 2.0", "", key="fixed_text_area", help="This is a fixed text area.")
-st.markdown(
-    """
-    <script>
-    const textArea = document.querySelector('textarea[aria-label="Enter your text here"]');
-    textArea.classList.add('fixed-text-area');
-    </script>
-    """,
-    unsafe_allow_html=True
-)
+st.markdown('<div class="custom-text-area">', unsafe_allow_html=True)
+text = st.text_area("Your text area")
+st.markdown('</div>', unsafe_allow_html=True)
 
 if st.button("Custom Button", key="custom_button", type="secondary"):
     st.write("Button in the fixed column was clicked!")
