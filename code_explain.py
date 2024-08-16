@@ -105,10 +105,9 @@ Question: Explain the code by the format:
 st.markdown("""
     <style>
     [data-testid="column"]:nth-of-type(1) {
-        position: sticky;
+        position: fixed;
         top: 0px;
         height: 100vh;
-        overflow-y: auto;
     }
 
     .fixed-column {
@@ -118,7 +117,11 @@ st.markdown("""
         background-color: #f4f4f4;
         padding: 10px;
     }
-
+    .scrollable-column {
+        width: 66%%;
+        padding: 10px;
+    }
+    
     /* Style for the specific button */
     .stButton > button[kind="secondary"] {
         position: fixed;
