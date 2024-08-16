@@ -33,6 +33,7 @@ st.markdown(
     }
     .main {
         padding-top: 0px;
+        margin-top: 0px;
         border-top: 0px;
     }
     .block-container {
@@ -44,6 +45,8 @@ st.markdown(
 
     header {
         position: fixed;
+        top: 0;
+        bottom: 0;
     }
 
     /* Reduce the height of the footer */
