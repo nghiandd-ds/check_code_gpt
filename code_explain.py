@@ -47,6 +47,7 @@ st.markdown(
         position: fixed;
         top: 0;
         bottom: 0;
+        height: 50px;
     }
 
     /* Reduce the height of the footer */
