@@ -104,9 +104,11 @@ Question: Explain the code by the format:
 
 st.markdown("""
     <style>
-    .container {
-        display: flex;
-        flex-direction: row;
+    [data-testid="column"]:nth-of-type(1) {
+        position: sticky;
+        top: 0px;
+        height: 100vh;
+        overflow-y: auto;
     }
 
     .fixed-column {
@@ -115,12 +117,6 @@ st.markdown("""
         height: 100vh;
         background-color: #f4f4f4;
         padding: 10px;
-    }
-
-    .scrollable-column {
-        margin-left: 33%; /* Offset by the width of the fixed column */
-        padding: 10px;
-        width: calc(100% - 33%);
     }
 
     /* Style for the specific button */
