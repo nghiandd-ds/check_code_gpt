@@ -103,6 +103,7 @@ Question: Explain the code by the format:
 '''
 
 st.markdown("""
+<style>
     [data-testid="column"]:nth-of-type(1) {
         position: fixed;
         top: 0px;
@@ -123,7 +124,7 @@ st.markdown("""
     .stButton > button[kind="secondary"]:hover {
         background-color: #45a049;
     }
-    </style>
+</style>
 """, unsafe_allow_html=True)
 
 col_1, col_2 = st.columns([1, 2])
