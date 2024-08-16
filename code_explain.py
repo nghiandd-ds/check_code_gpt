@@ -140,10 +140,9 @@ st.markdown("""
     }
 
     /* Style for the specific text area */
-    # fixed_text_area {
+    #fixed_text_area {
         position: fixed;
         width: 33%;
-        z-index: 1000;
     }
     </style>
     <div class="container">
@@ -151,7 +150,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Add Streamlit components to the fixed column
-value = st.text_area("Fixed Text Area", "", key="fixed_text_area", help="This is a fixed text area.")
+value = st.text_area("Fixed Text Area 2.0", "", key="fixed_text_area", help="This is a fixed text area.")
 
 
 if st.button("Custom Button", key="custom_button", type="secondary"):
