@@ -20,9 +20,9 @@ st.markdown(
     """
     <style>
     [data-testid="column"] {
-        width: calc(33% - 1rem) !important;
-        flex: 1 1 calc(33% - 1rem) !important;
-        min-width: calc(33% - 1rem) !important;
+        width: calc(25% - 1rem) !important;
+        flex: 1 1 calc(25% - 1rem) !important;
+        min-width: calc(25% - 1rem) !important;
     }
     
     [data-testid="column"]:nth-of-type(1) {
@@ -38,6 +38,9 @@ st.markdown(
     }
     header {
         display: none;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+        border-bottom: 0px;        
     }
     footer {
         display: none;
