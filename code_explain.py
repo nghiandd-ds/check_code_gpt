@@ -36,6 +36,12 @@ st.markdown(
         margin-top: 0px;
         border-top: 0px;
     }
+    header {
+        display: none;
+    }
+    footer {
+        display: none;
+    }
     </style>
     """,
     unsafe_allow_html=True
