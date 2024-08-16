@@ -52,11 +52,8 @@ with col1:
     st.markdown("""<div class="fixed-side">
     <h1>Code explainer</h1>
     <p><i>LLM can make mistakes. Check important info.</i></p>
-    """, 
-                unsafe_allow_html=True)
-    st.write("Code explainer")
-    st.markdown("LLM can make mistakes. Check important info.")
-    user_input = st.text_area("Enter your code here:", height=270)
+    """, unsafe_allow_html=True)
+    user_input = st.text_area("Enter your code here:", height=200)
     submit_button = st.button('Explain code')
     
     st.markdown('</div>', unsafe_allow_html=True)
