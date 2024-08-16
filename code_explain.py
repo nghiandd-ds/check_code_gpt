@@ -111,6 +111,15 @@ st.markdown("""
         top: 0px;
     }
 </style>
+
+<style>
+    [data-testid="column"]:nth-of-type(2) {
+        position: relative;
+        back-ground : blue;
+        padding-left: 35%
+        top: 0px;
+    }
+</style>
 """, unsafe_allow_html=True)
 
 with col_1:
