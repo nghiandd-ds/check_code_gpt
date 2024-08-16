@@ -15,27 +15,22 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.enums import TA_LEFT, TA_CENTER
 
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
-st.markdown(
-    """
+# Custom CSS to freeze the left column
+st.markdown("""
     <style>
-    /* Set sidebar width to 1/3 of the screen width */
-    .css-1d391kg { 
-        width: 25% !important;
-    };
-    /* Hide the sidebar toggle button */
-    [data-testid="stSidebarCollapseButton"] { /* Adjust the class name as necessary */
-        display: none;
-    };
-    [data-testid="stSidebarHeader"] {
-        width: 0;
-        margin: 0;
-        padding: 0;
-        border: 0;
+    .fixed-side {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        background-color: #f4f4f4;
+        padding: 10px;
+        margin-right: 10px;
+        overflow-y: auto;
     }
     </style>
-    """,
-    unsafe_allow_html=True
-)
+    """, unsafe_allow_html=True)
+
 
 st.write("""
 # Code explainer
