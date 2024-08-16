@@ -20,6 +20,7 @@ st.markdown(
     """
     <style>
     [data-testid="column"] {
+        position: sticky;
         width: calc(25% - 1rem) !important;
         flex: 1 1 calc(25% - 1rem) !important;
         min-width: calc(25% - 1rem) !important;
