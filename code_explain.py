@@ -137,13 +137,26 @@ st.markdown("""
     .stButton > button[kind="secondary"]:hover {
         background-color: #45a049;
     }
+
+    /* Style for the specific text area */
+    .element-container:has(textarea[data-testid="stTextArea"][aria-label="Custom Text Area"]) textarea {
+        position: fixed;
+        background-color: #f0f0f0;
+        color: #333333;
+        border: 2px solid #4CAF50;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+    }
     </style>
     <div class="container">
         <div class="fixed-column">
 """, unsafe_allow_html=True)
 
 # Add Streamlit components to the fixed column
-st.text_area("Fixed Text Area", "This text area is in the fixed column.")
+input_code = st.text_area("Custom Text Area", height=200, key="custom_textarea")
+
 if st.button("Custom Button", key="custom_button", type="secondary"):
     st.write("Button in the fixed column was clicked!")
 
