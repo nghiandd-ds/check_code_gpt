@@ -51,6 +51,10 @@ st.markdown(
         right: 0;
         z-index: 1000;
     }
+    /* Adjust content margin to prevent overlap */
+    .stApp {
+        margin-top: 180px; /* Adjust this value to match the height of the header */
+    }
     
     /* Reduce the height of the footer */
     footer {
