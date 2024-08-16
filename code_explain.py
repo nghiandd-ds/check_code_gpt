@@ -16,6 +16,35 @@ from reportlab.lib.enums import TA_LEFT, TA_CENTER
 
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
+st.markdown("""
+    <style>
+    /* Container for the entire layout */
+    .container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    /* Fixed column */
+    .fixed-column {
+        width: 200px;
+        position: fixed;
+        height: 100vh;
+        background-color: #f4f4f4;
+        padding: 10px;
+    }
+
+    /* Scrollable column */
+    .scrollable-column {
+        margin-left: 210px; /* Offset by the width of the fixed column */
+        padding: 10px;
+        width: calc(100% - 210px);
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+a="""
 st.markdown(
     """
     <style>
@@ -51,7 +80,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
+"""
 
 
 # Call out OPENAI
@@ -84,7 +113,7 @@ col1, col2 = st.columns([1, 2])
 
 with col1:
     pinned_container = st.container()
-    st.markdown("""<div class='optional_sticky_class' style='position:sticky;'>
+    st.markdown("""<div class='fixed-column'>
     <h1>Code explainer</h1>
     <p><i>LLM can make mistakes. Check important info.</i></p>
     """, unsafe_allow_html=True)
@@ -95,6 +124,7 @@ with col1:
 
 # You can use col2 for any other content you'd like to place on the right side
 with col2:
+    st.markdown("""<div class='fixed-column'>""", unsafe_allow_html=True)
     st.write("")
     # Define the button and check if it has been clicked
     if submit_button and user_input:
@@ -156,6 +186,7 @@ with col2:
         for t in text:
             print(t)
             st.markdown(t)
+    st.markdown('</div>', unsafe_allow_html=True)
     st.stop()
     client.beta.threads.delete(my_thread.id)
     client.beta.assistants.delete(Coder)
