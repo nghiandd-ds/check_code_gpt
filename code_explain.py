@@ -131,19 +131,17 @@ col_1, col_2 = st.columns([1, 2])
 
 with col_1:
     # Add Streamlit components to the fixed column
-    st.markdown('<div class="fixed-column">', unsafe_allow_html=True)
     text = st.text_area("Your text area")
     explain_button =  st.button("Custom Button", key="custom_button", type="secondary")
-    st.markdown('</div>', unsafe_allow_html=True)
     
 with col_2:
     # Continue the HTML structure for the scrollable column
-    st.markdown("<h3>Scrollable Column</h3>")
+    st.markdown("Scrollable Column")
     
     # Add content to the scrollable column using st.markdown
     if text and explain_button:
         for i in range(1, 101):
-            st.markdown(f"<p class='scrollable-column'>Scrollable content line {i}</p>", unsafe_allow_html=True)
+            st.markdown(f"Scrollable content line {i}</p>", unsafe_allow_html=True)
 
 
 
