@@ -151,7 +151,7 @@ st.markdown('<div class="custom-text-area">', unsafe_allow_html=True)
 text = st.text_area("Your text area")
 st.markdown('</div>', unsafe_allow_html=True)
 
-explain_button =  st.button("Custom Button", key="custom_button", type="secondary"):
+explain_button =  st.button("Custom Button", key="custom_button", type="secondary")
 
 
 # Continue the HTML structure for the scrollable column
