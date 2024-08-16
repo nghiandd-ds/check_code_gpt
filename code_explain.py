@@ -125,7 +125,7 @@ with col_1:
     <h1>Code explainer</h1>
         <p><i>LLM can make mistakes. Check important info.</i></p>
     """, unsafe_allow_html=True)
-    user_input = st.text_area("Enter your code here")
+    user_input = st.text_area("Enter your code here", height=200)
     explain_button =  st.button("Explain code")
     
 with col_2:
