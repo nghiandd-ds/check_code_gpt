@@ -19,10 +19,16 @@ st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 st.markdown(
     """
     <style>
-    .optional_sticky_class {
+    [data-testid="column"] {
+        width: calc(25% - 1rem) !important;
+        flex: 1 1 calc(25% - 1rem) !important;
+        min-width: calc(25% - 1rem) !important;
+    }
+    [data-testid="column"]:nth-of-type(1) {
         position: sticky;
-        top: 3rem;
-        align-self: start;
+        top: 0px;
+        height: 100vh;
+        overflow-y: auto;
     }
     </style>
     """,
@@ -60,12 +66,19 @@ Question: Explain the code by the format:
 col1, col2 = st.columns([1, 2])
 
 with col1:
-    st.markdown("""<div class='optional_sticky_class' style='position:sticky;'>
-    <h1>Code explainer</h1>
-    <p><i>LLM can make mistakes. Check important info.</i></p>
-    """, unsafe_allow_html=True)
-    user_input = st.text_area("Enter your code here:", height=200)
-    submit_button = st.button('Explain code')
+    pinned_container = st.container()
+
+# Add content to the pinned container
+    with pinned_container:
+        st.header("Pinned Content")
+        st.write("This content will remain visible as you scroll.")
+        st.button("Click me")
+        st.markdown("""<div class='optional_sticky_class' style='position:sticky;'>
+        <h1>Code explainer</h1>
+        <p><i>LLM can make mistakes. Check important info.</i></p>
+        """, unsafe_allow_html=True)
+        user_input = st.text_area("Enter your code here:", height=200)
+        submit_button = st.button('Explain code')
     
     st.markdown('</div>', unsafe_allow_html=True)
 
