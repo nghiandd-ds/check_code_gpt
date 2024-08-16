@@ -30,7 +30,7 @@ st.markdown(
         padding-top: 0px; /* Adjust this value to match or slightly exceed the header height */
     }
     .block-container {
-        padding-top: 1rem;
+        padding-top: 10rem;
         padding-bottom: 0rem;
         padding-left: 5rem;
         padding-right: 5rem;
@@ -85,7 +85,7 @@ Question: Explain the code by the format:
 
 
 # Create two columns, the first one will be used for the input text
-col1, col2 = st.columns([1, 1])
+col1, col2 = st.columns([1, 2])
 
 with col1:
     pinned_container = st.container()
