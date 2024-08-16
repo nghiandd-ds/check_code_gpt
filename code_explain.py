@@ -16,7 +16,18 @@ from reportlab.lib.enums import TA_LEFT, TA_CENTER
 
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
-
+st.markdown(
+    """
+    <style>
+    .optional_sticky_class {
+        position: sticky;
+        top: 3rem;
+        align-self: start;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 
 
@@ -49,7 +60,7 @@ Question: Explain the code by the format:
 col1, col2 = st.columns([1, 2])
 
 with col1:
-    st.markdown("""<div class="fixed-side">
+    st.markdown("""<div class='optional_sticky_class' style='position:sticky;'>
     <h1>Code explainer</h1>
     <p><i>LLM can make mistakes. Check important info.</i></p>
     """, unsafe_allow_html=True)
