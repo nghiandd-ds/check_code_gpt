@@ -144,8 +144,6 @@ st.markdown("""
         width: 33%;
     }
     </style>
-    <div class="container">
-        <div class="fixed-column">
 """, unsafe_allow_html=True)
 
 # Add Streamlit components to the fixed column
@@ -153,8 +151,8 @@ st.markdown('<div class="custom-text-area">', unsafe_allow_html=True)
 text = st.text_area("Your text area")
 st.markdown('</div>', unsafe_allow_html=True)
 
-if st.button("Custom Button", key="custom_button", type="secondary"):
-    st.write("Button in the fixed column was clicked!")
+explain_button =  st.button("Custom Button", key="custom_button", type="secondary"):
+
 
 # Continue the HTML structure for the scrollable column
 st.markdown("""
@@ -164,13 +162,13 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Add content to the scrollable column using st.markdown
-for i in range(1, 101):
-    st.markdown(f"<p class='scrollable-column'>Scrollable content line {i}</p>", unsafe_allow_html=True)
+if text and explain_button:
+    for i in range(1, 101):
+        st.markdown(f"<p class='scrollable-column'>Scrollable content line {i}</p>", unsafe_allow_html=True)
 
 # Close the HTML tags
 st.markdown("""
         </div>
-    </div>
 """, unsafe_allow_html=True)
 
 
