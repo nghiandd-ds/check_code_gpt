@@ -20,9 +20,9 @@ st.markdown(
     """
     <style>
     [data-testid="column"] {
-        width: calc(50% - 1rem) !important;
-        flex: 1 1 calc(50% - 1rem) !important;
-        min-width: calc(50% - 1rem) !important;
+        width: calc(33% - 1rem) !important;
+        flex: 1 1 calc(33% - 1rem) !important;
+        min-width: calc(33% - 1rem) !important;
     }
     
     [data-testid="column"]:nth-of-type(1) {
@@ -32,7 +32,7 @@ st.markdown(
         overflow-y: auto;
     }
     .main {
-        padding-top: 0px; /* Adjust this value to match or slightly exceed the header height */
+        padding-top: 100px; /* Adjust this value to match or slightly exceed the header height */
     }
     .block-container {
         padding-top: 0rem;
