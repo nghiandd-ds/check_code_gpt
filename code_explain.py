@@ -117,10 +117,6 @@ st.markdown("""
         background-color: #f4f4f4;
         padding: 10px;
     }
-    .scrollable-column {
-        width: 66%%;
-        padding: 10px;
-    }
     
     /* Style for the specific button */
     .stButton > button[kind="secondary"] {
@@ -156,21 +152,12 @@ with col_1:
     
 with col_2:
     # Continue the HTML structure for the scrollable column
-    st.markdown("""
-            </div>
-            <div class="scrollable-column">
-                <h3>Scrollable Column</h3>
-    """, unsafe_allow_html=True)
+    st.markdown("<h3>Scrollable Column</h3>")
     
     # Add content to the scrollable column using st.markdown
     if text and explain_button:
         for i in range(1, 101):
             st.markdown(f"<p class='scrollable-column'>Scrollable content line {i}</p>", unsafe_allow_html=True)
-    
-    # Close the HTML tags
-    st.markdown("""
-            </div>
-    """, unsafe_allow_html=True)
 
 
 
