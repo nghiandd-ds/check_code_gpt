@@ -103,18 +103,18 @@ Question: Explain the code by the format:
 '''
 
 
-col_1, col_2 = st.columns([1, 2])
+col_1, col_2 = st.columns([1, 3])
 st.markdown("""
 <style>
     [data-testid="column"]:nth-of-type(1) {
         position: fixed;
-        top: 80px;
+        top: 2.5%;
     }
     
     [data-testid="column"]:nth-of-type(2) {
         position: static;
         padding-left: 35%;
-        top: 80px;
+        top: 5%;
     }
 </style>
 """, unsafe_allow_html=True)
