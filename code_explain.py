@@ -94,7 +94,7 @@ def ask(client, mess):
 Message = "Given the following code:"
 
 explain_code_query = '''
-Question: Explain the code by the format:
+Task: Explain the code by the format:
 1. Code purpose
 2. Code breakdown:
 - Input
@@ -102,6 +102,10 @@ Question: Explain the code by the format:
 - Explain the code by table |code | explaination
 '''
 
+
+add_comments = '''
+Task: add comments to the code so it follow best practice and readable.
+'''
 
 col_1, col_2 = st.columns([1, 3])
 st.markdown("""
@@ -126,11 +130,12 @@ with col_1:
         <p><i>LLM can make mistakes. Check important info.</i></p>
     """, unsafe_allow_html=True)
     user_input = st.text_area("Enter your code here", height=200)
-    explain_button =  st.button("Explain code")
-    
+    sub_col_1, sub_col_2 = st.columns([1, 1])
+    with sub_col_1:
+        explain_button =  st.button("Explain code")
+    with sub_col_2:
+        comment_button =  st.button("Add comments")    
 with col_2:
-    # Continue the HTML structure for the scrollable column
-    st.markdown("Scrollable Column")
     # Add content to the scrollable column using st.markdown
     if user_input and explain_button:
         query_ = Message + "/n/n" + user_input  + "/n/n" + explain_code_query
@@ -138,7 +143,13 @@ with col_2:
         for t in text:
             st.markdown(t)
         st.stop()
-
+        
+    if user_input and comment_button:
+        query_ = Message + "/n/n" + user_input  + "/n/n" + add_comments
+        text = ask(client, query_)
+        for t in text:
+            st.markdown(t)
+        st.stop()
 
 
 
