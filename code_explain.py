@@ -109,14 +109,6 @@ st.markdown("""
         top: 0px;
         height: 100vh;
     }
-
-    .fixed-column {
-        width: 33%;
-        position: fixed;
-        height: 100vh;
-        background-color: #f4f4f4;
-        padding: 10px;
-    }
     
     /* Style for the specific button */
     .stButton > button[kind="secondary"] {
@@ -131,12 +123,6 @@ st.markdown("""
     }
     .stButton > button[kind="secondary"]:hover {
         background-color: #45a049;
-    }
-
-    /* Style for the specific text area */
-    .custom-text-area textarea {
-        position: fixed;
-        width: 33%;
     }
     </style>
 """, unsafe_allow_html=True)
