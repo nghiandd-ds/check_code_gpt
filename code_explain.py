@@ -25,7 +25,7 @@ st.markdown(
         min-width: calc(25% - 1rem) !important;
     }
     [data-testid="column"]:nth-of-type(1) {
-        position: sticky;
+        position: fixed;
         top: 0px;
         height: 100vh;
         overflow-y: auto;
@@ -34,7 +34,6 @@ st.markdown(
         padding-top: 0px; /* Adjust this value to match or slightly exceed the header height */
     }
     .block-container {
-        position: fixed;
         padding-top: 0rem;
         padding-bottom: 0rem;
         padding-left: 5rem;
