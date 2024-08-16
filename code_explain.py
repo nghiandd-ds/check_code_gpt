@@ -113,7 +113,7 @@ st.markdown("""
     
     [data-testid="column"]:nth-of-type(2) {
         position: static;
-        padding-left: 33%;
+        padding-left: 35%;
         top: 80px;
     }
 </style>
@@ -124,7 +124,7 @@ with col_1:
     st.markdown("""
     <h1>Code explainer</h1>
         <p><i>LLM can make mistakes. Check important info.</i></p>
-    """)
+    """, unsafe_allow_html=True)
     text = st.text_area("Enter your code here")
     explain_button =  st.button("Explain code")
     
