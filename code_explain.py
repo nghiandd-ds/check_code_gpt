@@ -37,15 +37,6 @@ st.markdown(
         padding-left: 5rem;
         padding-right: 5rem;
     }
-    header {
-        position: fixed;
-        height: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
-    .main {
-        padding-top: 60px; /* Adjust this value as needed */
-    }
 
     /* Reduce the height of the footer */
     footer {
