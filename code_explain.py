@@ -19,11 +19,7 @@ st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 st.markdown(
     """
     <style>
-    #[data-testid="column"] {
-    #    width: calc(25% - 1rem) !important;
-    #    flex: 1 1 calc(25% - 1rem) !important;
-    #    min-width: calc(25% - 1rem) !important;
-    #}
+
     [data-testid="column"]:nth-of-type(1) {
         position: fixed;
         top: 0px;
@@ -34,7 +30,7 @@ st.markdown(
         padding-top: 0px; /* Adjust this value to match or slightly exceed the header height */
     }
     .block-container {
-        padding-top: 0rem;
+        padding-top: 1rem;
         padding-bottom: 0rem;
         padding-left: 5rem;
         padding-right: 5rem;
