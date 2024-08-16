@@ -41,14 +41,13 @@ st.markdown(
         padding-bottom: 0rem;
         padding-left: 5rem;
         padding-right: 5rem;
-        margin-top: 1rem;
+        margin-top: 100rem;
     }
 
     header {
         position: fixed;
     }
 
-    
     /* Reduce the height of the footer */
     footer {
         height: 0px;
