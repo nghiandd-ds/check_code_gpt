@@ -93,7 +93,7 @@ def ask(client, mess):
 
 Message = "Given the following code:"
 
-Question = '''
+explain_code_query = '''
 Question: Explain the code by the format:
 1. Code purpose
 2. Code breakdown:
@@ -108,7 +108,7 @@ st.markdown("""
 <style>
     [data-testid="column"]:nth-of-type(1) {
         position: fixed;
-        top: 20rx;
+        top: 5rx;
     }
     
     [data-testid="column"]:nth-of-type(2) {
@@ -125,17 +125,19 @@ with col_1:
     <h1>Code explainer</h1>
         <p><i>LLM can make mistakes. Check important info.</i></p>
     """, unsafe_allow_html=True)
-    text = st.text_area("Enter your code here")
+    user_input = st.text_area("Enter your code here")
     explain_button =  st.button("Explain code")
     
 with col_2:
     # Continue the HTML structure for the scrollable column
     st.markdown("Scrollable Column")
     # Add content to the scrollable column using st.markdown
-    if text and explain_button:
-        for i in range(1, 101):
-            st.markdown(f"Scrollable content line {i}</p>", unsafe_allow_html=True)
-    st.stop()
+    if user_input and explain_button:
+        query_ = Message + "/n/n" + user_input  + "/n/n" + explain_code_query
+        text = ask(client, query_)
+        for t in text:
+            st.markdown(t)
+        st.stop()
 
 
 
