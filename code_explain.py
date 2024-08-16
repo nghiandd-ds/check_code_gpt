@@ -43,6 +43,9 @@ st.markdown(
         padding-top: 5px;
         padding-bottom: 5px;
     }
+    .main {
+        padding-top: 60px; /* Adjust this value as needed */
+    }
 
     /* Reduce the height of the footer */
     footer {
