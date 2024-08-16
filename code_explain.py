@@ -89,7 +89,7 @@ Question: Explain the code by the format:
 
 
 # Create two columns, the first one will be used for the input text
-col1, col2 = st.columns([1, 2])
+col1, col2 = st.columns([1, 1])
 
 with col1:
     pinned_container = st.container()
