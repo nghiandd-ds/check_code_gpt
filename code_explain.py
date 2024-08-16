@@ -110,7 +110,7 @@ st.markdown("""
     }
 
     .fixed-column {
-        width: 200px;
+        width: 33%;
         position: fixed;
         height: 100vh;
         background-color: #f4f4f4;
@@ -118,9 +118,9 @@ st.markdown("""
     }
 
     .scrollable-column {
-        margin-left: 210px; /* Offset by the width of the fixed column */
+        margin-left: 33%; /* Offset by the width of the fixed column */
         padding: 10px;
-        width: calc(100% - 210px);
+        width: calc(100% - 33%);
     }
     </style>
     <div class="container">
