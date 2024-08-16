@@ -52,7 +52,7 @@ st.markdown(
     }
     /* Adjust content margin to prevent overlap */
     .stApp {
-        top: 180px; /* Adjust this value to match the height of the header */
+        border-top: 180px; /* Adjust this value to match the height of the header */
     }
     
     /* Reduce the height of the footer */
