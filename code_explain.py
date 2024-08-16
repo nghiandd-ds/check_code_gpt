@@ -31,7 +31,7 @@ st.markdown(
         overflow-y: auto;
     }
     .main {
-        padding-top: 170px; /* Adjust this value to match or slightly exceed the header height */
+        padding-top: 0px; /* Adjust this value to match or slightly exceed the header height */
     }
     .block-container {
         padding-top: 0rem;
@@ -40,11 +40,7 @@ st.markdown(
         padding-right: 5rem;
         margin-top: 1rem;
     }
-    /* Optional: Reduce the height of the header if needed */
-    .stApp {
-        margin-top: 70px; /* Adjust this value to match the height of the header */
-    }
-    </style>
+
     header {
         height: 0px; /* Adjust this value as needed */
     }
