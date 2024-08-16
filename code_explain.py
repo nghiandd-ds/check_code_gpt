@@ -77,7 +77,7 @@ with col1:
         st.write("Another fixed content section.")
         
 # You can use col2 for any other content you'd like to place on the right side
-with col1:
+with col2:
     st.write("")
     # Define the button and check if it has been clicked
     if submit_button and user_input:
