@@ -104,11 +104,11 @@ Task: Explain the code by the format:
 
 
 add_comments = '''
-Task: Add comments to the code so it follow best practice and readable.
+Task: Add comments to the code so it follow best practice and readable. Also add brief informations about usage if the code is a function..
 '''
 
 optimization = '''
-Task: Optimize the code for better accuracy and performance. Only return the code and reasons for changes.
+Task: Optimize the code for better accuracy and performance. Only return the code and reason for optimization.
 '''
 
 col_1, col_2 = st.columns([1, 3])
@@ -134,7 +134,7 @@ with col_1:
         <p><i>LLM can make mistakes. Check important info.</i></p>
     """, unsafe_allow_html=True)
     user_input = st.text_area("Enter your code here", height=200)
-    sub_col_1, sub_col_2, sub_col_3 = st.columns([1, 2, 1])
+    sub_col_1, sub_col_2, sub_col_3 = st.columns([1, 2.5, 1])
     with sub_col_1:
         explain_button =  st.button("Explain code")
     with sub_col_2:
