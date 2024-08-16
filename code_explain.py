@@ -146,30 +146,34 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Add Streamlit components to the fixed column
-st.markdown('<div class="custom-text-area">', unsafe_allow_html=True)
-text = st.text_area("Your text area")
-st.markdown('</div>', unsafe_allow_html=True)
+col_1, col_2 = st.columns([1, 2])
 
-explain_button =  st.button("Custom Button", key="custom_button", type="secondary")
+with col_1:
+    st.markdown('<div class="custom-text-area">', unsafe_allow_html=True)
+    # Add Streamlit components to the fixed column
+    st.markdown('<div class="custom-text-area">', unsafe_allow_html=True)
+    text = st.text_area("Your text area")
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    explain_button =  st.button("Custom Button", key="custom_button", type="secondary")
 
-
-# Continue the HTML structure for the scrollable column
-st.markdown("""
-        </div>
-        <div class="scrollable-column">
-            <h3>Scrollable Column</h3>
-""", unsafe_allow_html=True)
-
-# Add content to the scrollable column using st.markdown
-if text and explain_button:
-    for i in range(1, 101):
-        st.markdown(f"<p class='scrollable-column'>Scrollable content line {i}</p>", unsafe_allow_html=True)
-
-# Close the HTML tags
-st.markdown("""
-        </div>
-""", unsafe_allow_html=True)
+with col_2:
+    # Continue the HTML structure for the scrollable column
+    st.markdown("""
+            </div>
+            <div class="scrollable-column">
+                <h3>Scrollable Column</h3>
+    """, unsafe_allow_html=True)
+    
+    # Add content to the scrollable column using st.markdown
+    if text and explain_button:
+        for i in range(1, 101):
+            st.markdown(f"<p class='scrollable-column'>Scrollable content line {i}</p>", unsafe_allow_html=True)
+    
+    # Close the HTML tags
+    st.markdown("""
+            </div>
+    """, unsafe_allow_html=True)
 
 
 
