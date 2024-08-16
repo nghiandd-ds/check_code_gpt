@@ -26,7 +26,7 @@ st.markdown(
     }
     
     [data-testid="column"]:nth-of-type(1) {
-        position: sticky;
+        position: fixed;
         top: 0px;
         height: 100vh;
         overflow-y: auto;
@@ -40,7 +40,8 @@ st.markdown(
         display: none;
         padding-bottom: 0px;
         margin-bottom: 0px;
-        border-bottom: 0px;        
+        border-bottom: 0px;    
+        bottom: 0px;
     }
     footer {
         display: none;
