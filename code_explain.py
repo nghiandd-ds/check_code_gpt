@@ -15,18 +15,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.enums import TA_LEFT, TA_CENTER
 
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
-# Custom CSS to freeze the left column
-st.markdown("""
-    <style>
-    .fixed-side {
-        position: sticky;
-        top: 0;
-        padding: 0px;
-        margin-right: 0px;
-        overflow-y: auto;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+
 
 
 
@@ -71,7 +60,20 @@ with col1:
     submit_button = st.button('Explain code')
     
     st.markdown('</div>', unsafe_allow_html=True)
-        
+
+# Custom CSS to freeze the left column
+st.markdown(
+    """
+    <style>
+    [data-testid="stVerticalBlock"] > [style*="flex-direction: column;"] > [data-testid="stVerticalBlock"] {
+        position: sticky;
+        top: 3rem;
+        align-self: start;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 # You can use col2 for any other content you'd like to place on the right side
 with col2:
     st.write("")
