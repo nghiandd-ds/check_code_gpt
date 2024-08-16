@@ -45,8 +45,8 @@ st.markdown(
     }
 
     header {
-        position: fixed;
-        height: 0px; /* Adjust this value as needed */
+        position: absolute;
+        height: 100px; /* Adjust this value as needed */
     }
     /* Reduce the height of the footer */
     footer {
