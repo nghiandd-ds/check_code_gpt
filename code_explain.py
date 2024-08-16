@@ -45,9 +45,13 @@ st.markdown(
     }
 
     header {
-        position: absolute;
-        height: 100px; /* Adjust this value as needed */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
     }
+    
     /* Reduce the height of the footer */
     footer {
         height: 0px;
