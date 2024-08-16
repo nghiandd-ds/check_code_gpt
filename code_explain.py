@@ -102,20 +102,6 @@ Question: Explain the code by the format:
 - Explain the code by table |code | explaination
 '''
 
-st.markdown("""
-<style>
-    [data-testid="column"] {
-        width: calc(25% - 1rem) !important;
-        flex: 1 1 calc(25% - 1rem) !important;
-        min-width: calc(25% - 1rem) !important;
-    }
-
-    [data-testid="column"]:nth-of-type(1) {
-        position: fixed;
-        top: 0px;
-    }
-</style>
-""", unsafe_allow_html=True)
 
 col_1, col_2 = st.columns([1, 2])
 
