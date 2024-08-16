@@ -126,7 +126,6 @@ st.markdown("""
     /* Style for the specific button */
     .stButton > button[kind="secondary"] {
         position: fixed;
-   
         background-color: #4CAF50;
         color: white;
         padding: 10px 20px;
@@ -140,7 +139,7 @@ st.markdown("""
     }
 
     /* Style for the specific text area */
-    #fixed_text_area {
+    .fixed_text_area {
         position: fixed;
         width: 33%;
     }
@@ -150,7 +149,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Add Streamlit components to the fixed column
-value = st.text_area("Fixed Text Area 2.0", "", key="fixed_text_area", help="This is a fixed text area.")
+st.text_area("Fixed Text Area 2.0", "", key="fixed_text_area", help="This is a fixed text area.")
 
 
 if st.button("Custom Button", key="custom_button", type="secondary"):
