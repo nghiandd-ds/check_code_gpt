@@ -140,7 +140,7 @@ st.markdown("""
     }
 
     /* Style for the specific text area */
-    .element-container:has(#fixed-textarea) .stTextArea {
+    # fixed_text_area {
         position: fixed;
         width: 33%;
         z-index: 1000;
@@ -151,7 +151,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Add Streamlit components to the fixed column
-input_code = st.text_area("Custom Text Area", height=200, key="fixed-textarea")
+value = st.text_area("Fixed Text Area", "", key="fixed_text_area", help="This is a fixed text area.")
+
 
 if st.button("Custom Button", key="custom_button", type="secondary"):
     st.write("Button in the fixed column was clicked!")
