@@ -142,6 +142,7 @@ st.markdown("""
     /* Style for the specific text area */
     .element-container:has(#fixed-textarea) .stTextArea {
         position: fixed;
+        width: 33%;
         z-index: 1000;
     }
     </style>
