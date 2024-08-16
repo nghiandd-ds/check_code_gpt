@@ -30,7 +30,7 @@ st.markdown(
         padding-top: 0px; /* Adjust this value to match or slightly exceed the header height */
     }
     .block-container {
-        padding-top: 10rem;
+        padding-top: 0rem;
         padding-bottom: 0rem;
         padding-left: 5rem;
         padding-right: 5rem;
