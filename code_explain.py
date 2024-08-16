@@ -29,13 +29,30 @@ st.markdown(
         top: 0px;
         height: 100vh;
         overflow-y: auto;
-    };
+    }
 
     .block-container {
         padding-top: 1rem;
         padding-bottom: 0rem;
         padding-left: 5rem;
         padding-right: 5rem;
+    }
+    header {
+        height: 10px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    /* Reduce the height of the footer */
+    footer {
+        height: 10px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    /* Hide the footer (if desired) */
+    footer {
+        visibility: hidden;
     }
 
     </style>
