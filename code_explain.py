@@ -40,7 +40,7 @@ st.markdown(
     }
     /* Optional: Reduce the height of the header if needed */
     header {
-        height: 50px; /* Adjust this value as needed */
+        height: 0px; /* Adjust this value as needed */
     }
     /* Reduce the height of the footer */
     footer {
