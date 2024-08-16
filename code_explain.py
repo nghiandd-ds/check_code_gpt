@@ -141,7 +141,7 @@ st.markdown("""
 
 # Add content to the scrollable column using st.markdown
 for i in range(1, 101):
-    st.markdown(f"<p>Scrollable content line {i}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p class="scrollable-column">Scrollable content line {i}</p>", unsafe_allow_html=True)
 
 # Close the HTML tags
 st.markdown("""
