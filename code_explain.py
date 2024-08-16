@@ -36,32 +36,6 @@ st.markdown(
         margin-top: 0px;
         border-top: 0px;
     }
-    .block-container {
-        padding-top: 0rem;
-        padding-bottom: 0rem;
-        padding-left: 5rem;
-        padding-right: 5rem;
-    }
-
-    header {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        height: 50px;
-    }
-
-    /* Reduce the height of the footer */
-    footer {
-        height: 0px;
-        padding-top: 0px;
-        padding-bottom: 0px;
-    }
-
-    /* Hide the footer (if desired) */
-    footer {
-        visibility: hidden;
-    }
-
     </style>
     """,
     unsafe_allow_html=True
