@@ -37,10 +37,13 @@ st.markdown(
         padding-left: 5rem;
         padding-right: 5rem;
     }
-
+    /* Optional: Reduce the height of the header if needed */
+    header {
+        height: 50px; /* Adjust this value as needed */
+    }
     /* Reduce the height of the footer */
     footer {
-        height: 10px;
+        height: 0px;
         padding-top: 0px;
         padding-bottom: 0px;
     }
