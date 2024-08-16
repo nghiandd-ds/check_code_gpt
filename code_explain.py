@@ -39,7 +39,7 @@ st.markdown(
     }
     header {
         height: 10px;
-        padding-top: 0px;
+        padding-top: 5px;
         padding-bottom: 0px;
     }
 
