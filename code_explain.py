@@ -150,7 +150,15 @@ st.markdown("""
 
 # Add Streamlit components to the fixed column
 st.text_area("Fixed Text Area 2.0", "", key="fixed_text_area", help="This is a fixed text area.")
-
+st.markdown(
+    """
+    <script>
+    const textArea = document.querySelector('textarea[aria-label="Enter your text here"]');
+    textArea.classList.add('fixed-text-area');
+    </script>
+    """,
+    unsafe_allow_html=True
+)
 
 if st.button("Custom Button", key="custom_button", type="secondary"):
     st.write("Button in the fixed column was clicked!")
