@@ -107,6 +107,10 @@ add_comments = '''
 Task: add comments to the code so it follow best practice and readable.
 '''
 
+optimization = '''
+Task: optimize the code for better accuracy and performance.
+'''
+
 col_1, col_2 = st.columns([1, 3])
 st.markdown("""
 <style>
@@ -130,11 +134,13 @@ with col_1:
         <p><i>LLM can make mistakes. Check important info.</i></p>
     """, unsafe_allow_html=True)
     user_input = st.text_area("Enter your code here", height=200)
-    sub_col_1, sub_col_2 = st.columns([1, 1])
+    sub_col_1, sub_col_2, sub_col_3 = st.columns([1, 1, 1])
     with sub_col_1:
         explain_button =  st.button("Explain code")
     with sub_col_2:
         comment_button =  st.button("Add comments")    
+    with sub_col_3:
+        optimize_button =  st.button("Optimization")  
 with col_2:
     # Add content to the scrollable column using st.markdown
     if user_input and explain_button:
@@ -151,7 +157,12 @@ with col_2:
             st.markdown(t)
         st.stop()
 
-
+    if user_input and optimize_button:
+        query_ = Message + "/n/n" + user_input  + "/n/n" + optimization
+        text = ask(client, query_)
+        for t in text:
+            st.markdown(t)
+        st.stop()
 
 
 
