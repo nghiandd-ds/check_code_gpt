@@ -32,7 +32,9 @@ st.markdown(
         overflow-y: auto;
     }
     .main {
-        padding-top: 100px; /* Adjust this value to match or slightly exceed the header height */
+        padding-top: 0px;
+        border-top: 50px;
+        margin-top: 50px;
     }
     .block-container {
         padding-top: 0rem;
