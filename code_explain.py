@@ -16,35 +16,6 @@ from reportlab.lib.enums import TA_LEFT, TA_CENTER
 
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
-st.markdown("""
-    <style>
-    /* Container for the entire layout */
-    .container {
-        display: flex;
-        flex-direction: row;
-    }
-
-    /* Fixed column */
-    .fixed-column {
-        width: 33%;
-        position: fixed;
-        height: 100vh;
-        padding: 10px;
-    }
-
-    /* Scrollable column */
-    .scrollable-column {
-        margin-left: 33%; /* Offset by the width of the fixed column */
-        padding: 10px;
-        width: calc(100% - 35%);
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-
-
 # Call out OPENAI
 def decoding(encryted_key, password):
     password = [eval(i) for i in password.split('-')]
@@ -131,32 +102,48 @@ Question: Explain the code by the format:
 - Explain the code by table |code | explaination
 '''
 
-
 st.markdown("""
+    <style>
+    .container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .fixed-column {
+        width: 200px;
+        position: fixed;
+        height: 100vh;
+        background-color: #f4f4f4;
+        padding: 10px;
+    }
+
+    .scrollable-column {
+        margin-left: 210px; /* Offset by the width of the fixed column */
+        padding: 10px;
+        width: calc(100% - 210px);
+    }
+    </style>
     <div class="container">
         <div class="fixed-column">
-            <h1>Code explainer</h1>
-            <p><i>LLM can make mistakes. Check important info.</i></p>, """, unsafe_allow_html=True)
-# Add content to fixed column here
-user_input = st.text_area("Enter your code here:", height=200)
-submit_button = st.button('Explain code')
+""", unsafe_allow_html=True)
 
-st.markdown("""
-            <p>This is the fixed part.</p>
-        </div>, """, unsafe_allow_html=True)
+# Add Streamlit components to the fixed column
+st.text_area("Fixed Text Area", "This text area is in the fixed column.")
+if st.button("Fixed Button"):
+    st.write("Button in the fixed column was clicked!")
 
+# Continue the HTML structure for the scrollable column
 st.markdown("""
+        </div>
         <div class="scrollable-column">
             <h3>Scrollable Column</h3>
 """, unsafe_allow_html=True)
 
 # Add content to the scrollable column using st.markdown
+for i in range(1, 101):
+    st.markdown(f"<p>Scrollable content line {i}</p>", unsafe_allow_html=True)
 
-if submit_button and user_input:
-    mess = Message + "/n/n" + user_input  + "/n/n" + Question
-    for i in range(1, 101):
-        st.markdown(mess, unsafe_allow_html=True)
-# Closing the HTML tags with st.markdown
+# Close the HTML tags
 st.markdown("""
         </div>
     </div>
