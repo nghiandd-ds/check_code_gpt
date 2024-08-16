@@ -107,22 +107,6 @@ st.markdown("""
     [data-testid="column"]:nth-of-type(1) {
         position: fixed;
         top: 0px;
-        height: 100vh;
-    }
-    
-    /* Style for the specific button */
-    .stButton > button[kind="secondary"] {
-        position: fixed;
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-    }
-    .stButton > button[kind="secondary"]:hover {
-        background-color: #45a049;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -132,7 +116,7 @@ col_1, col_2 = st.columns([1, 2])
 with col_1:
     # Add Streamlit components to the fixed column
     text = st.text_area("Your text area")
-    explain_button =  st.button("Custom Button", key="custom_button", type="secondary")
+    explain_button =  st.button("Custom Button")
     
 with col_2:
     # Continue the HTML structure for the scrollable column
