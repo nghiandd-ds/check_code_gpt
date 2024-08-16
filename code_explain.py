@@ -107,7 +107,7 @@ col_1, col_2 = st.columns([1, 2])
 st.markdown("""
 <style>
     [data-testid="column"]:nth-of-type(1) {
-        position: sticky;
+        position: fixed;
         top: 0px;
     }
 </style>
