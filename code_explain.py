@@ -110,9 +110,7 @@ st.markdown("""
         position: fixed;
         top: 0px;
     }
-</style>
-
-<style>
+    
     [data-testid="column"]:nth-of-type(2) {
         position: relative;
         back-ground : blue;
