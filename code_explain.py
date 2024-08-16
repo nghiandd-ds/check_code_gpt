@@ -108,13 +108,12 @@ st.markdown("""
 <style>
     [data-testid="column"]:nth-of-type(1) {
         position: fixed;
-        top: 0px;
+        top: 100px;
     }
     
     [data-testid="column"]:nth-of-type(2) {
-        position: relative;
-        back-ground : blue;
-        padding-left: 35%
+        position: static;
+        padding-left: 1000px;
         top: 0px;
     }
 </style>
