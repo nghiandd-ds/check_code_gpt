@@ -20,18 +20,18 @@ st.markdown(
     """
     <style>
     [data-testid="column"] {
-        position: sticky;
         width: calc(25% - 1rem) !important;
         flex: 1 1 calc(25% - 1rem) !important;
         min-width: calc(25% - 1rem) !important;
     }
     
     [data-testid="column"]:nth-of-type(1) {
-        position: fixed;
+        position: sticky;
         top: 0px;
         height: 100vh;
         overflow-y: auto;
     }
+
     .main {
         padding-top: 0px;
         margin-top: 0px;
