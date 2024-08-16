@@ -60,7 +60,11 @@ Question: Explain the code by the format:
 col1, col2 = st.columns([1, 2])
 
 with col1:
-    st.markdown('<div class="fixed-side">', unsafe_allow_html=True)
+    st.markdown("""<div class="fixed-side">
+    <h1>Code explainer</h1>
+    <p><i>LLM can make mistakes. Check important info.</i></p>
+    """, 
+                unsafe_allow_html=True)
     st.write("Code explainer")
     st.markdown("LLM can make mistakes. Check important info.")
     user_input = st.text_area("Enter your code here:", height=270)
