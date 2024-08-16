@@ -67,34 +67,15 @@ col1, col2 = st.columns([1, 2])
 
 with col1:
     pinned_container = st.container()
-
-# Add content to the pinned container
-    with pinned_container:
-        st.header("Pinned Content")
-        st.write("This content will remain visible as you scroll.")
-        st.button("Click me")
-        st.markdown("""<div class='optional_sticky_class' style='position:sticky;'>
-        <h1>Code explainer</h1>
-        <p><i>LLM can make mistakes. Check important info.</i></p>
-        """, unsafe_allow_html=True)
-        user_input = st.text_area("Enter your code here:", height=200)
-        submit_button = st.button('Explain code')
-    
+    st.markdown("""<div class='optional_sticky_class' style='position:sticky;'>
+    <h1>Code explainer</h1>
+    <p><i>LLM can make mistakes. Check important info.</i></p>
+    """, unsafe_allow_html=True)
+    user_input = st.text_area("Enter your code here:", height=200)
+    submit_button = st.button('Explain code')
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Custom CSS to freeze the left column
-st.markdown(
-    """
-    <style>
-    [data-testid="stVerticalBlock"] > [style*="flex-direction: column;"] > [data-testid="stVerticalBlock"] {
-        position: sticky;
-        top: 3rem;
-        align-self: start;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+
 # You can use col2 for any other content you'd like to place on the right side
 with col2:
     st.write("")
