@@ -108,13 +108,13 @@ st.markdown("""
 <style>
     [data-testid="column"]:nth-of-type(1) {
         position: fixed;
-        top: 70rx;
+        top: 20rx;
     }
     
     [data-testid="column"]:nth-of-type(2) {
         position: static;
         padding-left: 35%;
-        top: 5%;
+        top: 50rx;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -135,6 +135,7 @@ with col_2:
     if text and explain_button:
         for i in range(1, 101):
             st.markdown(f"Scrollable content line {i}</p>", unsafe_allow_html=True)
+    st.stop()
 
 
 
