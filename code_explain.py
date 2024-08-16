@@ -19,11 +19,11 @@ st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 st.markdown(
     """
     <style>
-    [data-testid="column"] {
-        width: calc(25% - 1rem) !important;
-        flex: 1 1 calc(25% - 1rem) !important;
-        min-width: calc(25% - 1rem) !important;
-    }
+    #[data-testid="column"] {
+    #    width: calc(25% - 1rem) !important;
+    #    flex: 1 1 calc(25% - 1rem) !important;
+    #    min-width: calc(25% - 1rem) !important;
+    #}
     [data-testid="column"]:nth-of-type(1) {
         position: fixed;
         top: 0px;
