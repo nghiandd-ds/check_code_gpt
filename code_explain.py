@@ -66,15 +66,11 @@ Question: Explain the code by the format:
 col1, col2 = st.columns([1, 2])
 
 with col1:
+    st.markdown('<div class="fixed-side">', unsafe_allow_html=True)
     user_input = st.text_area("Enter your code here:", height=270)
     submit_button = st.button('Explain code')
-    # Use st.expander or st.container to hold the content in place
-    with st.expander("Additional Information", expanded=True):
-        st.write("This is some additional fixed content.")
     
-    # Or just use st.container if you don't need expandable behavior
-    with st.container():
-        st.write("Another fixed content section.")
+    st.markdown('</div>', unsafe_allow_html=True)
         
 # You can use col2 for any other content you'd like to place on the right side
 with col2:
