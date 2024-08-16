@@ -37,7 +37,7 @@ def ask(client, mess):
               name="Check code Assistant",
               instructions="""You are an expert in coding and specialize in python and relevent packages. You have 2 jobs:
                   1. Explain the code for non-coder employees and managers.
-                  2. Make comments on code as following best practice and coding standard so junior developer could learn from it.
+                  2. Make notes and comments on code as following best practice and coding standards.
                 """,
               model="gpt-4o-mini-2024-07-18", tools=[{"type": "code_interpreter"}]).id
     
