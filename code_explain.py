@@ -104,7 +104,7 @@ Task: Explain the code by the format:
 
 
 add_comments = '''
-Task: Add comments to the code so it follow best practice and readable. Also add brief informations about usage if the code is a function..
+Task: Add comments to the code so it follow best practice and readable. Also add brief informations about usage if the code is a function. Remember to add some tips on how to explain the code for non-coder.
 '''
 
 optimization = '''
