@@ -94,20 +94,20 @@ def ask(client, mess):
     return text
 #######
 # PDF function
-def convert_markdown_to_pdf(markdown_text):
-    html_content = "<html><body>"
-    for section in markdown_text:
-        print(markdown.markdown(section))
-        html_content += markdown.markdown(section)
-        html_content += "<hr>"
-    html_content += "</body></html>"
-
+#def convert_markdown_to_pdf(markdown_text):
+#    html_content = "<html><body>"
+#    for section in markdown_text:
+#        print(markdown.markdown(section))
+# #       html_content += markdown.markdown(section)
+#        html_content += "<hr>"
+#    html_content += "</body></html>"
+#
     # Generate PDF from the combined HTML using BytesIO
-    pdf_buffer = BytesIO()
-    pdfkit.from_string(html_content, pdf_buffer)
-    pdf_buffer.seek(0)
+#    pdf_buffer = BytesIO()
+#    pdfkit.from_string(html_content, pdf_buffer)
+#    pdf_buffer.seek(0)
     
-    return pdf_buffer
+#    return pdf_buffer
 
 
 #######
@@ -168,7 +168,7 @@ with col_2:
         query_ = Message + "/n/n" + user_input  + "/n/n" + explain_code_query
         text = ask(client, query_)
         
-        buffer = convert_markdown_to_pdf(text)
+        #buffer = convert_markdown_to_pdf(text)
         @st.experimental_fragment
         def download_file():
             st.download_button(
@@ -187,7 +187,7 @@ with col_2:
         query_ = Message + "/n/n" + user_input  + "/n/n" + add_comments
         text = ask(client, query_)
         
-        buffer = convert_markdown_to_pdf(text)
+        #buffer = convert_markdown_to_pdf(text)
         @st.experimental_fragment
         def download_file():
             st.download_button(
@@ -206,7 +206,7 @@ with col_2:
         query_ = Message + "/n/n" + user_input  + "/n/n" + optimization
         text = ask(client, query_)
         
-        buffer = convert_markdown_to_pdf(text)
+        #buffer = convert_markdown_to_pdf(text)
         @st.experimental_fragment
         def download_file():
             st.download_button(
