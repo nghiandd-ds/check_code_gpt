@@ -97,8 +97,8 @@ def ask(client, mess):
 def convert_markdown_to_pdf(markdown_text):
     html_content = "<html><body>"
     for section in markdown_text:
-        print(markdown.markdown(st.markdown(section)))
-        html_content += markdown.markdown(st.markdown(section))
+        print(markdown.markdown(section))
+        html_content += markdown.markdown(section)
         html_content += "<hr>"
     html_content += "</body></html>"
 
