@@ -102,16 +102,11 @@ def convert_markdown_to_pdf(markdown_text):
     doc = SimpleDocTemplate(buffer, pagesize=letter)
     styles = getSampleStyleSheet()
     
-    # Split the markdown text into paragraphs
-    paragraphs = []
-    for i in markdown_text:
-        paragraphs = paragraphs.append(st.markdown(i))
 
-    print(paragraphs)
     # Convert markdown paragraphs to ReportLab Paragraph objects
     elements = []
-    for para in paragraphs:
-        p = Paragraph(para, styles['Normal'])
+    for para in markdown_text:
+        p = Paragraph(st.markdown(para), styles['Normal'])
         elements.append(p)
     
     # Build the PDF
