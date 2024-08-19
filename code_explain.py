@@ -6,7 +6,7 @@ import pandas as pd
 import os
 from io import BytesIO
 #import markdown
-#import pdfkit
+import pdfkit
 
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
@@ -95,28 +95,17 @@ def ask(client, mess):
 #######
 # PDF function
 def convert_markdown_to_pdf(markdown_text):
-    # Create a BytesIO buffer
-    buffer = BytesIO()
+    html_content = "<html><body>"
+    for section in markdown_text:
+        html_content += f"{section}<hr>"
+    html_content += "</body></html>"
 
-    # Create the PDF object using ReportLab
-    doc = SimpleDocTemplate(buffer, pagesize=letter)
-    styles = getSampleStyleSheet()
+    # Generate PDF from the combined HTML using BytesIO
+    pdf_buffer = BytesIO()
+    pdfkit.from_string(html_content, pdf_buffer)
+    pdf_buffer.seek(0)
     
-
-    # Convert markdown paragraphs to ReportLab Paragraph objects
-    elements = []
-    for para in markdown_text:
-        p = Paragraph(st.markdown(para), styles['Normal'])
-        elements.append(p)
-    
-    # Build the PDF
-    doc.build(elements)
-    
-    # Get the value of the BytesIO buffer
-    pdf = buffer.getvalue()
-    buffer.close()
-    
-    return pdf
+    return pdf_buffer
 
 
 
@@ -142,7 +131,7 @@ optimization = '''
 Task: Optimize the code for better accuracy and performance. Only return the code and reason for optimization.
 '''
 
-col_1, col_2 = st.columns([1, 2])
+col_1, col_2 = st.columns([1, 2.5])
 st.markdown("""
 <style>
     [data-testid="column"]:nth-of-type(1) {
@@ -152,7 +141,7 @@ st.markdown("""
     
     [data-testid="column"]:nth-of-type(2) {
         position: static;
-        padding-left: 35%;
+        padding-left: 38%;
         top: 50rx;
     }
 </style>
