@@ -97,7 +97,7 @@ def ask(client, mess):
 def convert_markdown_to_pdf(markdown_text):
     html_content = "<html><body>"
     for section in markdown_text:
-        html_content += f"{section}<hr>"
+        html_content += st.markdown(markdown_text).html_output "<hr>"
     html_content += "</body></html>"
 
     # Generate PDF from the combined HTML using BytesIO
@@ -106,7 +106,6 @@ def convert_markdown_to_pdf(markdown_text):
     pdf_buffer.seek(0)
     
     return pdf_buffer
-
 
 
 #######
