@@ -169,15 +169,15 @@ with col_2:
         text = ask(client, query_)
         
         #buffer = convert_markdown_to_pdf(text)
-        @st.experimental_fragment
-        def download_file():
-            st.download_button(
-                    label="Download PDF",
-                    data=buffer,
-                    file_name="report.pdf",
-                    mime="application/pdf"
-                )
-        download_file()    
+        #@st.experimental_fragment
+        #def download_file():
+        #    st.download_button(
+        #            label="Download PDF",
+       #            data=buffer,
+       #             file_name="report.pdf",
+       #             mime="application/pdf"
+       #         )
+       # download_file()    
         
         for t in text:
             st.markdown(t)
@@ -188,15 +188,15 @@ with col_2:
         text = ask(client, query_)
         
         #buffer = convert_markdown_to_pdf(text)
-        @st.experimental_fragment
-        def download_file():
-            st.download_button(
-                    label="Download PDF",
-                    data=buffer,
-                    file_name="report.pdf",
-                    mime="application/pdf"
-                )
-        download_file()  
+        #@st.experimental_fragment
+        #def download_file():
+        #    st.download_button(
+        #            label="Download PDF",
+        #            data=buffer,
+        #            file_name="report.pdf",
+        #            mime="application/pdf"
+        #        )
+        #download_file()  
         
         for t in text:
             st.markdown(t)
@@ -207,15 +207,15 @@ with col_2:
         text = ask(client, query_)
         
         #buffer = convert_markdown_to_pdf(text)
-        @st.experimental_fragment
-        def download_file():
-            st.download_button(
-                    label="Download PDF",
-                    data=buffer,
-                    file_name="report.pdf",
-                    mime="application/pdf"
-                )
-        download_file()
+        #@st.experimental_fragment
+        #def download_file():
+        #    st.download_button(
+        #            label="Download PDF",
+        #            data=buffer,
+        #            file_name="report.pdf",
+        #            mime="application/pdf"
+        #        )
+        #download_file()
         
         for t in text:
             st.markdown(t)
