@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import os
 from io import BytesIO
-#import markdown
+import markdown
 import pdfkit
 
 from reportlab.pdfgen import canvas
@@ -97,7 +97,7 @@ def ask(client, mess):
 def convert_markdown_to_pdf(markdown_text):
     html_content = "<html><body>"
     for section in markdown_text:
-        html_content += st.markdown(section)
+        html_content += markdown.markdown(st.markdown(section))
         html_content += "<hr>"
     html_content += "</body></html>"
 
