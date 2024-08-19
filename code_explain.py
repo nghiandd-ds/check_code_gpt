@@ -106,7 +106,8 @@ def convert_markdown_to_pdf(markdown_text):
     paragraphs = []
     for i in markdown_text:
         paragraphs = paragraphs.append(st.markdown(i))
-    
+
+    print(paragraphs)
     # Convert markdown paragraphs to ReportLab Paragraph objects
     elements = []
     for para in paragraphs:
@@ -146,7 +147,7 @@ optimization = '''
 Task: Optimize the code for better accuracy and performance. Only return the code and reason for optimization.
 '''
 
-col_1, col_2 = st.columns([1, 3])
+col_1, col_2 = st.columns([1, 2])
 st.markdown("""
 <style>
     [data-testid="column"]:nth-of-type(1) {
