@@ -5,8 +5,8 @@ import numpy as np
 import pandas as pd
 import os
 from io import BytesIO
-import markdown
-import pdfkit
+#import markdown
+#import pdfkit
 
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
