@@ -147,7 +147,7 @@ st.markdown("""
 <style>
     [data-testid="column"]:nth-of-type(1) {
         position: fixed;
-        top: 5%;
+        top: 0.5rx;
     }
     
     [data-testid="column"]:nth-of-type(2) {
