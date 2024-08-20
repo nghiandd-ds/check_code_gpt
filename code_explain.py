@@ -200,10 +200,10 @@ with col_2:
             submit_logic = st.button('Check')
             if code_purpose and submit_logic:
                 query_ = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + "Purpose: " + code_purpose
-                print(query_)
-                text = ask(client, query_)
-                st.markdown('/n/n'.join(text))
-                st.stop()
+                st.markdown(query_)
+                #text = ask(client, query_)
+                #st.markdown('/n/n'.join(text))
+                #st.stop()
         check_code(client, Message, user_input, logic_code)
         st.stop()
 
