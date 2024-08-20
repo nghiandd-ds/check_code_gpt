@@ -101,7 +101,7 @@ def convert_markdown_to_pdf(markdown_text):
 
     
     html_content = "<html><body>"
-    html_content += markdown2.markdown(section)
+    html_content += markdown2.markdown(markdown_text)
     html_content += "</body></html>"
     
     doc = SimpleDocTemplate(buffer, pagesize=A4,
