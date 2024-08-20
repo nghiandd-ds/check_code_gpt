@@ -6,6 +6,7 @@ import pandas as pd
 import os
 from io import BytesIO
 import markdown2
+import markdown
 import pdfkit
 
 from reportlab.pdfgen import canvas
@@ -101,7 +102,7 @@ def convert_markdown_to_pdf(markdown_text):
 
     
     html_content = "<html><body>"
-    html_content += Paragraph(st.markdown(markdown_text))
+    html_content += Paragraph(markdown.markdown(markdown_text))
     html_content += "</body></html>"
     
     doc = SimpleDocTemplate(buffer, pagesize=A4,
