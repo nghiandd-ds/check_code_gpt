@@ -98,7 +98,7 @@ def ask(client, mess):
 #    html_content = "<html><body>"
 #    for section in markdown_text:
 #        print(markdown.markdown(section))
-# #       html_content += markdown.markdown(section)
+#        html_content += markdown.markdown(section)
 #        html_content += "<hr>"
 #    html_content += "</body></html>"
 #
@@ -188,20 +188,23 @@ with col_2:
         query_ = Message + "/n/n" + user_input  + "/n/n" + add_comments
         text = ask(client, query_)
         
-        #buffer = convert_markdown_to_pdf(text)
-        #@st.experimental_fragment
-        #def download_file():
-        #    st.download_button(
-        #            label="Download PDF",
-        #            data=buffer,
-        #            file_name="report.pdf",
-        #            mime="application/pdf"
-        #        )
-        #download_file()  
+        pdf_buffer = BytesIO()
         html = markdown2.markdown('/n/n'.join(text))
-        pdfkit.from_string(html, 'report.pdf')
-        with open("example.pdf", "rb") as f:
-            st.download_button("Download", f, f"report.pdf")
+        pdfkit.from_string(html, pdf_buffer)
+        pdf_buffer.seek(0)
+        
+            
+        @st.experimental_fragment
+        def download_file():
+            st.download_button(
+                    label="Download PDF",
+                    data=pdf_buffer,
+                    file_name="report.pdf",
+                    mime="application/pdf"
+                )
+        download_file()
+        
+
             
         for t in text:
             st.markdown(t)
