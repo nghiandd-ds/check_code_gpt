@@ -203,9 +203,9 @@ with col_2:
         @st.experimental_fragment
         def check_code():
             code_purpose = st.text_area("Describe code's purpose", height=150)
-            submit_logic = st.button('Check')
             query_text = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n'
             st.markdown(query_text)
+            @st.experimental_fragment
             if code_purpose and submit_logic:
                 #st.markdown(user_input)
                 query_ = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + "Purpose: " + code_purpose
