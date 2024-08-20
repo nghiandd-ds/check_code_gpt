@@ -203,11 +203,11 @@ with col_2:
         st.session_state.submit_logic_clicked = False
     
     if user_input and logic_button:
-        st.session_state.user_input = user_input
+        st.session_state.user_input
         @st.experimental_fragment
         def logic_checker():
             code_purpose = st.text_area("Describe code's purpose", height=150, key="code_purpose")
-            st.session_state.code_purpose = code_purpose
+            st.session_state.code_purpose
             @st.experimental_fragment
             def check_button():
                 if st.button("Check"):
