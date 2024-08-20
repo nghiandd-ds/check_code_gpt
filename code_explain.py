@@ -200,7 +200,6 @@ with col_2:
         st.stop()
 
     if user_input and logic_button:
-        @st.experimental_fragment
         code_purpose = st.text_area("Describe code's purpose", height=150)
         submit_logic = st.button("Check")
         if code_purpose and submit_logic:
