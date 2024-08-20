@@ -116,11 +116,9 @@ def convert_markdown_to_pdf(markdown_text):
     return buffer
 
 
-if 'user_input' not in st.session_state:
-    st.session_state['user_input'] = None
 def update_user_input():
-    st.session_state['user_input'] = st.session_state['input_code']
-    user_input = st.session_state['user_input']
+    user_input = st.session_state['input_code']
+    return user_input
     
 #######
 # ChatGPT query
@@ -204,7 +202,8 @@ with col_2:
 
     if user_input and logic_button:
         @st.experimental_fragment
-        def check_code(client, Message, user_input, logic_code):
+        def check_code(client, Message, logic_code):
+            update_user_input()
             code_purpose = st.text_area("Describe code's purpose", height=150)
             submit_logic = st.button('Check')
             if code_purpose and submit_logic:
