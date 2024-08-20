@@ -186,8 +186,7 @@ with col_2:
                 )
         download_file()    
         st.markdown('/n/n'.join(text))
-        #for t in text:
-        #    st.markdown(t)
+
         st.stop()
         
     if user_input and comment_button:
@@ -219,17 +218,7 @@ with col_2:
     if user_input and optimize_button:
         query_ = Message + "/n/n" + user_input  + "/n/n" + optimization
         text = ask(client, query_)
-        
-        buffer = convert_markdown_to_pdf('/n/n'.join(text))
-        @st.experimental_fragment
-        def download_file():
-            st.download_button(
-                    label="Download PDF",
-                    data=buffer,
-                    file_name="report.pdf",
-                    mime="application/pdf"
-                )
-        download_file()
+
         
         for t in text:
             st.markdown(t)
