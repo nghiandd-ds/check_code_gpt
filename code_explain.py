@@ -200,6 +200,7 @@ with col_2:
             submit_logic = st.button('Check')
             if code_purpose and submit_logic:
                 query_ = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + "Purpose: " + code_purpose
+                st.markdown(query_)
                 text = ask(client, query_)
                 st.markdown('/n/n'.join(text))
                 st.stop()
