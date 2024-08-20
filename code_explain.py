@@ -201,7 +201,7 @@ with col_2:
 
     if user_input and logic_button:
         @st.experimental_fragment
-        def check_code():
+        def check_code(Message, logic_code):
             code_purpose = st.text_area("Describe code's purpose", height=150)
             submit_logic = st.button('Check')
             query_text = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n'
@@ -213,7 +213,7 @@ with col_2:
                 #text = ask(client, query_)
                 #st.markdown('/n/n'.join(text))
                 #st.stop()
-        check_code()
+        check_code(Message, logic_code)
         st.stop()
 
 st.stop()
