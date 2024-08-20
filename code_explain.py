@@ -201,7 +201,7 @@ with col_2:
 
     if user_input and logic_button:
         @st.experimental_fragment
-        def check_code(query_text):
+        def check_code():
             code_purpose = st.text_area("Describe code's purpose", height=150)
             submit_logic = st.button('Check')
             query_text = Message + "/n/n" + st.session_state.user_input  + "/n/n" + logic_code + '/n'
