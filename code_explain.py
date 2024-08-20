@@ -193,10 +193,8 @@ with col_2:
         query_ = Message + "/n/n" + user_input  + "/n/n" + add_comments
         text = ask(client, query_)
         
-        pdf_buffer = BytesIO()
-        html = markdown2.markdown('/n/n'.join(text))
-        pdfkit.from_string(html, pdf_buffer)
-        pdf_buffer.seek(0)
+        st.markdown('/n/n'.join(text))
+        st.stop()
         
             
         @st.experimental_fragment
@@ -209,11 +207,6 @@ with col_2:
        #         )
        # download_file()
         
-
-            
-        for t in text:
-            st.markdown(t)
-        st.stop()
 
     if user_input and optimize_button:
         query_ = Message + "/n/n" + user_input  + "/n/n" + optimization
