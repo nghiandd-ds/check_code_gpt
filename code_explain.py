@@ -200,14 +200,14 @@ with col_2:
         st.stop()
 
     if user_input and logic_button:
-        if user_input != st.session_state.user_input:
-            st.session_state.user_input = user_input
         @st.experimental_fragment
         def check_code(client, Message, user_input, logic_code):
             st.markdown(user_input)
             code_purpose = st.text_area("Describe code's purpose", height=150)
             submit_logic = st.button('Check')
             if code_purpose and submit_logic:
+                st.markdown(st.session_state.user_input)
+                st.markdown(user_input)
                 query_ = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + "Purpose: " + code_purpose
                 st.markdown(query_)
                 #text = ask(client, query_)
