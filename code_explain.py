@@ -169,9 +169,8 @@ with col_1:
         <p><i>LLM can make mistakes. Check important info.</i></p>
     """, unsafe_allow_html=True)
     st.text_area("Enter your code here", height=200, 
-                                value=st.session_state['user_input'], 
                                   key='input_code', on_change=update_user_input)
-    user_input = st.session_state['user_input']
+    user_input = update_user_input()
     sub_col_3, sub_col_4 = st.columns(2)
     with sub_col_3:
         explain_button =  st.button("Explain code")
@@ -203,7 +202,7 @@ with col_2:
     if user_input and logic_button:
         @st.experimental_fragment
         def check_code(client, Message, logic_code):
-            update_user_input()
+            user_input = update_user_input()
             code_purpose = st.text_area("Describe code's purpose", height=150)
             submit_logic = st.button('Check')
             if code_purpose and submit_logic:
