@@ -204,7 +204,7 @@ with col_2:
         def check_code():
             code_purpose = st.text_area("Describe code's purpose", height=150)
             submit_logic = st.button('Check')
-            query_text = Message + "/n/n" + st.session_state.user_input  + "/n/n" + logic_code + '/n'
+            query_text = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n'
             if code_purpose and submit_logic:
                 st.markdown(st.session_state.user_input)
                 #st.markdown(user_input)
