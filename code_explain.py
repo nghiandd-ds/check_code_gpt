@@ -205,11 +205,11 @@ with col_2:
     if user_input and logic_button:
         @st.experimental_fragment
         def logic_checker():
-            code_purpose = st.text_area("Describe code's purpose", height=150)
+            code_purpose = st.text_area("Describe code's purpose", height=150, key="code_purpose")
             @st.experimental_fragment
             def check_button():
                 if st.button("Check"):
-                    query_text = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + code_purpose      
+                    query_text = Message + "/n/n" + st.session_state["user_input"]  + "/n/n" + logic_code + '/n' + st.session_state["code_purpose"]      
                     st.markdown(query_text)
             check_button()  
         logic_checker()
