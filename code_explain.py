@@ -147,7 +147,7 @@ st.markdown("""
 <style>
     [data-testid="column"]:nth-of-type(1) {
         position: fixed;
-        top: 5rx;
+        top: 5%;
     }
     
     [data-testid="column"]:nth-of-type(2) {
@@ -195,16 +195,17 @@ with col_2:
 
     if user_input and logic_button:
         @st.experimental_fragment
-        def check_code(Message, user_input, logic_code):
+        def check_code(client, Message, user_input, logic_code):
             code_purpose = st.text_area("Describe code's purpose", height=150)
             submit_logic = st.button('Check')
             if code_purpose and submit_logic:
                 query_ = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + "Purpose: " + code_purpose
-                st.markdown(query_)
+                print(query_)
                 text = ask(client, query_)
                 st.markdown('/n/n'.join(text))
                 st.stop()
-        check_code(Message, user_input, logic_code)
+        check_code(client, Message, user_input, logic_code)
+        st.stop()
 
 st.stop()
 
