@@ -155,7 +155,7 @@ with col_1:
         <p><i>LLM can make mistakes. Check important info.</i></p>
     """, unsafe_allow_html=True)
     user_input = st.text_area("Enter your code here", height=200)
-    sub_col_1, sub_col_2, sub_col_3 = st.columns([1, 3, 1])
+    sub_col_1, sub_col_2, sub_col_3 = st.columns([1, 2.5, 1])
     with sub_col_1:
         explain_button =  st.button("Explain code")
     with sub_col_2:
@@ -169,6 +169,7 @@ with col_2:
         text = ask(client, query_)
         
         #buffer = convert_markdown_to_pdf(text)
+        
         @st.experimental_fragment
         def download_file():
             st.download_button(
@@ -178,9 +179,9 @@ with col_2:
                     mime="application/pdf"
                 )
         download_file()    
-        
-        for t in text:
-            st.markdown(t)
+        st.markdown('/n/n'.join(text))
+        #for t in text:
+        #    st.markdown(t)
         st.stop()
         
     if user_input and comment_button:
