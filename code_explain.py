@@ -208,9 +208,7 @@ with col_2:
             @st.experimental_fragment
             def check_button():
                 if st.button("Check"):  
-                    st.markdown(user_input)
-                    st.markdown(st.session_state.code_purpose)
-                    st.markdown(Message + "/n/n" + user_input + "/n/n" + logic_code + '/n' + "Purpose: " +  st.session_state.code_purpose)
+                    st.markdown(Message + "/n/n" + user_input + "/n/n" + logic_code + '/n/n' + "Purpose: " +  st.session_state.code_purpose)
             check_button()  
         logic_checker()
                 #query_ = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + "Purpose: " + code_purpose
