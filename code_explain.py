@@ -219,7 +219,7 @@ with col_2:
         query_ = Message + "/n/n" + user_input  + "/n/n" + optimization
         text = ask(client, query_)
         
-        buffer = convert_markdown_to_pdf(text)
+        buffer = convert_markdown_to_pdf('/n/n'.join(text))
         @st.experimental_fragment
         def download_file():
             st.download_button(
