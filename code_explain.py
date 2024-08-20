@@ -94,20 +94,25 @@ def ask(client, mess):
     return text
 #######
 # PDF function
-#def convert_markdown_to_pdf(markdown_text):
-#    html_content = "<html><body>"
-#    for section in markdown_text:
-#        print(markdown.markdown(section))
-#        html_content += markdown.markdown(section)
-#        html_content += "<hr>"
-#    html_content += "</body></html>"
-#
-    # Generate PDF from the combined HTML using BytesIO
-#    pdf_buffer = BytesIO()
-#    pdfkit.from_string(html_content, pdf_buffer)
-#    pdf_buffer.seek(0)
+def convert_markdown_to_pdf(markdown_text):
+
+    buffer = BytesIO()
+    styles = getSampleStyleSheet()
+
     
-#    return pdf_buffer
+    html_content = "<html><body>"
+    html_content += markdown2.markdown(section)
+    html_content += "</body></html>"
+    
+    doc = SimpleDocTemplate(buffer, pagesize=A4,
+                            rightMargin=72, leftMargin=72,
+                            topMargin=72, bottomMargin=18)
+    doc.title = "Report"
+    # Generate PDF from the combined HTML using BytesIO
+    doc.build(html_content)
+    buffer.seek(0)
+    
+    return buffer
 
 
 #######
@@ -214,16 +219,16 @@ with col_2:
         query_ = Message + "/n/n" + user_input  + "/n/n" + optimization
         text = ask(client, query_)
         
-        #buffer = convert_markdown_to_pdf(text)
-        #@st.experimental_fragment
-        #def download_file():
-        #    st.download_button(
-        #            label="Download PDF",
-        #            data=buffer,
-        #            file_name="report.pdf",
-        #            mime="application/pdf"
-        #        )
-        #download_file()
+        buffer = convert_markdown_to_pdf(text)
+        @st.experimental_fragment
+        def download_file():
+            st.download_button(
+                    label="Download PDF",
+                    data=buffer,
+                    file_name="report.pdf",
+                    mime="application/pdf"
+                )
+        download_file()
         
         for t in text:
             st.markdown(t)
