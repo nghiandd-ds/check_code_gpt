@@ -213,6 +213,7 @@ with col_2:
                 #st.markdown('/n/n'.join(text))
                 #st.stop()
         query_text = Message + "/n/n" + st.session_state.user_input  + "/n/n" + logic_code + '/n'
+        st.markdown(query_text)
         check_code(query_text = query_text)
         st.stop()
 
