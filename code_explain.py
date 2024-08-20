@@ -116,9 +116,11 @@ def convert_markdown_to_pdf(markdown_text):
     return buffer
 
 
-def update_user_input():
-    user_input = st.session_state['input_code']
-    return user_input
+# Initialize session state
+if 'user_input' not in st.session_state:
+    st.session_state.user_input = None
+if 'update_markdown' not in st.session_state:
+    st.session_state.update_markdown = False
     
 #######
 # ChatGPT query
@@ -168,9 +170,7 @@ with col_1:
     <h1>Code explainer</h1>
         <p><i>LLM can make mistakes. Check important info.</i></p>
     """, unsafe_allow_html=True)
-    st.text_area("Enter your code here", height=200, 
-                                  key='input_code', on_change=update_user_input)
-    user_input = update_user_input()
+    user_input = st.text_area("Enter your code here", height=200, key='user_input')
     sub_col_3, sub_col_4 = st.columns(2)
     with sub_col_3:
         explain_button =  st.button("Explain code")
@@ -200,9 +200,11 @@ with col_2:
         st.stop()
 
     if user_input and logic_button:
+        if user_input != st.session_state.user_input:
+            st.session_state.user_input = user_input
         @st.experimental_fragment
-        def check_code(client, Message, logic_code):
-            user_input = update_user_input()
+        def check_code(client, Message, user_input, logic_code):
+            st.markdown(user_input)
             code_purpose = st.text_area("Describe code's purpose", height=150)
             submit_logic = st.button('Check')
             if code_purpose and submit_logic:
