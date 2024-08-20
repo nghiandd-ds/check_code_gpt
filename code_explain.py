@@ -198,7 +198,11 @@ with col_2:
         #            mime="application/pdf"
         #        )
         #download_file()  
-        
+        html = markdown2.markdown('/n/n'.join(text))
+        pdfkit.from_string(html, 'report.pdf')
+        with open("example.pdf", "rb") as f:
+            st.download_button("Download", f, f"report.pdf")
+            
         for t in text:
             st.markdown(t)
         st.stop()
