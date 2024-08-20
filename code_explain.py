@@ -166,7 +166,7 @@ with col_1:
     """, unsafe_allow_html=True)
 
     def change_input(key):
-        st.session_state[key] = st.session_state[key]
+        user_input = st.session_state[key]
         
     user_input = st.text_area("Enter your code here", height=200, key='user_input', on_change=change_input, args=('user_input',))
     
@@ -208,7 +208,7 @@ with col_2:
             @st.experimental_fragment
             def check_button():
                 if st.button("Check"):  
-                    st.markdown(st.session_state.user_input)
+                    st.markdown(user_input)
                     st.markdown(st.session_state.code_purpose)
                     #st.markdown(query_text)
             check_button()  
