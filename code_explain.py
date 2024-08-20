@@ -131,7 +131,8 @@ Task: Explain the code by the format:
 
 
 add_comments = '''
-Task: Add comments to the code so it follow best practice and readable. Also add brief informations about usage if the code is a function in the code.
+Task: Add comments to the code so it follow best practice and readable. Remember to format and indent the code. 
+Also add brief informations about usage if there are functions in the code.
 '''
 
 optimization = '''
@@ -161,7 +162,7 @@ with col_1:
         <p><i>LLM can make mistakes. Check important info.</i></p>
     """, unsafe_allow_html=True)
     user_input = st.text_area("Enter your code here", height=200)
-    sub_col_1, sub_col_2, sub_col_3 = st.columns([1, 2.5, 1])
+    sub_col_1, sub_col_2, sub_col_3 = st.columns([1, 1.5, 1])
     with sub_col_1:
         explain_button =  st.button("Explain code")
     with sub_col_2:
