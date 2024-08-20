@@ -116,6 +116,11 @@ def convert_markdown_to_pdf(markdown_text):
     return buffer
 
 
+if 'user_input' not in st.session_state:
+    st.session_state['user_input'] = None
+def update_user_input():
+    st.session_state['user_input'] = st.session_state['input_code']
+    
 #######
 # ChatGPT query
 Message = "Given the following code:"
@@ -164,7 +169,9 @@ with col_1:
     <h1>Code explainer</h1>
         <p><i>LLM can make mistakes. Check important info.</i></p>
     """, unsafe_allow_html=True)
-    user_input = st.text_area("Enter your code here", height=200)
+    user_input = st.text_area("Enter your code here", height=200, 
+                                value=st.session_state['user_input'], 
+                                  key='input_code', on_change=update_user_input)
     sub_col_3, sub_col_4 = st.columns(2)
     with sub_col_3:
         explain_button =  st.button("Explain code")
