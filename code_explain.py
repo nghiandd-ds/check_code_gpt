@@ -176,15 +176,15 @@ with col_2:
         
         #buffer = convert_markdown_to_pdf(text)
         
-        @st.experimental_fragment
-        def download_file():
-            st.download_button(
-                    label="Download PDF",
-                    data=st.markdown('/n/n'.join(text)),
-                    file_name="report.pdf",
-                    mime="application/pdf"
-                )
-        download_file()    
+        #@st.experimental_fragment
+        ##def download_file():
+         #   st.download_button(
+         #           label="Download PDF",
+         #           data=st.markdown('/n/n'.join(text)),
+         #           file_name="report.pdf",
+         #           mime="application/pdf"
+         #       )
+        #download_file()    
         st.markdown('/n/n'.join(text))
 
         st.stop()
