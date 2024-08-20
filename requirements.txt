@@ -2,3 +2,4 @@ openai
 reportlab
 pdfkit
 markdown2
+markdown
