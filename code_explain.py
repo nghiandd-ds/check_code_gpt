@@ -200,14 +200,14 @@ with col_2:
         
             
         @st.experimental_fragment
-        def download_file():
-            st.download_button(
-                    label="Download PDF",
-                    data=pdf_buffer,
-                    file_name="report.pdf",
-                    mime="application/pdf"
-                )
-        download_file()
+        #def download_file():
+        #    st.download_button(
+        #            label="Download PDF",
+        #            data=pdf_buffer,
+        #            file_name="report.pdf",
+       #             mime="application/pdf"
+       #         )
+       # download_file()
         
 
             
