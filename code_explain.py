@@ -207,9 +207,9 @@ with col_2:
             st.markdown(query_text)
             submit_logic = st.button("Check")
             if code_purpose and submit_logic:
-                #st.markdown(user_input)
-                query_ = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + "Purpose: " + code_purpose
-                st.markdown(query_)
+                st.markdown(query_text)
+                #query_ = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + "Purpose: " + code_purpose
+                #st.markdown(query_)
                 #text = ask(client, query_)
                 #st.markdown('/n/n'.join(text))
                 #st.stop()
