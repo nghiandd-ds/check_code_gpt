@@ -212,6 +212,7 @@ with col_2:
                 #text = ask(client, query_)
                 #st.markdown('/n/n'.join(text))
                 #st.stop()
+        
         check_code(client, Message, user_input=st.session_state.user_input, logic_code)
         st.stop()
 
