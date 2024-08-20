@@ -201,12 +201,10 @@ with col_2:
 
     if user_input and logic_button:
         @st.experimental_fragment
-        def check_code():
-            code_purpose = st.text_area("Describe code's purpose", height=150)
-            submit_logic = st.button("Check")
-            if code_purpose and submit_logic:
-                query_text = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + code_purpose
-                return query_text
+        code_purpose = st.text_area("Describe code's purpose", height=150)
+        submit_logic = st.button("Check")
+        if code_purpose and submit_logic:
+            query_text = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + code_purpose
         query_text = check_code()       
         st.markdown(query_text)
                 #query_ = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + "Purpose: " + code_purpose
