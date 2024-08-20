@@ -211,6 +211,8 @@ with col_2:
                 if st.button("Check"):
                     query_text = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + code_purpose      
                     st.markdown(query_text)
+            check_button()  
+        logic_checker()
                 #query_ = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + "Purpose: " + code_purpose
                 #st.markdown(query_)
                 #text = ask(client, query_)
