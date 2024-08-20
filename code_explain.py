@@ -166,7 +166,7 @@ with col_1:
     """, unsafe_allow_html=True)
 
     def change_input(key):
-        st.info(st.session_state[key])
+        st.session_state[key]
         
     user_input = st.text_area("Enter your code here", height=200, key='user_input', on_change=change_input, args=('user_input',))
     
