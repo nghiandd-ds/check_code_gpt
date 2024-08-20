@@ -173,39 +173,15 @@ with col_2:
     if user_input and explain_button:
         query_ = Message + "/n/n" + user_input  + "/n/n" + explain_code_query
         text = ask(client, query_)
-        
-        #buffer = convert_markdown_to_pdf(text)
-        
-        #@st.experimental_fragment
-        ##def download_file():
-         #   st.download_button(
-         #           label="Download PDF",
-         #           data=st.markdown('/n/n'.join(text)),
-         #           file_name="report.pdf",
-         #           mime="application/pdf"
-         #       )
-        #download_file()    
         st.markdown('/n/n'.join(text))
-
         st.stop()
         
     if user_input and comment_button:
         query_ = Message + "/n/n" + user_input  + "/n/n" + add_comments
         text = ask(client, query_)
-        
         st.markdown('/n/n'.join(text))
         st.stop()
         
-            
-        @st.experimental_fragment
-        #def download_file():
-        #    st.download_button(
-        #            label="Download PDF",
-        #            data=pdf_buffer,
-        #            file_name="report.pdf",
-       #             mime="application/pdf"
-       #         )
-       # download_file()
         
 
     if user_input and optimize_button:
