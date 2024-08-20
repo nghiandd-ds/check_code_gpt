@@ -102,7 +102,7 @@ def convert_markdown_to_pdf(markdown_text):
 
     
     html_content = "<html><body>"
-    html_content += Paragraph(markdown.markdown(markdown_text))
+    html_content += markdown.markdown(markdown_text)
     html_content += "</body></html>"
     
     doc = SimpleDocTemplate(buffer, pagesize=A4,
@@ -110,7 +110,7 @@ def convert_markdown_to_pdf(markdown_text):
                             topMargin=72, bottomMargin=18)
     doc.title = "Report"
     # Generate PDF from the combined HTML using BytesIO
-    doc.build(html_content)
+    doc.build(Paragraph(html_content))
     buffer.seek(0)
     
     return buffer
