@@ -203,14 +203,14 @@ with col_2:
         st.session_state.submit_logic_clicked = False
     
     if user_input and logic_button:
-        code_purpose = st.text_area("Describe code's purpose", height=150)
-        submit_logic = st.button("Check")
-        if code_purpose and submit_logic:
-            st.session_state.submit_logic_clicked = True
-            
-        if st.session_state.submit_logic_clicked:
-            query_text = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + code_purpose      
-            st.markdown(query_text)
+        @st.experimental_fragment
+        def logic_checker():
+            code_purpose = st.text_area("Describe code's purpose", height=150)
+            @st.experimental_fragment
+            def check_button():
+                if st.button("Check"):
+                    query_text = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + code_purpose      
+                    st.markdown(query_text)
                 #query_ = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + "Purpose: " + code_purpose
                 #st.markdown(query_)
                 #text = ask(client, query_)
