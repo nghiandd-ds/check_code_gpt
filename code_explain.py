@@ -139,6 +139,9 @@ optimization = '''
 Task: Optimize the code for better accuracy and performance. Only return the code and reason for optimization.
 '''
 
+logic_code = '''
+Task: Check if the code logic is suitable for the following purpose. Only give brief answer and short reason on how the code is or is not.
+'''
 col_1, col_2 = st.columns([1, 2.5])
 st.markdown("""
 <style>
@@ -169,6 +172,7 @@ with col_1:
         
     with sub_col_4:
         optimize_button =  st.button("Optimization")  
+        logic_button = st.button("Check logic")
 with col_2:
     # Add content to the scrollable column using st.markdown
     if user_input and explain_button:
@@ -183,16 +187,20 @@ with col_2:
         st.markdown('/n/n'.join(text))
         st.stop()
         
-        
-
     if user_input and optimize_button:
         query_ = Message + "/n/n" + user_input  + "/n/n" + optimization
         text = ask(client, query_)
-
-        
-        for t in text:
-            st.markdown(t)
+        st.markdown('/n/n'.join(text))
         st.stop()
+
+    if user_input and logic_button:
+        code_purpose = st.text_area("Describe code's purpose", height=200)
+        submit_logic = st.button('Check')
+        if code_purpose and submit_logic:
+            query_ = Message + "/n/n" + user_input  + "/n/n" + optimization + '/n' + "Purpose: " + code_purpose
+            text = ask(client, query_)
+            st.markdown('/n/n'.join(text))
+            st.stop()
 st.stop()
 
 
