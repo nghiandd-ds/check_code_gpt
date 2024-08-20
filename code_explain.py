@@ -162,12 +162,12 @@ with col_1:
         <p><i>LLM can make mistakes. Check important info.</i></p>
     """, unsafe_allow_html=True)
     user_input = st.text_area("Enter your code here", height=200)
-    sub_col_1, sub_col_2, sub_col_3 = st.columns(3)
+    sub_col_1, sub_col_2 = st.columns(2)
     with sub_col_1:
         explain_button =  st.button("Explain code")
-    with sub_col_2:
         comment_button =  st.button("Add comments")    
-    with sub_col_3:
+        
+    with sub_col_2:
         optimize_button =  st.button("Optimization")  
 with col_2:
     # Add content to the scrollable column using st.markdown
