@@ -141,6 +141,7 @@ Task: Optimize the code for better accuracy and performance. Only return the cod
 
 logic_code = '''
 Task: Check if the code is suitable for the intented purpose/logic that given below. Only give brief answer and short reason on how the code is or is not.
+Make sure to highlight the result suitable or not.
 '''
 col_1, col_2 = st.columns([1, 2.5])
 st.markdown("""
@@ -208,7 +209,7 @@ with col_2:
             code_purpose = st.text_area("Describe code's purpose/logic", height=150, key="code_purpose")
             @st.experimental_fragment
             def check_button():
-                if st.button("Check") and code_purpose and user_input:  
+                if st.button("Check") and code_purpose and (user_input == st.session_state.user_input):  
                     query_ = Message + "/n/n" + st.session_state.user_input + "/n/n" + logic_code + '/n/n' + "Purpose/Logic: " +  st.session_state.code_purpose
                     text = ask(client, query_)
                     st.markdown('/n/n'.join(text))
