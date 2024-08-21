@@ -169,7 +169,7 @@ with col_1:
     def change_input(key):
         user_input = st.session_state[key]
         
-    user_input = st.text_area("Enter your code here", height=200, key='user_input', on_change=change_input, args=('user_input',))
+    user_input = st.text_area("Enter your code here", height=200, key='user_input')
     
     sub_col_3, sub_col_4 = st.columns(2)
     with sub_col_3:
