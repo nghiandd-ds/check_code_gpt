@@ -203,7 +203,7 @@ with col_2:
         st.session_state.submit_logic_clicked = False
     
     if user_input and logic_button:
-        st.markdown("#IMPORTANT: This is a alpha version. Some of the intented function might note work!")
+        st.markdown("#IMPORTANT: This is a alpha version. Some of the intented function might not work!")
         @st.experimental_fragment
         def logic_checker():
             code_purpose = st.text_area("Describe code's purpose/logic", height=150, key="code_purpose")
