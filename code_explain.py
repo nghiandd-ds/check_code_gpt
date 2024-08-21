@@ -165,9 +165,6 @@ with col_1:
     <h1>Code explainer</h1>
         <p><i>LLM can make mistakes. Check important info.</i></p>
     """, unsafe_allow_html=True)
-
-    def change_input(key):
-        user_input = st.session_state[key]
         
     user_input = st.text_area("Enter your code here", height=200, key='user_input')
     
