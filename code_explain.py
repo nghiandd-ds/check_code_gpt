@@ -165,7 +165,7 @@ with col_2:
             query_ = Message + "/n/n" + st.session_state.user_input + "/n/n" + logic_code + '/n/n' + "Purpose/Logic: " +  code_purpose
             @st.experimental_fragment
             def check_button():
-                if st.button("Check") and code_purpose:
+                if st.button("Check"):
                     st.markdown(code_purpose)
                     text = ask(client, query_)
                     st.markdown('/n/n'.join(text))
