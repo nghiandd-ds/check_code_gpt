@@ -163,9 +163,7 @@ with col_2:
             st.markdown("<b>IMPORTANT</b>: This is a alpha version. Some of the intented function might not work!", unsafe_allow_html=True)
             query_ = Message + "/n/n" + st.session_state.user_input + "/n/n" + logic_code + '/n/n' + "Purpose/Logic: " +  code_purpose
             if code_purpose:
-                st.markdown("-----------------------------")
-                st.markdown(code_purpose)
-                st.markdown("-----------------------------")
+                st.session_state.code_purpose = None
                 text = ask(client, query_)
                 st.markdown('/n/n'.join(text))
                 st.stop()
