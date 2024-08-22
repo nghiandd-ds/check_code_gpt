@@ -165,16 +165,12 @@ with col_2:
             def check_button():
                 if st.button("Check") and code_purpose and (user_input == st.session_state.user_input):  
                     query_ = Message + "/n/n" + st.session_state.user_input + "/n/n" + logic_code + '/n/n' + "Purpose/Logic: " +  st.session_state.code_purpose
+                    st.markdown(query_)
                     text = ask(client, query_)
                     st.markdown('/n/n'.join(text))
                     st.stop()
             check_button()  
         logic_checker()
-                #query_ = Message + "/n/n" + user_input  + "/n/n" + logic_code + '/n' + "Purpose: " + code_purpose
-                #st.markdown(query_)
-                #text = ask(client, query_)
-                #st.markdown('/n/n'.join(text))
-                #st.stop()
         st.stop()
 st.stop()
 
