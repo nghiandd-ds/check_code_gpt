@@ -160,9 +160,10 @@ with col_2:
             code_purpose = st.text_input("Describe code's purpose/logic", key="code_purpose")
             st.markdown("<b>IMPORTANT</b>: This is a alpha version. Some of the intented function might not work!", unsafe_allow_html=True)
             query_ = Message + "/n/n" + st.session_state.user_input + "/n/n" + logic_code + '/n/n' + "Purpose/Logic: " +  code_purpose
-            text = ask(client, query_)
-            st.markdown('/n/n'.join(text))
-            st.stop()
+            if code_purpose:
+                text = ask(client, query_)
+                st.markdown('/n/n'.join(text))
+                st.stop()
         logic_checker()
         st.stop()
 st.stop()
