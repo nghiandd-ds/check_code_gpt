@@ -33,66 +33,18 @@ def decoding(encryted_key, password):
 openai_api_key = decoding('FSeeODhu-tBjpc9j-cM0iJtRRo3rkona7nXEHKk9sWk3bCPI63TrnTlB', '35-21-17-37-41-42-56-47-8-54-16-7-4-10-50-18-3-38-28-55-11-36-45-13-9-19-44-25-39-6-53-43-27-12-40-20-24-14-34-15-1-26-2-30-33-49-46-22-51-23-29-5-48-52-32-31')
 client = OpenAI(api_key=openai_api_key)
 
-def ask(client, mess):
+def ask(client, mess, model="gpt-4o-mini-2024-07-18"):
     #### QUERY CHATGPT ####
-    
-    # Create OpenAI agent
-    Coder = client.beta.assistants.create(
-              name="Check code Assistant",
-              instructions="""You are an expert in coding and specialize in python and relevent packages. You have 2 jobs:
-                  1. Explain the code for non-coder employees and managers.
-                  2. Make notes and comments on code as following best practice and coding standards.
-                """,
-              model="gpt-4o-mini-2024-07-18", tools=[{"type": "code_interpreter"}]).id
-    
-    # Create thread
-    my_thread = client.beta.threads.create(
-      messages=[
-        {
-            "role": "user",
-            "content": [
-                            {"type": "text", "text": mess}
-            ],
-        }
-      ]
-    )
-    
-    # Run
-    my_run = client.beta.threads.runs.create(
-        thread_id = my_thread.id,
-        assistant_id = Coder,
-    )
-    
+    response = client.chat.completions.create(
+        model=model,
+        messages=[{"role": "user", "content": mess}])
     text = []
-    while my_run.status in ["queued", "in_progress"]:
-        keep_retrieving_run = client.beta.threads.runs.retrieve(
-            thread_id=my_thread.id,
-            run_id=my_run.id
-        )
-        print(f"Run status: {keep_retrieving_run.status}")
-    
-        if keep_retrieving_run.status == "completed":
-            print("\n")
-    
-            all_messages = client.beta.threads.messages.list(
-                thread_id=my_thread.id
-            )
-    
-            print("------------------------------------------------------------ \n")
-            # print in reverse order => first answer go first
-            for txt in all_messages.data[::-1]:
-                if txt.role == 'assistant':
-                    text.append(txt.content[0].text.value)
-            print("------------------------------------------------------------ \n")
-            break
-        elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
-            pass
-        else:
-            print(f"Run status: {keep_retrieving_run.status}")
-            break
-    client.beta.threads.delete(my_thread.id)
-    client.beta.assistants.delete(Coder)
+
+    # print in reverse order => first answer go first
+    for txt in response.choices[::-1]:
+            text.append(txt.message.content)
     return text
+    
 #######
 # PDF function
 def convert_markdown_to_pdf(markdown_text):
@@ -118,7 +70,12 @@ def convert_markdown_to_pdf(markdown_text):
     
 #######
 # ChatGPT query
-Message = "Given the following code:"
+Message = """
+As an expert in coding and specialize in python and relevent packages, you have 2 jobs:
+    1. Explain the code for non-coder employees and managers.
+    2. Make notes and comments on code as following best practice and coding standards.
+Given the following code:
+"""
 
 explain_code_query = '''
 Task: Explain the code by the format:
