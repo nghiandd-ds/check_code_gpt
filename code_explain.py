@@ -162,10 +162,11 @@ with col_2:
         def logic_checker():
             code_purpose = st.text_area("Describe code's purpose/logic", height=150, key="code_purpose")
             st.markdown("<b>IMPORTANT</b>: This is a alpha version. Some of the intented function might not work!", unsafe_allow_html=True)
-            query_ = Message + "/n/n" + st.session_state.user_input + "/n/n" + logic_code + '/n/n' + "Purpose/Logic: " +  st.session_state.code_purpose
+            query_ = Message + "/n/n" + st.session_state.user_input + "/n/n" + logic_code + '/n/n' + "Purpose/Logic: " +  code_purpose
             @st.experimental_fragment
             def check_button():
                 if st.button("Check") and code_purpose:
+                    st.markdown(code_purpose)
                     text = ask(client, query_)
                     st.markdown('/n/n'.join(text))
                     st.stop()
