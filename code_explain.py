@@ -145,7 +145,7 @@ with col_2:
         
 
     if user_input and logic_button:
-        @st.experimental_fragment
+        @st.fragment
         def logic_checker():
             code_purpose = st.text_input("Describe code's purpose/logic", key="code_purpose", 
                                          value=None, 
