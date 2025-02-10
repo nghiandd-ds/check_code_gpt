@@ -61,9 +61,7 @@ def convert_markdown_to_pdf(markdown_text):
 #######
 # ChatGPT query
 Message = """
-As an expert in coding and specialize in python and relevent packages, you have 2 jobs:
-    1. Explain the code for non-coder employees and managers.
-    2. Make notes and comments on code as following best practice and coding standards.
+You are an expert in coding and specialize in python and relevent packages. Your jobs is to do given task as simple, yet easy to understand as much as possible.
 Given the following code:
 """
 
