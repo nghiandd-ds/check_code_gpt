@@ -21,17 +21,7 @@ from reportlab.lib.enums import TA_LEFT, TA_CENTER
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
 # Call out OPENAI
-def decoding(encryted_key, password):
-    password = [eval(i) for i in password.split('-')]
-    key = [i for i in encryted_key]
-    combine_key = pd.DataFrame({
-        'index' : password,
-        'encryted_key': key
-    }).sort_values('index')
-    return ''.join(combine_key['encryted_key'])
-
-openai_api_key = decoding()
-client = OpenAI(api_key=openai_api_key)
+client = OpenAI(api_key=st.secrets["openai_key"]["key"])
 
 def ask(client, mess, model="gpt-4o-mini-2024-07-18"):
     #### QUERY CHATGPT ####
